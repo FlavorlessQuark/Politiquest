@@ -5,7 +5,7 @@ const Navbar = () => {
 
   const pages = [
     { name: "City Meetings", ref: "/home" },
-    { name: "Achievments", ref: "/achievments" },
+    { name: "Achievements", ref: "/achievements" },
     { name: "Representatives", ref: "/reps" },
     { name: "Leaderboard", ref: "/leaderboard" },
   ];
@@ -13,7 +13,8 @@ const Navbar = () => {
   return (
     <Container>
       {pages.map((elem) => (
-        <Tab selected={window.location.pathname === elem.ref} key={elem.ref} href={elem.ref}>
+        <Tab key={elem.ref} href={elem.ref}
+          {...document.location.pathname === elem.ref ? {$active: "true"} : {}} >
           {elem.name}
         </Tab>
       ))}
@@ -34,17 +35,35 @@ const Container = styled.div`
     justify-content: space-around;
 `;
 
-const Tab = styled.a`
-    display: flex;
-    // border-left: 1px solid black;
-    // border-right: 1px solid black;
-    padding: 5px 20px;
-    align-items: center;
-    text-underline-offset: 10px;
-    color: ${props => props.selected ? "#00b8ff" : "black"};
-    text-decoration:  ${props => props.selected ? "underline" : "none"};
+// const Tab = styled.a`
+//     display: flex;
+//     // border-left: 1px solid black;
+//     // border-right: 1px solid black;
+//     padding: 5px 20px;
+//     align-items: center;
+//     text-underline-offset: 10px;
+//     color: ${props => props.selected ? "#00b8ff" : "black"};
+//     text-decoration:  ${props => props.selected ? "underline" : "none"};
+// `;
 
+const Tab = styled.a<{ $active?: boolean; }>`
+    padding: .5rem 1rem;
+    margin-bottom: .5rem;
+    display: inline-block;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+    font: 1.1rem sans-serif;
+    font-weight: 300;
+    color: #000;
+    text-transform: capitalize;
+    // border-bottom: solid 1px;
+    // border-color: ${props => props.$active ? "black" : "white" };
+
+    text-underline-offset: 10px;
+    color: ${props => props.$active ? "#00b8ff" : "black"};
+    text-decoration:  ${props => props.$active ? "underline" : "none"};
     &:hover {
+        background-color: #EAEAEA;
         cursor : pointer;
     }
 `;

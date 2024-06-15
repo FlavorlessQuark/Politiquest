@@ -18,10 +18,11 @@ const Container = styled.div`
     align-items: center;
     flex-direction: column;
     gap: 50px;
+    text-align: center;
 `
 
 const Title = styled.div`
-    font-size: 4vw;
+    font-size: 3vw;
 `
 
 const SubText = styled.div`
