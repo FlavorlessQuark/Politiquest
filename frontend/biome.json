@@ -15,6 +15,6 @@
         "noNonNullAssertion": "off"
       }
     },
-		"ignore": ["dist"]
+    "ignore": ["dist"]
   }
 }
