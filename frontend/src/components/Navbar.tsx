@@ -11,7 +11,8 @@ const Navbar = () => {
   return (
     <Container>
       {pages.map((elem) => (
-        <Tab key={elem.ref} href={elem.ref}>
+        <Tab key={elem.ref} href={elem.ref}
+          {...document.location.pathname === elem.ref ? {$active: "true"} : {}} >
           {elem.name}
         </Tab>
       ))}
@@ -26,7 +27,7 @@ const Container = styled.div`
     min-height: 60px;
 `;
 
-const Tab = styled.a`
+const Tab = styled.a<{ $active?: boolean; }>`
     padding-left: 1rem;
     padding-right: 1rem;
     padding-top: .5rem;
@@ -38,8 +39,9 @@ const Tab = styled.a`
     font: 1.1rem sans-serif;
     font-weight: 300;
     color: #000;
-    border-radius: .2rem;
-    text-transform: uppercase;
+    text-transform: capitalize;
+    border-bottom: solid 1px;
+    border-color: ${props => props.$active ? "black" : "white" };
 
     &:hover {
         background-color: #EAEAEA;
