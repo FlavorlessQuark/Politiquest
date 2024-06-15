@@ -3,7 +3,7 @@ import { styled } from "styled-components";
 const Navbar = () => {
   const pages = [
     { name: "City Meetings", ref: "/home" },
-    { name: "Achievments", ref: "/achievments" },
+    { name: "Achievements", ref: "/achievements" },
     { name: "Representatives", ref: "/reps" },
     { name: "Leaderboard", ref: "/leaderboard" },
   ];
@@ -24,16 +24,25 @@ const Container = styled.div`
     height: 10%;
     max-height: 100px;
     min-height: 60px;
-    border-top: 1px solid black;
 `;
 
 const Tab = styled.a`
-    width: 20%;
-    height: 100%;
-    border-left: 1px solid black;
-    border-right: 1px solid black;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
+    margin-bottom: .5rem;
+    display: inline-block;
+    text-decoration: none;
+    transition: all .3s ease-in-out;
+    font: 1.1rem sans-serif;
+    font-weight: 300;
+    color: #000;
+    border-radius: .2rem;
+    text-transform: uppercase;
 
     &:hover {
+        background-color: #EAEAEA;
         cursor : pointer;
     }
 `;

@@ -1,5 +1,7 @@
+import {ProgressBar} from "react-progressbar-fancy";
+
 const Home = () => {
-  return <>HOME</>;
+  return <ProgressBar score={25} label="Level"  />;
 };
 
 export default Home;
