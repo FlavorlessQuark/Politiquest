@@ -5,7 +5,7 @@ import styled from "styled-components";
 const Chat = () => {
     return (
         <ChatBoxContainer>
-            <ChatBox type="textarea"/>
+            <ChatBox/>
             <ChatSend> Send </ChatSend>
         </ChatBoxContainer>
     )
@@ -31,7 +31,7 @@ const ChatBoxContainer = styled.div`
     box-sizing: border-box;
 `
 
-const ChatBox = styled.input`
+const ChatBox = styled.textarea`
     flex: 1;
   &::-webkit-scrollbar {
     width: 10px;
