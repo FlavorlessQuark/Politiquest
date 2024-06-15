@@ -11,7 +11,9 @@ const Navbar = () => {
   return (
     <Container>
       {pages.map((elem) => (
-        <Tab href={elem.ref}> {elem.name}</Tab>
+        <Tab key={elem.ref} href={elem.ref}>
+          {elem.name}
+        </Tab>
       ))}
     </Container>
   );
