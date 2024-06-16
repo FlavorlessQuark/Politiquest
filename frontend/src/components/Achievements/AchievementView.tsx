@@ -43,8 +43,6 @@ const AchievementsView = () => {
 
 export default AchievementsView;
 
-
-
 const DisplaySection = styled.div`
     width: 100%;
     display: flex;

@@ -99,13 +99,13 @@ const BottmRow = styled.div`\
 `;
 
 const XP = styled.div`
-    font-family: "Fira"
+    font-family: "FiraMono"
 `;
 
 const Time = styled.div`
     font-size: 1rem;
     padding: 5px 10px;
-    font-family: "Fira";
+    font-family: "FiraMono";
 `;
 
 export default MeetingCard;

@@ -1,27 +1,31 @@
 import styled from "styled-components";
+import { CitizenBar, randomTitle } from "./components/CitizenBar";
 
 const Leaderboard = () => {
   const data = [
-    { name: "user 1", level: 10, id: 2, xp: 3458 },
-    { name: "user 3", level: 10, id: 2, xp: 3458 },
+    { name: "Ada Lovelace", level: 10.22, id: 0, xp: 3458 },
+    { name: "Donald Knuth", level: 8.89, id: 1, xp: 3458 },
+    { name: "Alan Turing", level: 7.8, id: 2, xp: 3458 },
+    { name: "Grace Hopper", level: 6.23, id: 3, xp: 3458 },
+    { name: "Jimi Hendrix", level: 5.3, id: 4, xp: 3458 },
+    { name: "Bob", level: 2.76, id: 5, xp: 3458 },
+    { name: "Samantha", level: 1.34, id: 6, xp: 3458 },
+    { name: "Tim", level: 1.34, id: 7, xp: 3458 },
   ];
 
   // NOTE : THIS SHOULD REALLY BE A GIRD OR LIST BUT NO TIME FOR THAT
   return (
     <Container>
+      LeaderBoard
       <Table>
-        <Position style={{ backgroundColor: "#EAEAEA" }}>
-          <Rank>RANK</Rank>
-          <Name>NAME</Name>
-          <Level>LEVEL</Level>
-          <XP>XP</XP>
-        </Position>
         {data.map((e, i) => (
-          <Position href={"/user/" + e.id}>
+          <Position key={e.id} href={`/user/${e.id}`}>
             <Rank>{i + 1}.</Rank>
-            <Name> {e.name}</Name>
-            <Level> {e.level} </Level>
-            <XP> {e.xp} </XP>
+            <CitizenBar
+              level={e.level}
+              username={e.name}
+              title={randomTitle()}
+            />
           </Position>
         ))}
       </Table>
@@ -38,15 +42,13 @@ const Container = styled.div`
     justify-content: center;
     align-items: center;
     padding: 10px 10px;
+    font-family: "FiraMono";
 `;
+
 const Table = styled.div`
     display: flex;;
     flex-direction: column;
-    border: 1px solid black;
     width: 80%;
-`;
-const Divider = styled.div`
-
 `;
 
 const Position = styled.a`
@@ -61,25 +63,4 @@ const Position = styled.a`
     padding: 20px 0px;
     color: black;
     text-decoration: none;
-`;
-
-const Rank = styled.div`
-    display: flex;
-    justify-content: center;
-    width: 10%;
-`;
-const Name = styled.div`
-      display: flex;
-    justify-content: center;
-    width: 40%;
-`;
-const Level = styled.div`
-  display: flex;
-    justify-content: center;
-    width: 20%;
-`;
-const XP = styled.div`
-  display: flex;
-    justify-content: center;
-    width: 20%;
 `;

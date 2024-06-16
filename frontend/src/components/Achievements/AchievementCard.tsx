@@ -6,35 +6,34 @@ import Token from "../../assets/Token.svg";
 const AchievementCard = ({ data }) => {
   return (
     <Outer>
-
-    <Inner>
-      <Title> {data.title}</Title>
-      <TopSection>
-        <ImgOuter>
-          <Img src={Token} />
-        </ImgOuter>
-        <Requirements>
-          <Desc> {data.desc}</Desc>
-          {data.progress >= 0 && data.progress}
-          {data.progress >= 0 && <ProgressBar />}
-        </Requirements>
-      </TopSection>
-      <RewardSection>
-        <RewardText>Rewards</RewardText>
-        <RewardList>
-          {data.rewards &&
-            Object.keys(data.rewards).map(
-              (key) =>
-                data.rewards[key] && (
-                  <Reward key={key}>
-                    {" "}
-                    {data.rewards[key]} {key},
-                  </Reward>
-                ),
-            )}
-        </RewardList>
-      </RewardSection>
-    </Inner>
+      <Inner>
+        <Title> {data.title}</Title>
+        <TopSection>
+          <ImgOuter>
+            <Img src={Token} />
+          </ImgOuter>
+          <Requirements>
+            <Desc> {data.desc}</Desc>
+            {data.progress >= 0 && data.progress}
+            {data.progress >= 0 && <ProgressBar />}
+          </Requirements>
+        </TopSection>
+        <RewardSection>
+          <RewardText>Rewards</RewardText>
+          <RewardList>
+            {data.rewards &&
+              Object.keys(data.rewards).map(
+                (key) =>
+                  data.rewards[key] && (
+                    <Reward key={key}>
+                      {" "}
+                      {data.rewards[key]} {key},
+                    </Reward>
+                  ),
+              )}
+          </RewardList>
+        </RewardSection>
+      </Inner>
     </Outer>
   );
 };
@@ -57,8 +56,8 @@ const Outer = styled.div`
     height: 250px;
     min-width: 350px;
     width: 30%;
-    border: 2px solid ${props => props.theme.highlight};
-    background: ${props => props.theme.secondary};
+    border: 2px solid ${(props) => props.theme.highlight};
+    background: ${(props) => props.theme.secondary};
     padding: 2px 2px;
 
 `;
@@ -71,7 +70,7 @@ const Inner = styled.div`
     justify-content: space-around;
     flex-direction: column;
     text-align: center;
-    background: ${props => props.theme.background};
+    background: ${(props) => props.theme.background};
     padding: 5px 5px;
     border-radius: 4px;
     box-shadow: -0px -0px 3px 3px inset #230b0457
@@ -80,7 +79,7 @@ const Inner = styled.div`
 
 const ImgOuter = styled.div`
     width: 30%;
-    border: 2px solid ${props => props.theme.secondary};
+    border: 2px solid ${(props) => props.theme.secondary};
     padding: 10px 16px;
     background: #673d25;
     border-radius: 4px;
@@ -129,7 +128,7 @@ const RewardList = styled.div`
     justify-content: center;
     gap: 5px;
     font-size: 0.8rem;
-    font-family: "Fira";
+    font-family: "FiraMono";
 `;
 
 const Reward = styled.div`
