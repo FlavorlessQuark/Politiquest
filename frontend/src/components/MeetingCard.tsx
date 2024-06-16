@@ -4,19 +4,21 @@ const MeetingCard = ({ data }) => {
   return (
     <Container>
       <Section>
-        <Title> {data.title}</Title>
-        <Row>
-          <CommittedText>Chair</CommittedText>
-          <MemberName> {data.member} </MemberName>
-        </Row>
-        <BigButton href={`/meeting/${data.id}`}> JOIN MEETING </BigButton>
-        <BottmRow>
-          <Button>Follow</Button>
-          <XP>{data.xp} XP</XP>
-          <Time>
-            {data.start}-{data.end}
-          </Time>
-        </BottmRow>
+        <SectionInner>
+          <Title> {data.title}</Title>
+          <Row>
+            <CommittedText>Chair</CommittedText>
+            <MemberName> {data.member} </MemberName>
+          </Row>
+          <BigButton href={`/meeting/${data.id}`}> JOIN MEETING </BigButton>
+          <BottmRow>
+            <Button>Follow</Button>
+            <XP>{data.xp} XP</XP>
+            <Time>
+              {data.start}-{data.end}
+            </Time>
+          </BottmRow>
+        </SectionInner>
       </Section>
     </Container>
   );
@@ -24,20 +26,31 @@ const MeetingCard = ({ data }) => {
 
 const Container = styled.div`
     display: flex;
+    justify-content: center;
     gap: 10px;
 `;
 
 const Section = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: #FFF;
+    background-color: ${props => props.theme.secondary};
     border-radius: 8px;
-    padding: 20px 20px;
+    padding: 5px 5px;
     width: 90%;
     align-items: center;
-    gap:30px;
     height: 90%;
     margin: 10px 0px;
+    border: 1px solid black;
+`;
+
+const SectionInner = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: ${props => props.theme.primary};
+  padding: 5px 5px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
 `;
 
 const Title = styled.div`

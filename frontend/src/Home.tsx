@@ -77,6 +77,7 @@ const Container = styled.div`
     width: 100%;
     height: fit-content;
     background: ${props => props.theme.background};
+    align-content: center;
 `;
 
 const TopBar = styled.div`
@@ -101,9 +102,7 @@ const CityName = styled.div`
 const MeetingSection = styled.div`
     display: flex;
     flex-direction: column;
-    width: 50%;
     gap: 10px;
-    padding: 0px 20px;
 
 `;
 
