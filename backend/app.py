@@ -1,5 +1,6 @@
 from flask import Flask, request
 from pymongo import MongoClient
+from flask_socketio import SocketIO
 
 def get_database():
     # Provide the mongodb atlas url to connect python to mongodb using pymongo
@@ -60,6 +61,18 @@ def populate_mock_schema():
 populate_mock_schema()
 
 app = Flask(__name__)
+socketio = SocketIO(app)
+# socketio.run(app)
+
+
+@socketio.on('message')
+def handle_message(data):
+    print('received message: ' + data)
+
+
+@socketio.on('connect')
+def test_connect():
+    print("socket connected")
 
 
 @app.route("/meeting_schedule/new", methods = ["POST"])
