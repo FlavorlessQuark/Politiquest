@@ -70,14 +70,13 @@ const Padder = styled.div`
     height: 5%;
     max-height: 100px;
     min-height: 40px;
-    border-top: 1px solid black;
     justify-content: space-around;
-    background: white;
 `;
 
 const Container = styled.div`
     width: 100%;
     height: fit-content;
+    background: ${props => props.theme.background};
 `;
 
 const TopBar = styled.div`

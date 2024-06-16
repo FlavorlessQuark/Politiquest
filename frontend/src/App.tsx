@@ -12,6 +12,9 @@ import Profile from "./Profile";
 
 import { Palette } from "./styles";
 
+// change this if you want to change background
+document.body.style.backgroundColor = "#aaaa99";
+
 const App = () => {
   return (
     <Router>
