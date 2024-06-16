@@ -1,13 +1,7 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 
-const AchievementCard = ({data}) => {
-
-    useEffect(() => {
-    console.log("rewards", data.rewards, data.desc)
-
-    }, [data, data.rewards])
-
+const AchievementCard = ({ data }) => {
 
     return (
         <Container>
@@ -21,7 +15,7 @@ const AchievementCard = ({data}) => {
                 <RewardList>
                     {
                         data.rewards && Object.keys(data.rewards).map((key) => (
-                            data.rewards[key] && <> {data.rewards[key]} {key} |</>
+                            data.rewards[key] && <Reward key={key}> {data.rewards[key]} {key} |</Reward>
                         ))
                     }
                 </RewardList>
@@ -52,14 +46,14 @@ const TopSection = styled.div`
 
 const Img = styled.div`
     width: 48%;
-`
+`;
 const Text = styled.div`
     width: 48%;
 
 `
 const Title = styled.div`
 
-`
+`;
 const Desc = styled.div`
     width: 48%;
     display: flex;
@@ -72,7 +66,7 @@ const RewardSection = styled.div`
 `
 const RewardText = styled.div`
 
-`
+`;
 const RewardList = styled.div`
     display: flex;
     flex-direction: row;
@@ -80,4 +74,4 @@ const RewardList = styled.div`
 
 const Reward = styled.div`
 
-`
+`;
