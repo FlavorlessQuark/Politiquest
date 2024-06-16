@@ -64,3 +64,9 @@ const Position = styled.a`
     color: black;
     text-decoration: none;
 `;
+
+const Rank = styled.div`
+    display: flex;
+    justify-content: center;
+    width: 10%;
+`;
