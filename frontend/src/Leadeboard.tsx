@@ -12,11 +12,10 @@ const Leaderboard = () => {
     { name: "Samantha", level: 1.34, id: 6, xp: 3458 },
   ];
 
-  // NOTE : THIS SHOULD REALLY BE A GIRD OR LIST BUT NO TIME FOR THAT
   return (
     <Container>
-      LeaderBoard
       <Table>
+        <Title>Leader Board</Title>
         {data.map((e, i) => (
           <Position key={e.id} href={`/user/${e.id}`}>
             <Rank>{i + 1}.</Rank>
@@ -45,9 +44,15 @@ const Container = styled.div`
 `;
 
 const Table = styled.div`
-    display: flex;;
-    flex-direction: column;
-    width: 80%;
+    width: 100%;
+    max-width: 40rem;
+`;
+
+const Title = styled.div`
+    font-family: "SynNova";
+    font-size: 1.6rem;
+    width: 100%;
+    text-align: center;
 `;
 
 const Position = styled.a`
