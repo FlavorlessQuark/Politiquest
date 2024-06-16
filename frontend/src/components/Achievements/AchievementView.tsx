@@ -35,6 +35,7 @@ const AchievementsView = () => {
       {dummyachivments.map((e) => (
         <AchievementCard key={e.id} data={e} />
       ))}
+
     </DisplaySection>
   );
 };
@@ -53,4 +54,18 @@ const DisplaySection = styled.div`
     padding: 20px 20px;
     box-sizing: border-box;
 
+`;
+
+const Padder = styled.div`
+    display: flex;
+    position: relative;
+    bottom: 0;
+
+    width: 100%;
+    height: 5%;
+    max-height: 100px;
+    min-height: 40px;
+    border-top: 1px solid black;
+    justify-content: space-around;
+    background: white;
 `;
