@@ -27,13 +27,14 @@ const Navbar = () => {
 
 const Container = styled.div`
     display: flex;
-    position: absolute;
+    position: fixed;
     bottom: 0;
 
     width: 100%;
     height: max-content;
     border-top: 1px solid black;
     justify-content: space-around;
+    background: white;
 `;
 
 const Tab = styled.a<{ $active?: boolean }>`

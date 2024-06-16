@@ -27,6 +27,10 @@ const CitizenLayout = styled.div`
   justify-content: space-between;
 `;
 
+const TMP = styled.section`
+    width: 100%;
+`
+
 const prefixes = [
   "Novice",
   "Student",
@@ -60,7 +64,7 @@ function levelToPrefix(level: number): string {
 export function CitizenBar({ level = 0, title = randomTitle() }) {
   const levelBase = Math.trunc(level);
   return (
-    <section>
+    <TMP>
       <CitizenLayout>
         <CitizenJob>
           Advanced Citizen
@@ -71,7 +75,7 @@ export function CitizenBar({ level = 0, title = randomTitle() }) {
         <CitizenLvl>lvl.{levelBase}</CitizenLvl>
       </CitizenLayout>
       <ProgressBar score={level - levelBase} hideText="true" />
-    </section>
+    </TMP>
   );
 }
 
