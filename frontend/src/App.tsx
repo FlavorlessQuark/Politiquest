@@ -7,6 +7,8 @@ import Meeting from "./Meeting";
 import { UserProvider } from "./components/UserContext";
 import Achievements from "./Achievements";
 import Reps from "./Reps";
+import Leaderboard from "./Leadeboard";
+import Profile from "./Profile";
 
 const App = () => {
   return (
@@ -17,7 +19,9 @@ const App = () => {
             <Route path="/home" element={<Home />} />
             <Route path="/achievements" element={<Achievements />} />
             <Route path="/meeting/:id" element={<Meeting />} />
+            <Route path="/user/:id" element={<Profile />} />
             <Route path="/reps" element={<Reps />} />
+            <Route path="/leaderboard" element={<Leaderboard/>} />
           </Routes>
           <Navbar />
         </Container>

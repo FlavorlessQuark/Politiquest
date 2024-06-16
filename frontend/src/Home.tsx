@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { UserBar } from "./components/CitizenBar";
+import { CitizenBar } from "./components/CitizenBar";
 import MeetingCard from "./components/MeetingCard";
 import Navbar from "./components/Navbar";
 
@@ -39,7 +39,7 @@ const Home = () => {
         <TopBar>
             <CityName> Foster City </CityName>
             <Fixer>
-                <UserBar />
+                <CitizenBar />
             </Fixer>
         </TopBar>
         <MeetingSection>

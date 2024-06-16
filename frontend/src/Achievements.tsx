@@ -1,13 +1,13 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { UserBar } from "./components/CitizenBar";
+import { CitizenBar } from "./components/CitizenBar";
 import AchievementsView from "./components/Achievements/AchievementView";
 import InProgress from "./components/InProgress";
 import QuestView from "./components/Quests/QuestView";
 
 const Achievements = () =>
 {
-    const [selected, setSelected] = useState(1);
+    const [selected, setSelected] = useState(0);
 
     const dummyquest = [
         {id: 0},
@@ -23,7 +23,7 @@ const Achievements = () =>
   return (
     <Container>
       <UserInfo>
-        <UserBar/>
+        <CitizenBar/>
       </UserInfo>
       <SectionBar>
         {sections.map((e, i) => (
@@ -47,6 +47,9 @@ export default Achievements;
 const Container = styled.div`
     height: 100%;
     padding: 10px 10px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
 `;
 
 const UserInfo = styled.div`

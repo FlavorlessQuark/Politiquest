@@ -3,30 +3,63 @@ import { createContext, useContext, useEffect, useState } from "react";
 const UserContext = createContext();
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(undefined);
+  const [user, setUser] = useState( {
+      name: "First Name",
+      surname: "Last Name",
+      id: 0,
+    });
+  const [title, setTitle] = useState(undefined);
   const [level, setLevel] = useState(undefined);
   const [xp, setXP] = useState(undefined);
-  const [achievements, setAchievemnts] = useState([]);
+  const [achievements, setAchievemnts] = useState([
+    {
+      id: 0,
+      title: "Unlimited power!",
+      desc: "Vote on a poll during a council meeting",
+      progress: -1,
+      done: true,
+      rewards: { xp: 50, title: "My opinion matters", cosmetic: undefined },
+    }
+  ]);
+  const titles = [
+    "Citizen",
+    "Meeting Attendee",
+    "Voter",
+    "Taxpayer",
+    "Constituent",
+  ];
 
+function randomTitle() {
+  return titles[Math.floor(Math.random() * titles.length)];
+}
   const init = () => {
     const dummy_user = {
       name: "First Name",
-      surname: "First Name",
+      surname: "Last Name",
       id: 0,
     };
-    const dumm_ach = [0, 1];
+    const dumm_ach = [{
+      id: 0,
+      title: "Unlimited power!",
+      desc: "Vote on a poll during a council meeting",
+      progress: -1,
+      done: true,
+      rewards: { xp: 50, title: "My opinion matters", cosmetic: undefined },
+    }];
 
     setLevel(10.33);
     setXP(10000);
     setUser(dummy_user);
     setAchievemnts(dumm_ach);
+    setTitle(randomTitle())
   };
 
   useEffect(() => {
     if (!user) {
+        console.log("init user")
       init();
     }
-  });
+  },[]);
 
   return (
     <UserContext.Provider
@@ -34,6 +67,7 @@ export const UserProvider = ({ children }) => {
         user,
         xp,
         level,
+        title,
         achievements,
         setXP,
         setLevel,

@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import styled from "styled-components";
 
 const AchievementCard = ({ data }) => {
-
+    console.log("got dat", data)
     return (
         <Container>
             <Title> {data.title}</Title>
@@ -44,7 +44,8 @@ const ProgressBar = styled.div`
 const Container = styled.div`
     display: flex;
     height: 200px;
-    width: 27%;
+    min-width: 350px;
+    width: 30%;
     border: 1px solid black;
     padding: 10px 10px;
     justify-content: space-around;
