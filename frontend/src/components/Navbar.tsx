@@ -37,7 +37,7 @@ const Container = styled.div`
 `;
 
 const Tab = styled.a<{ $active?: boolean }>`
-    padding: .5rem 1rem;
+    padding: .7rem;
     margin-bottom: .5rem;
     display: inline-block;
     background: #bd9e84;
