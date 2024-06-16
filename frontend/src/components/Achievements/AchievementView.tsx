@@ -32,7 +32,6 @@ const AchievementsView = () => {
 
   return (
     <DisplaySection>
-
       <DisplayInner>
         {dummyachivments.map((e) => (
           <AchievementCard key={e.id} data={e} />
@@ -55,9 +54,9 @@ const DisplaySection = styled.div`
     border: 1px solid black;
     padding: 5px 5px;
     box-sizing: border-box;
-    background: ${props => props.theme.secondary};
+    background: ${(props) => props.theme.secondary};
     border-radius: 4px;
-`
+`;
 
 const DisplayInner = styled.div`
 width: 100%;
@@ -69,7 +68,7 @@ min-height: 500px;
 height: fit-content;
 padding: 20px 20px;
 box-sizing: border-box;
-background: ${props => props.theme.primary};
+background: ${(props) => props.theme.primary};
 `;
 
 const Padder = styled.div`

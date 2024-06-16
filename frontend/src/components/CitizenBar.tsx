@@ -5,14 +5,12 @@ import { useUserConsumer } from "./UserContext";
 const CitizenJob = styled.div`
   font: 1rem "SynNova";
   font-weight: 200;
-  display: inline-block;
   margin-left: 1rem;
 `;
 
 const CitizenLvl = styled.div`
-  font: 1rem "Monoid", monospace;
+  font: 1rem "Fira", monospace;
   font-weight: 200;
-  display: inline-block;
   margin-right: 1rem;
 `;
 
@@ -28,7 +26,10 @@ const CitizenLayout = styled.div`
 `;
 
 const TMP = styled.section`
-    width: 100%;
+    flex-grow: 1;
+    max-width: 40rem;
+    margin-top: .5rem;
+    margin-bottom: 1rem;
 `;
 
 const prefixes = [

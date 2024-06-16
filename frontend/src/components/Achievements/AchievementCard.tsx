@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 
-import Token from "../../assets/Token.svg"
+import Token from "../../assets/Token.svg";
 
 const AchievementCard = ({ data }) => {
   return (
@@ -11,7 +11,7 @@ const AchievementCard = ({ data }) => {
       <Title> {data.title}</Title>
       <TopSection>
         <ImgOuter>
-            <Img src={Token}/>
+          <Img src={Token} />
         </ImgOuter>
         <Requirements>
           <Desc> {data.desc}</Desc>
@@ -20,7 +20,7 @@ const AchievementCard = ({ data }) => {
         </Requirements>
       </TopSection>
       <RewardSection>
-        <RewardText> Rewards :</RewardText>
+        <RewardText>Rewards</RewardText>
         <RewardList>
           {data.rewards &&
             Object.keys(data.rewards).map(
@@ -57,6 +57,7 @@ const Outer = styled.div`
     height: 200px;
     min-width: 350px;
     width: 30%;
+<<<<<<< HEAD
     border: 2px solid ${props => props.theme.highlight};
     background: ${props => props.theme.secondary};
     padding: 2px 2px;
@@ -68,6 +69,11 @@ const Inner = styled.div`
     width: 100%;
     border: 1px solid black;
 
+=======
+    background-color: ${(p) => p.theme.background};
+    border-radius: 8px;
+    padding: 10px 10px;
+>>>>>>> 4cd04bbabcef1b41795bb23600a4ece3186f3699
     justify-content: space-around;
     flex-direction: column;
     text-align: center;
@@ -104,8 +110,8 @@ const Text = styled.div`
 
 `;
 const Title = styled.div`
-    font-size: 20px;
-    font-weight: bold;
+    font-size: 1.6rem;
+    font-family: "SynNova";
 `;
 const Desc = styled.div`
     // width: 48%;
@@ -119,9 +125,8 @@ const RewardSection = styled.div`
     flex-direction: column;
 `;
 const RewardText = styled.div`
-    font-weight: bold;
-    text-decoration: underline;
-    font-size: 15px;
+    font-size: 1.2rem;
+    font-family: "SynNova";
 `;
 const RewardList = styled.div`
     display: flex;
@@ -129,7 +134,8 @@ const RewardList = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     gap: 5px;
-    font-size: 11px;
+    font-size: 1rem;
+    font-family: "Fira";
 `;
 
 const Reward = styled.div`

@@ -18,21 +18,21 @@ document.body.style.backgroundColor = "#aaaa99";
 const App = () => {
   return (
     <Router>
-        <ThemeProvider theme={Palette}>
+      <ThemeProvider theme={Palette}>
         <UserProvider>
-                <Container>
-                <Routes>
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/achievements" element={<Achievements />} />
-                    <Route path="/meeting/:id" element={<Meeting />} />
-                    <Route path="/user/:id" element={<Profile />} />
-                    <Route path="/reps" element={<Reps />} />
-                    <Route path="/leaderboard" element={<Leaderboard/>} />
-                </Routes>
-                <Navbar />
-                </Container>
-            </UserProvider>
-        </ThemeProvider>
+          <Container>
+            <Routes>
+              <Route path="/home" element={<Home />} />
+              <Route path="/achievements" element={<Achievements />} />
+              <Route path="/meeting/:id" element={<Meeting />} />
+              <Route path="/user/:id" element={<Profile />} />
+              <Route path="/reps" element={<Reps />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
+            </Routes>
+            <Navbar />
+          </Container>
+        </UserProvider>
+      </ThemeProvider>
     </Router>
   );
 };

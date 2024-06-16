@@ -38,9 +38,7 @@ const Home = () => {
     <Container>
       <TopBar>
         <CityName>Foster City</CityName>
-        <Fixer>
-          <UserBar />
-        </Fixer>
+        <UserBar />
       </TopBar>
       <MeetingSection>
         <ButtonList>
@@ -76,54 +74,46 @@ const Padder = styled.div`
 const Container = styled.div`
     width: 100%;
     height: fit-content;
-    background: ${props => props.theme.background};
+    background: ${(props) => props.theme.background};
+    align-content: center;
+    color: ${(p) => p.theme.text}
 `;
 
-const TopBar = styled.div`
+const TopBar = styled.section`
     display: flex;
-    flex-direction: row;
-    padding: 20px 10px;
-    align-items: center;
-`;
-
-const Fixer = styled.div`
-    display: flex;
-    align-content: stretch;
-    width: 80%;
+    justify-content: center;
 `;
 
 const CityName = styled.div`
-    width: 20%;
     font-size: 26px;
     font-weight: 200;
     font-family: "SynNova";
 `;
-const MeetingSection = styled.div`
+const MeetingSection = styled.section`
     display: flex;
     flex-direction: column;
-    width: 50%;
     gap: 10px;
-    padding: 0px 20px;
-
+    align-content: center;
 `;
 
 const ButtonList = styled.div`
     display: flex;
     width: 100%;
-    // justify-content: space-between;
+    justify-content: center;
 `;
 const WeekButton = styled.div<{ $active?: boolean }>`
     ${(p) => p.active && "color: #FAFAFA;"}
-    border-bottom: 1px solid ${(p) => (p.active ? "#FFF" : "#191919")};
-    background-color: ${(p) => (p.active ? "#191919" : "#FFF")};
+    border-bottom: 3px solid ${(p) => (p.active ? p.theme.secondary : p.theme.primary)};
+    background-color: ${(p) => (p.active ? p.theme.primary : p.theme.secondary)};
     padding: 10px 20px;
      &: hover {
         cursor: pointer;
-        background: aliceblue;
+        background: ${(p) => p.theme.button};
      }
 `;
 const MeetingList = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
+    align-items: center;
 `;

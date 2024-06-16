@@ -62,7 +62,7 @@ const Container = styled.div`
     justify-content: space-between;
     padding: 2rem 2rem;
     box-sizing: border-box;
-    background: ${props => props.theme.background};
+    background: ${(props) => props.theme.background};
 `;
 
 const VidCol = styled.div`

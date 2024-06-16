@@ -4,7 +4,7 @@ import Progress from "../../assets/QuestProgress.svg";
 import Done from "../../assets/QuestOver.svg";
 
 const QuestCard = ({ data }) => {
-  console.log(data, data.progress);
+  // console.log(data, data.progress);
   return (
     <Outer>
         <Inner>
@@ -20,21 +20,19 @@ const QuestCard = ({ data }) => {
         </Requirements>
       </TopSection>
       <RewardSection>
-        <Row>
-          <RewardText> Rewards :</RewardText>
-          <RewardList>
-            {data.rewards &&
-              Object.keys(data.rewards).map(
-                (key) =>
-                  data.rewards[key] && (
-                    <Reward key={key}>
-                      {" "}
-                      {data.rewards[key]} {key}
-                    </Reward>
-                  ),
-              )}
-          </RewardList>
-        </Row>
+        <RewardText>Rewards</RewardText>
+        <RewardList>
+          {data.rewards &&
+            Object.keys(data.rewards).map(
+              (key) =>
+                data.rewards[key] && (
+                  <Reward key={key}>
+                    {" "}
+                    {data.rewards[key]} {key}
+                  </Reward>
+                ),
+            )}
+        </RewardList>
         {data.completed && !data.claimed && <Claim> Complete </Claim>}
       </RewardSection>
         </Inner>
@@ -70,21 +68,17 @@ const ImgOuter = styled.div`
 `;
 
 const Claim = styled.div`
-    display: flex;
-  align-items: center;
-  justify-content: center;
   height: fit-content;
-  padding: 5px 5px;
-  border: solid 1px black;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 9999px;
   font-size: 15px;
   text-align: center;
   color: black;
+  background-color: ${(p) => p.theme.secondary};
   &:hover {
     cursor: pointer;
-    background-color: "#00b8ff";
+    background-color: ${(p) => p.theme.button};
   }
-
   transition: all .2s ease-in-out;
 `;
 
@@ -134,7 +128,7 @@ const List = styled.ul`
 `;
 const Title = styled.div`
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 400;
 `;
 const Desc = styled.div`
     // width: 48%;
@@ -160,5 +154,6 @@ const RewardList = styled.div`
 `;
 
 const Reward = styled.div`
-    display: flex;
+    font-family: "Fira";
+    font-weight: 600;
 `;

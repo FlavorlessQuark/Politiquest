@@ -60,9 +60,9 @@ const QuestView = () => {
   return (
     <DisplaySection>
       <DisplaySectionInner>
-      {dummyquests.map((e) => (
-        <QuestCard key={e.id} data={e} />
-      ))}
+        {dummyquests.map((e) => (
+          <QuestCard key={e.id} data={e} />
+        ))}
       </DisplaySectionInner>
     </DisplaySection>
   );
@@ -82,7 +82,7 @@ const DisplaySection = styled.div`
     padding: 5px 5px;
     box-sizing: border-box;
     border-radius: 4px;
-    background: ${props => props.theme.secondary};
+    background: ${(props) => props.theme.secondary};
 `;
 
 const DisplaySectionInner = styled.div`
@@ -95,5 +95,5 @@ const DisplaySectionInner = styled.div`
   height: fit-content;
   padding: 20px 20px;
   box-sizing: border-box;
-  background: ${props => props.theme.primary};
+  background: ${(props) => props.theme.primary};
 `;

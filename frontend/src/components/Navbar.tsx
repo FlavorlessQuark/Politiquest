@@ -10,17 +10,17 @@ const Navbar = () => {
 
   return (
     <Container>
-        {pages.map((elem) => (
-          <Tab
-            key={elem.ref}
-            href={elem.ref}
-            {...(document.location.pathname === elem.ref
-              ? { $active: "true" }
-              : {})}
-          >
-            {elem.name}
-          </Tab>
-        ))}
+      {pages.map((elem) => (
+        <Tab
+          key={elem.ref}
+          href={elem.ref}
+          {...(document.location.pathname === elem.ref
+            ? { $active: "true" }
+            : {})}
+        >
+          {elem.name}
+        </Tab>
+      ))}
     </Container>
   );
 };
@@ -33,14 +33,14 @@ const Container = styled.div`
     height: max-content;
     border-top: 5px solid #b67816;
     justify-content: space-around;
-    background: ${props => props.theme.primary};
+    background: ${(props) => props.theme.primary};
 `;
 
 const Tab = styled.a<{ $active?: boolean }>`
     padding: .7rem;
     margin-bottom: .5rem;
     display: inline-block;
-    background: ${props => props.theme.primary};
+    background: ${(props) => props.theme.primary};
     text-decoration: none;
     transition: all .3s ease-in-out;
     font: 1.1rem "SynNova";
@@ -50,7 +50,7 @@ const Tab = styled.a<{ $active?: boolean }>`
     color: ${(props) => (props.$active ? "#ffffff" : "#dddddd")};
     text-decoration:  ${(props) => (props.$active ? "underline" : "none")};
     &:hover {
-        background-color: ${props => props.theme.highlight};
+        background-color: ${(props) => props.theme.highlight};
         cursor : pointer;
     }
 `;
