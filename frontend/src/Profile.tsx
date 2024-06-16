@@ -32,32 +32,43 @@ const Profile = () => {
           </AchList>
         </Achievements>
       </Row>
-      <CitizenBar />
+      <Bottom>
+        <CitizenBar />
+      </Bottom>
     </Container>
   );
 };
 
 export default Profile;
 
+const Bottom = styled.div`
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+`;
 const Container = styled.div`
     display: flex;
     width: 100%;
+    padding: 20px 20px;
     flex-direction: column;
 `;
 
 const Row = styled.div`
     display: flex;
-    width: 90%;
+    width: 100%;
     flex-direction: row;
 `;
 
 const Empty = styled.div`
-    width: 10%;
+    width: 20%;
 `;
 
 const Avatar = styled.img`
-    width: 60%;
-    max-height: 500px;
+    width: 50%;
+    max-height: 450px;
+    height: 60%;
 `;
 
 const Achievements = styled.div`
