@@ -1,10 +1,11 @@
 import styled from "styled-components";
+import Person from "../assets/Person.svg"
 
 const RepCard = ({ data }) => {
   console.log("data", data);
   return (
     <Container>
-      <Img> IMAGE HERE</Img>
+      <Img src={Person}/>
       <TopSection>
         <Title> {data.name}</Title>
         <CommitteeSection>
@@ -31,11 +32,12 @@ const Container = styled.div`
     display: flex;
     height: 300px;
     width: 300px;
-    border: 1px solid black;
+    border: 4px solid #656565;
     padding: 10px 10px;
     flex-direction: column;
     text-align: center;
-    gap: 20px;
+    gap: 10px;
+    background: ${ props => props.theme.highlight};
 `;
 
 const CommitteeSection = styled.div`
@@ -51,14 +53,14 @@ const TopSection = styled.div`
     justify-content: space-between;
     align-items: center;
     text-align: center;
-    height: 70%;
+    height: 80%;
     gap: 5px;
     font-size: 12px;
 `;
 
-const Img = styled.div`
+const Img = styled.img`
     width: 100%;
-    height: 25%;
+    height: 40%;
 `;
 const Text = styled.div`
     width: 100%;

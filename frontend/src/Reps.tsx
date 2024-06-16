@@ -97,9 +97,10 @@ const RepRect = styled.div`
   padding: 10px 10px;
   height: 100%;
   width: 90%;
-   border: 1px solid black;
+   border: 4px solid ${props => props.theme.secondary};
    gap: 20px;
    flex-wrap: wrap;
+   background: ${props => props.theme.primary};
 
 `;
 const RepTabContainer = styled.div`
@@ -113,8 +114,9 @@ const RepTab = styled.div<{ $active?: boolean }>`
     padding: 10px 20px;
     border: 1px solid black;
     z-index: 2;
-    background: white;
-    right:  ${(props) => (props.$active ? "-1px" : "-0px;")};
+    background: ${props => (props.$active ? props.theme.primary : props.theme.highlight) };
+    right:  ${(props) => (props.$active ? "-4px" : "-0px;")};
+    border: 4px solid ${props => props.theme.secondary};
     border-right: 0px;
     position: relative;
 
