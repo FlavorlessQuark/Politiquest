@@ -79,9 +79,9 @@ const DisplaySection = styled.div`
     min-height: 500px;
     height: fit-content;
     border: 1px solid black;
-    padding: 7px 7px;
+    padding: 5px 5px;
     box-sizing: border-box;
-    border-radius: 10px;
+    border-radius: 4px;
     background: ${props => props.theme.secondary};
 `;
 
@@ -93,9 +93,7 @@ const DisplaySectionInner = styled.div`
   flex-wrap: wrap;
   min-height: 500px;
   height: fit-content;
-  border: 1px solid black;
   padding: 20px 20px;
   box-sizing: border-box;
-  border-radius: 10px;
   background: ${props => props.theme.primary};
 `;

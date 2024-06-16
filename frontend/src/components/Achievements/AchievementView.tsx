@@ -53,10 +53,10 @@ const DisplaySection = styled.div`
     min-height: 500px;
     height: fit-content;
     border: 1px solid black;
-    padding: 7px 7px;
+    padding: 5px 5px;
     box-sizing: border-box;
     background: ${props => props.theme.secondary};
-    border-radius: 10px;
+    border-radius: 4px;
 `
 
 const DisplayInner = styled.div`
@@ -67,11 +67,9 @@ gap: 30px;
 flex-wrap: wrap;
 min-height: 500px;
 height: fit-content;
-border: 1px solid black;
 padding: 20px 20px;
 box-sizing: border-box;
 background: ${props => props.theme.primary};
-border-radius: 10px;
 `;
 
 const Padder = styled.div`
