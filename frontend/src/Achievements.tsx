@@ -59,11 +59,13 @@ const Container = styled.div`
     gap: 20px;
     display: flex;
     flex-direction: column;
+    background: ${props => props.theme.background};
 `;
 
 const UserInfo = styled.div`
     width: 100%;
     height: 10%;
+    font-weight: bold;
 `;
 
 const SectionBar = styled.div`

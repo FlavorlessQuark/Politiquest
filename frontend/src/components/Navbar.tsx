@@ -45,7 +45,6 @@ const Tab = styled.a<{ $active?: boolean }>`
     transition: all .3s ease-in-out;
     font: 1.1rem "SynNova";
     font-weight: 300;
-    color: #ffffff;
     text-transform: capitalize;
     text-underline-offset: 10px;
     color: ${(props) => (props.$active ? "#ffffff" : "#dddddd")};
