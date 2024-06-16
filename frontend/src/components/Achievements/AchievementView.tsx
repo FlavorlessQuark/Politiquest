@@ -3,7 +3,7 @@ import styled from "styled-components";
 import AchievementCard from "./AchievementCard";
 
 const AchievementsView = () => {
-    const dummyachivments = [
+  const dummyachivments = [
     {
       id: 0,
       title: "Unlimited power!",
@@ -21,7 +21,7 @@ const AchievementsView = () => {
       rewards: { xp: 200, title: "People person", cosmetic: "Cool Hat" },
     },
     {
-      id: 1,
+      id: 2,
       title: "Touch some grass",
       desc: "Participate in 3 meetings",
       progress: 1,
@@ -30,16 +30,14 @@ const AchievementsView = () => {
     },
   ];
 
-    return (
-        <DisplaySection>
-            {
-                dummyachivments.map((e) => (
-                    <AchievementCard data={e}/>
-                ))
-            }
-        </DisplaySection>
-    )
-}
+  return (
+    <DisplaySection>
+      {dummyachivments.map((e) => (
+        <AchievementCard key={e.id} data={e} />
+      ))}
+    </DisplaySection>
+  );
+};
 
 export default AchievementsView;
 
@@ -55,4 +53,4 @@ const DisplaySection = styled.div`
     padding: 20px 20px;
     box-sizing: border-box;
 
-`
+`;

@@ -29,7 +29,7 @@ const CitizenLayout = styled.div`
 
 const TMP = styled.section`
     width: 100%;
-`
+`;
 
 const prefixes = [
   "Novice",
@@ -50,7 +50,7 @@ const titles = [
   "Constituent",
   "Community Stakeholder",
   "Interested Party",
-  "Oversight Overlord"
+  "Oversight Overlord",
 ];
 
 function randomTitle() {
@@ -72,9 +72,9 @@ export function CitizenBar({ level = 0, title = randomTitle() }) {
             {levelToPrefix(levelBase)} {title}
           </CitizenTitle>
         </CitizenJob>
-        <CitizenLvl>lvl.{levelBase}</CitizenLvl>
+        <CitizenLvl>lvl {level}</CitizenLvl>
       </CitizenLayout>
-      <ProgressBar score={level - levelBase} hideText="true" />
+      <ProgressBar score={(level - levelBase) * 100.0} hideText="true" />
     </TMP>
   );
 }

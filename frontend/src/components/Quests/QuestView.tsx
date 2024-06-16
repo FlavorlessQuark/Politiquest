@@ -4,30 +4,34 @@ import AchievementCard from "./QuestCard";
 import QuestCard from "./QuestCard";
 
 const QuestView = () => {
-    const dummyquests= [
+  const dummyquests = [
     {
       id: 0,
       title: "WeeklyRoutine",
       desc: "Attend a Council Meeting this week",
-      progress: [{
-        desc: "Attend a meeting",
-        completed: true
-      }],
-      rewards: { xp: 50},
+      progress: [
+        {
+          desc: "Attend a meeting",
+          completed: true,
+        },
+      ],
+      rewards: { xp: 50 },
       claimed: true,
-      completed: true
+      completed: true,
     },
     {
       id: 1,
       title: "WeeklyRoutine2",
       desc: "Ask a question in a meeting this week",
-      progress: [{
-        desc: "Ask a Question",
-        completed: true
-      }],
-      rewards: { xp: 50},
+      progress: [
+        {
+          desc: "Ask a Question",
+          completed: true,
+        },
+      ],
+      rewards: { xp: 50 },
       claimed: false,
-      completed: true
+      completed: true,
     },
     {
       id: 2,
@@ -35,34 +39,32 @@ const QuestView = () => {
       desc: "Chat, ask a question, and vote on a poll during the same meeting",
       progress: [
         {
-        desc: "Chat in a meeting",
-        completed: true
-      },
+          desc: "Chat in a meeting",
+          completed: true,
+        },
         {
-        desc: "Ask a question in a meeting",
-        completed: false
-      },
+          desc: "Ask a question in a meeting",
+          completed: false,
+        },
         {
-        desc: "Vote in a meeting",
-        completed: false
-      },
+          desc: "Vote in a meeting",
+          completed: false,
+        },
       ],
-      rewards: { xp: 200},
+      rewards: { xp: 200 },
       claimed: false,
-      completed: false
+      completed: false,
     },
   ];
 
-    return (
-        <DisplaySection>
-            {
-                dummyquests.map((e) => (
-                    <QuestCard key={e.id} data={e}/>
-                ))
-            }
-        </DisplaySection>
-    )
-}
+  return (
+    <DisplaySection>
+      {dummyquests.map((e) => (
+        <QuestCard key={e.id} data={e} />
+      ))}
+    </DisplaySection>
+  );
+};
 
 export default QuestView;
 
@@ -78,5 +80,4 @@ const DisplaySection = styled.div`
     padding: 20px 20px;
     box-sizing: border-box;
 
-`
-
+`;
