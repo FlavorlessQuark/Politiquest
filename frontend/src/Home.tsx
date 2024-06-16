@@ -68,14 +68,15 @@ const Padder = styled.div`
     height: 5%;
     max-height: 100px;
     min-height: 40px;
-    border-top: 1px solid black;
     justify-content: space-around;
-    background: white;
 `;
 
 const Container = styled.div`
     width: 100%;
     height: fit-content;
+    background: ${props => props.theme.background};
+    align-content: center;
+    color: ${p => p.theme.text}
 `;
 
 const TopBar = styled.section`
@@ -92,7 +93,6 @@ const MeetingSection = styled.section`
     display: flex;
     flex-direction: column;
     gap: 10px;
-    padding: 0px 20px;
     align-content: center;
 `;
 
@@ -103,17 +103,17 @@ const ButtonList = styled.div`
 `;
 const WeekButton = styled.div<{ $active?: boolean }>`
     ${(p) => p.active && "color: #FAFAFA;"}
-    border-bottom: 3px solid ${(p) => (p.active ? "#FAFAFA" : "#191919")};
-    background-color: ${(p) => (p.active ? "#5A5A5A" : "#FFF")};
+    border-bottom: 3px solid ${(p) => (p.active ? p.theme.secondary : p.theme.primary)};
+    background-color: ${(p) => (p.active ? p.theme.primary : p.theme.secondary)};
     padding: 10px 20px;
      &: hover {
         cursor: pointer;
-        background: aliceblue;
+        background: ${p => p.theme.button};
      }
 `;
 const MeetingList = styled.div`
     display: flex;
     flex-direction: column;
-    gap: 25px;
+    gap: 20px;
     align-items: center;
 `;

@@ -4,19 +4,21 @@ const MeetingCard = ({ data }) => {
   return (
     <Container>
       <Section>
-        <Title> {data.title}</Title>
-        <Row>
-          <CommittedText>Chair</CommittedText>
-          <MemberName> {data.member} </MemberName>
-        </Row>
-        <BigButton href={`/meeting/${data.id}`}> JOIN MEETING </BigButton>
-        <BottmRow>
-          <Button>Follow</Button>
-          <XP>{data.xp} XP</XP>
-          <Time>
-            {data.start}-{data.end}
-          </Time>
-        </BottmRow>
+        <SectionInner>
+          <Title> {data.title}</Title>
+          <Row>
+            <CommittedText>Chair</CommittedText>
+            <MemberName> {data.member} </MemberName>
+          </Row>
+          <BigButton href={`/meeting/${data.id}`}> JOIN MEETING </BigButton>
+          <BottmRow>
+            <Button>Follow</Button>
+            <XP>{data.xp} XP</XP>
+            <Time>
+              {data.start}-{data.end}
+            </Time>
+          </BottmRow>
+        </SectionInner>
       </Section>
     </Container>
   );
@@ -30,13 +32,22 @@ const Container = styled.div`
 const Section = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: #FFF;
+    background-color: ${props => props.theme.secondary};
     border-radius: 8px;
-    padding: 20px 20px;
+    padding: 8px 8px;
     width: 100%;
     align-items: center;
-    gap:30px;
     height: 90%;
+`;
+
+const SectionInner = styled.div`
+  display: flex;
+  flex-direction: column;
+  background-color: ${props => props.theme.primary};
+  padding: 5px 5px;
+  width: 100%;
+  height: 100%;
+  align-items: center;
 `;
 
 const Title = styled.div`
@@ -69,6 +80,7 @@ const Button = styled.a`
 `;
 const BigButton = styled(Button)`
     padding: 15px 30px;
+    margin: 1rem;
     font-size: 20px;
 `;
 
@@ -81,12 +93,11 @@ const BottmRow = styled.div`\
 `;
 
 const XP = styled.div`
-    text-underline-offset: 5px;
     font-family: "Fira"
 `;
 
 const Time = styled.div`
-    font-size: .8rem;
+    font-size: 1rem;
     padding: 5px 10px;
     font-family: "Fira";
 `;

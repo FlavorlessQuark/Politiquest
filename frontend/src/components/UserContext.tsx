@@ -24,8 +24,8 @@ export const UserProvider = ({ children }) => {
   ]);
   const init = () => {
     const dummy_user = {
-      name: "First Name",
-      surname: "Last Name",
+      name: "Amelia",
+      surname: "Lassiter",
       id: 0,
     };
     const dumm_ach = [
@@ -39,7 +39,7 @@ export const UserProvider = ({ children }) => {
       },
     ];
 
-    setLevel(10.33);
+    setLevel(5.45);
     setXP(10000);
     setUser(dummy_user);
     setAchievemnts(dumm_ach);
