@@ -1,10 +1,10 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
+import { styled } from "styled-components";
 
 import Home from "./Home";
 import Navbar from "./components/Navbar";
 import Meeting from "./Meeting";
 import { UserProvider } from "./components/UserContext";
-import styled from "styled-components";
 import Achievements from "./Achievements";
 
 const App = () => {
