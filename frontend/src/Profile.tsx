@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useUserConsumer } from "./components/UserContext";
 import AchievementCard from "./components/Achievements/AchievementCard";
-import AvatarSvg from "./assets/person.svg"; // NOTE: Import as react component doenst work for whatever reason
+import AvatarSvg from "./assets/Avatar.svg"; // NOTE: Import as react component doenst work for whatever reason
 import { CitizenBar } from "./components/CitizenBar";
 
 const Profile = () => {
