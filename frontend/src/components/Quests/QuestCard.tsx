@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import styled from "styled-components";
+import Progress from "../../assets/QuestProgress.svg"
 
 const QuestCard = ({ data }) => {
 
@@ -7,7 +8,7 @@ const QuestCard = ({ data }) => {
     return (
         <Container>
             <TopSection>
-                <Img> IMAGE HERE</Img>
+                <Img src={Progress}/>
                 <Requirements>
                     <Title> {data.title} </Title>
                     <Desc> {data.desc} </Desc>
@@ -85,8 +86,9 @@ const TopSection = styled.div`
     height: 80%;
 `
 
-const Img = styled.div`
+const Img = styled.img`
     width: 20%;
+    height: 70%;
 `;
 const List = styled.ul`
     width: 100%;
