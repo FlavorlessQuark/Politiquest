@@ -10,17 +10,16 @@ import Achievements from "./Achievements";
 const App = () => {
   return (
     <Router>
-        <UserProvider>
-            <Container>
-
-            <Routes>
-                <Route path="/home" element={<Home />} />
-                <Route path="/achievements" element={<Achievements/>} />
-                <Route path="/meeting/:id" element={<Meeting/>} />
-            </Routes>
-            <Navbar />
-            </Container>
-        </UserProvider>
+      <UserProvider>
+        <Container>
+          <Routes>
+            <Route path="/home" element={<Home />} />
+            <Route path="/achievements" element={<Achievements />} />
+            <Route path="/meeting/:id" element={<Meeting />} />
+          </Routes>
+          <Navbar />
+        </Container>
+      </UserProvider>
     </Router>
   );
 };
@@ -28,6 +27,6 @@ const App = () => {
 const Container = styled.div`
     height: 100vh;
     // width: 100vw;
-`
+`;
 
 export default App;
