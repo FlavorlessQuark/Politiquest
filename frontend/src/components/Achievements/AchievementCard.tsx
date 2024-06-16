@@ -8,7 +8,9 @@ const AchievementCard = ({ data }) => {
     <Container>
       <Title> {data.title}</Title>
       <TopSection>
-        <Img src={Token}/>
+        <ImgOuter>
+            <Img src={Token}/>
+        </ImgOuter>
         <Requirements>
           <Desc> {data.desc}</Desc>
           {data.progress >= 0 && data.progress}
@@ -59,6 +61,16 @@ const Container = styled.div`
     text-align: center;
 `;
 
+const ImgOuter = styled.div`
+    width: 30%;
+    border: 2px solid #a38615;
+  padding: 10px 16px;
+  background: #673d25;
+  border-radius: 4px;
+  box-shadow: 4px 4px 1px #2c070742;
+
+`;
+
 const TopSection = styled.div`
     display: flex;
     flex-direction: row;
@@ -68,7 +80,7 @@ const TopSection = styled.div`
 `;
 
 const Img = styled.img`
-    width: 48%;
+    width: 100%;
     height: 70%;
 `;
 const Text = styled.div`
