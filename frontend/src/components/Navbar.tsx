@@ -10,17 +10,19 @@ const Navbar = () => {
 
   return (
     <Container>
-      {pages.map((elem) => (
-        <Tab
-          key={elem.ref}
-          href={elem.ref}
-          {...(document.location.pathname === elem.ref
-            ? { $active: "true" }
-            : {})}
-        >
-          {elem.name}
-        </Tab>
-      ))}
+      <ContainerInner>
+        {pages.map((elem) => (
+          <Tab
+            key={elem.ref}
+            href={elem.ref}
+            {...(document.location.pathname === elem.ref
+              ? { $active: "true" }
+              : {})}
+          >
+            {elem.name}
+          </Tab>
+        ))}
+      </ContainerInner>
     </Container>
   );
 };
@@ -31,16 +33,26 @@ const Container = styled.div`
     bottom: 0;
     width: 100%;
     height: max-content;
-    border-top: 1px solid black;
     justify-content: space-around;
-    background: #bd9e84;
+    background: ${props => props.theme.secondary};
+`;
+
+const ContainerInner = styled.div`
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: max-content;
+  border-top: 1px solid black;
+  justify-content: space-around;
+  background: ${props => props.theme.primary};
 `;
 
 const Tab = styled.a<{ $active?: boolean }>`
     padding: .7rem;
     margin-bottom: .5rem;
     display: inline-block;
-    background: #bd9e84;
+    background: ${props => props.theme.primary};
     text-decoration: none;
     transition: all .3s ease-in-out;
     font: 1.1rem "SynNova";
@@ -48,10 +60,10 @@ const Tab = styled.a<{ $active?: boolean }>`
     color: #ffffff;
     text-transform: capitalize;
     text-underline-offset: 10px;
-    color: ${(props) => (props.$active ? "#000000" : "#ffffff")};
+    color: ${(props) => (props.$active ? "#ffffff" : "#dddddd")};
     text-decoration:  ${(props) => (props.$active ? "underline" : "none")};
     &:hover {
-        background-color: #ad8e74;
+        background-color: ${props => props.theme.highlight};
         cursor : pointer;
     }
 `;

@@ -32,9 +32,11 @@ const AchievementsView = () => {
 
   return (
     <DisplaySection>
-      {dummyachivments.map((e) => (
-        <AchievementCard key={e.id} data={e} />
-      ))}
+      <DisplayInner>
+        {dummyachivments.map((e) => (
+          <AchievementCard key={e.id} data={e} />
+        ))}
+      </DisplayInner>
     </DisplaySection>
   );
 };
@@ -50,7 +52,23 @@ const DisplaySection = styled.div`
     min-height: 500px;
     height: fit-content;
     border: 1px solid black;
-    padding: 20px 20px;
+    padding: 7px 7px;
     box-sizing: border-box;
+    background: ${props => props.theme.secondary};
+    border-radius: 10px;
+`
 
+const DisplayInner = styled.div`
+width: 100%;
+display: flex;
+flex-firection: row;
+gap: 30px;
+flex-wrap: wrap;
+min-height: 500px;
+height: fit-content;
+border: 1px solid black;
+padding: 20px 20px;
+box-sizing: border-box;
+background: ${props => props.theme.primary};
+border-radius: 10px;
 `;

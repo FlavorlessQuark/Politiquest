@@ -1,6 +1,6 @@
 export const Palette = {
-  primary: "#FFFF",
-  secondary: "#FFFF",
-  highlight: "#FFFF",
-  etc: "#FFFF",
-};
+    primary: "#584236",
+    secondary: "#b67816",
+    highlight: "#433b33",
+    button: "e03c3c",
+}
