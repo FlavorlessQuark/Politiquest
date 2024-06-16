@@ -69,9 +69,9 @@ const ImgOuter = styled.div`
 
 const Claim = styled.div`
   height: fit-content;
-  padding: 10px;
+  padding: 5px 10px;
   border-radius: 9999px;
-  font-size: 15px;
+  font-size: 10px;
   text-align: center;
   color: black;
   background-color: ${(p) => p.theme.secondary};
@@ -142,6 +142,7 @@ const RewardSection = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    align-items: center;
 `;
 const RewardText = styled.div`
     text-decoration: underline;
@@ -150,7 +151,7 @@ const RewardText = styled.div`
 const RewardList = styled.div`
     display: flex;
     flex-direction: row;
-    aling-items: center;
+    align-items: center;
 `;
 
 const Reward = styled.div`

@@ -57,7 +57,6 @@ const Outer = styled.div`
     height: 200px;
     min-width: 350px;
     width: 30%;
-<<<<<<< HEAD
     border: 2px solid ${props => props.theme.highlight};
     background: ${props => props.theme.secondary};
     padding: 2px 2px;
@@ -69,11 +68,6 @@ const Inner = styled.div`
     width: 100%;
     border: 1px solid black;
 
-=======
-    background-color: ${(p) => p.theme.background};
-    border-radius: 8px;
-    padding: 10px 10px;
->>>>>>> 4cd04bbabcef1b41795bb23600a4ece3186f3699
     justify-content: space-around;
     flex-direction: column;
     text-align: center;

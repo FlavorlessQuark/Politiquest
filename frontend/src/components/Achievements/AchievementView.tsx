@@ -43,6 +43,8 @@ const AchievementsView = () => {
 
 export default AchievementsView;
 
+
+
 const DisplaySection = styled.div`
     width: 100%;
     display: flex;
@@ -51,7 +53,7 @@ const DisplaySection = styled.div`
     flex-wrap: wrap;
     min-height: 500px;
     height: fit-content;
-    border: 1px solid black;
+    // border: 1px solid black;
     padding: 5px 5px;
     box-sizing: border-box;
     background: ${(props) => props.theme.secondary};
@@ -64,23 +66,24 @@ display: flex;
 flex-firection: row;
 gap: 30px;
 flex-wrap: wrap;
-min-height: 500px;
-height: fit-content;
+min-height: 490px;
+height: 100%;
+overflow-y: scroll;
 padding: 20px 20px;
 box-sizing: border-box;
 background: ${(props) => props.theme.primary};
 `;
 
-const Padder = styled.div`
-    display: flex;
-    position: relative;
-    bottom: 0;
+// const Padder = styled.div`
+//     display: flex;
+//     position: relative;
+//     bottom: 0;
 
-    width: 100%;
-    height: 5%;
-    max-height: 100px;
-    min-height: 40px;
-    border-top: 1px solid black;
-    justify-content: space-around;
-    background: white;
-`;
+//     width: 100%;
+//     height: 5%;
+//     max-height: 100px;
+//     min-height: 40px;
+//     border-top: 1px solid black;
+//     justify-content: space-around;
+//     background: white;
+// `;

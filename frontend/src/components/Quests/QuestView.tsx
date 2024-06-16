@@ -78,7 +78,6 @@ const DisplaySection = styled.div`
     flex-wrap: wrap;
     min-height: 500px;
     height: fit-content;
-    border: 1px solid black;
     padding: 5px 5px;
     box-sizing: border-box;
     border-radius: 4px;
@@ -91,8 +90,9 @@ const DisplaySectionInner = styled.div`
   flex-firection: row;
   gap: 30px;
   flex-wrap: wrap;
-  min-height: 500px;
-  height: fit-content;
+  min-height: 490px;
+  height: 100%;
+  overflow-y: scroll;
   padding: 20px 20px;
   box-sizing: border-box;
   background: ${(props) => props.theme.primary};
