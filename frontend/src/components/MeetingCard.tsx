@@ -23,8 +23,8 @@ const MeetingCard = ({ data }) => {
 };
 
 const Container = styled.div`
-    display: flex;
-    gap: 10px;
+    max-width: 30rem;
+    width: 100%;
 `;
 
 const Section = styled.div`
@@ -33,11 +33,10 @@ const Section = styled.div`
     background-color: #FFF;
     border-radius: 8px;
     padding: 20px 20px;
-    width: 90%;
+    width: 100%;
     align-items: center;
     gap:30px;
     height: 90%;
-    margin: 10px 0px;
 `;
 
 const Title = styled.div`
@@ -83,13 +82,13 @@ const BottmRow = styled.div`\
 
 const XP = styled.div`
     text-underline-offset: 5px;
-    font-family: "Monoid"
+    font-family: "Fira"
 `;
 
 const Time = styled.div`
     font-size: .8rem;
     padding: 5px 10px;
-    font-family: "Monoid";
+    font-family: "Fira";
 `;
 
 export default MeetingCard;
