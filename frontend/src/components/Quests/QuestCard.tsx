@@ -1,41 +1,45 @@
 import { useEffect } from "react";
 import styled from "styled-components";
+import Progress from "../../assets/QuestProgress.svg"
 
 const QuestCard = ({ data }) => {
-  // console.log(data, data.progress)
-  return (
-    <Container>
-      <TopSection>
-        <Img> IMAGE HERE</Img>
-        <Requirements>
-          <Title> {data.title} </Title>
-          <Desc> {data.desc} </Desc>
-          {data.progress.map((e, i) => {
-            i;
-          })}
-        </Requirements>
-      </TopSection>
-      <RewardSection>
-        <Row>
-          <RewardText> Rewards :</RewardText>
-          <RewardList>
-            {data.rewards &&
-              Object.keys(data.rewards).map(
-                (key) =>
-                  data.rewards[key] && (
-                    <Reward key={key}>
-                      {" "}
-                      {data.rewards[key]} {key}
-                    </Reward>
-                  ),
-              )}
-          </RewardList>
-        </Row>
-        {data.completed && !data.claimed && <Claim> Complete </Claim>}
-      </RewardSection>
-    </Container>
-  );
-};
+
+    console.log(data, data.progress)
+    return (
+        <Container>
+            <TopSection>
+                <Img src={Progress}/>
+                <Requirements>
+                    <Title> {data.title} </Title>
+                    <Desc> {data.desc} </Desc>
+                        {
+                            data.progress.map((e, i) => {
+                                <>{i}</>
+                            })
+                        }
+                </Requirements>
+            </TopSection>
+            <RewardSection>
+                <Row>
+                <RewardText> Rewards :</RewardText>
+                <RewardList>
+                    {data.rewards &&
+                        Object.keys(data.rewards).map(
+                            (key) =>
+                            data.rewards[key] && (
+                                <Reward key={key}>
+                                {" "}
+                                {data.rewards[key]} {key}
+                                </Reward>
+                            ),
+                        )}
+                </RewardList>
+                </Row>
+                {data.completed && !data.claimed && <Claim> Complete </Claim>}
+            </RewardSection>
+        </Container>
+    )
+}
 
 export default QuestCard;
 
@@ -87,8 +91,9 @@ const TopSection = styled.div`
     height: 80%;
 `;
 
-const Img = styled.div`
+const Img = styled.img`
     width: 20%;
+    height: 70%;
 `;
 const List = styled.ul`
     width: 100%;

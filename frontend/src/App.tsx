@@ -1,5 +1,5 @@
 import { Route, BrowserRouter as Router, Routes } from "react-router-dom";
-import { styled } from "styled-components";
+import { styled, ThemeProvider } from "styled-components";
 
 import Home from "./Home";
 import Navbar from "./components/Navbar";
@@ -10,9 +10,28 @@ import Reps from "./Reps";
 import Leaderboard from "./Leadeboard";
 import Profile from "./Profile";
 
+import { Palette } from "./styles";
+
 const App = () => {
   return (
     <Router>
+<<<<<<< HEAD
+        <ThemeProvider theme={Palette}>
+        <UserProvider>
+                <Container>
+                <Routes>
+                    <Route path="/home" element={<Home />} />
+                    <Route path="/achievements" element={<Achievements />} />
+                    <Route path="/meeting/:id" element={<Meeting />} />
+                    <Route path="/user/:id" element={<Profile />} />
+                    <Route path="/reps" element={<Reps />} />
+                    <Route path="/leaderboard" element={<Leaderboard/>} />
+                </Routes>
+                <Navbar />
+                </Container>
+            </UserProvider>
+        </ThemeProvider>
+=======
       <UserProvider>
         <Container>
           <Routes>
@@ -26,6 +45,7 @@ const App = () => {
           <Navbar />
         </Container>
       </UserProvider>
+>>>>>>> 89a479fd7c46608d6f8189e3c045a2e3c056f9d4
     </Router>
   );
 };
