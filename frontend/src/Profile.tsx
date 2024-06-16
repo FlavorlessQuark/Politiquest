@@ -27,7 +27,7 @@ const Profile = () => {
           <AchText>Achievements</AchText>
           <AchList>
             {dummyachivments.map((e) => (
-              <AchievementCard data={e} />
+              <AchievementCard key={e.id} data={e} />
             ))}
           </AchList>
         </Achievements>
@@ -76,8 +76,8 @@ const Achievements = styled.div`
 `;
 
 const AchText = styled.div`
-    font-weight: bold;
-    text-decoration: underline;
+  font-size: 1.4rem;
+  font-family: "SynNova";
 `;
 const AchList = styled.div`
     display: flex;

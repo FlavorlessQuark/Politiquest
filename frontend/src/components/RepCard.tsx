@@ -70,12 +70,11 @@ const Text = styled.div`
 
 `;
 const Title = styled.div`
-    font-weight: bold;
-    font-size: 17px;
-    text-decoration: underline;
+    font-weight: 200;
+    font-size: 1.4rem;
 `;
 
-const Info = styled.a<{ $active?: boolean }>`
+const Info = styled.a`
     padding: .5rem 1rem;
     margin-bottom: .5rem;
     display: inline-block;
@@ -83,10 +82,7 @@ const Info = styled.a<{ $active?: boolean }>`
     transition: all .3s ease-in-out;
     font: 1.1rem "SynNova";
     font-weight: 300;
-    color: #000;
-    text-transform: capitalize;
     text-underline-offset: 10px;
-    color: ${(props) => (props.$active ? "#00b8ff" : "black")};
     text-decoration: underline;
         cursor : pointer;
     }

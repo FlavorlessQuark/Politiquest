@@ -86,6 +86,7 @@ const Container = styled.div`
     justify-content: center;
     padding: 2rem 2rem;
     box-sizing: border-box;
+    color: ${p => p.theme.text};
 `;
 
 const RepRect = styled.div`
