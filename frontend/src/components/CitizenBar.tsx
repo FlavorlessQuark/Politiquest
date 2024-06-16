@@ -17,7 +17,7 @@ const CitizenLvl = styled.div`
 `;
 
 const CitizenTitle = styled.div`
-  font: .5rem "Monoid";
+  font: .8rem "SynNova";
   font-weight: 600;
   padding-bottom: 0.5rem;
 `;
