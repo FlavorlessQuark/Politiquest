@@ -10,7 +10,6 @@ const Leaderboard = () => {
     { name: "Jimi Hendrix", level: 5.3, id: 4, xp: 3458 },
     { name: "Bob", level: 2.76, id: 5, xp: 3458 },
     { name: "Samantha", level: 1.34, id: 6, xp: 3458 },
-    { name: "Tim", level: 1.34, id: 7, xp: 3458 },
   ];
 
   // NOTE : THIS SHOULD REALLY BE A GIRD OR LIST BUT NO TIME FOR THAT
