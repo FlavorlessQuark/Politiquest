@@ -3,23 +3,23 @@ import { styled } from "styled-components";
 import { useUserConsumer } from "./UserContext";
 
 const CitizenJob = styled.div`
-  font: 1rem sans-serif;
+  font: 1rem "SynNova";
   font-weight: 200;
   display: inline-block;
   margin-left: 1rem;
 `;
 
 const CitizenLvl = styled.div`
-  font: 1rem monospace;
+  font: 1rem "Monoid", monospace;
   font-weight: 200;
   display: inline-block;
   margin-right: 1rem;
 `;
 
 const CitizenTitle = styled.div`
-  font: .9rem sans-serif;
+  font: .5rem "Monoid";
   font-weight: 600;
-  padding-bottom: 0.1rem;
+  padding-bottom: 0.5rem;
 `;
 
 const CitizenLayout = styled.div`

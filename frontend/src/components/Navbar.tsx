@@ -31,9 +31,7 @@ const Container = styled.div`
     bottom: 0;
 
     width: 100%;
-    height: 5%;
-    max-height: 100px;
-    min-height: 60px;
+    height: max-content;
     border-top: 1px solid black;
     justify-content: space-around;
 `;
@@ -44,13 +42,10 @@ const Tab = styled.a<{ $active?: boolean }>`
     display: inline-block;
     text-decoration: none;
     transition: all .3s ease-in-out;
-    font: 1.1rem sans-serif;
+    font: 1.1rem "SynNova";
     font-weight: 300;
     color: #000;
     text-transform: capitalize;
-    // border-bottom: solid 1px;
-    // border-color: ${(props) => (props.$active ? "black" : "white")};
-
     text-underline-offset: 10px;
     color: ${(props) => (props.$active ? "#00b8ff" : "black")};
     text-decoration:  ${(props) => (props.$active ? "underline" : "none")};
