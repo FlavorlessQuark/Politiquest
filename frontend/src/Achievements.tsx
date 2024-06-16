@@ -13,14 +13,25 @@ const Achievements = () =>
             rewards: {xp: 200, title:"People person", cosmetic: "Cool Hat"}}
     ]
 
+    const dummyquest = [
+        {id: 0},
+    ]
+
+
     const A_Cards = (id) => {
         return (
             <AchievementCard key={dummyachivments[id].title} data={dummyachivments[id]}/>
         )
     }
+
+    const Q_Cards = (id) => {
+        return (
+            <InProgress/>
+        )
+    }
     const sections = [
         {name: "Achievements", component: A_Cards, data: dummyachivments},
-        {name: "Quests", component: <InProgress/>, data:[]},
+        {name: "Quests", component: Q_Cards, data: dummyquest},
     ]
 
 
@@ -87,6 +98,7 @@ const DisplaySection = styled.div`
     border: 1px solid black;
     padding: 20px 20px;
     box-sizing: border-box;
+
 `
 
 const QuestCard = styled.div`
