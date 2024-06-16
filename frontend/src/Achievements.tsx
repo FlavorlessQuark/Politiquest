@@ -15,7 +15,7 @@ const Achievements = () =>
 
     const A_Cards = (id) => {
         return (
-            <AchievementCard data={dummyachivments[id]}/>
+            <AchievementCard key={dummyachivments[id].title} data={dummyachivments[id]}/>
         )
     }
     const sections = [
@@ -82,9 +82,11 @@ const DisplaySection = styled.div`
     flex-firection: row;
     gap: 30px;
     flex-wrap: wrap;
-    min-height: 100px;
+    min-height: 500px;
     height: fit-content;
     border: 1px solid black;
+    padding: 20px 20px;
+    box-sizing: border-box;
 `
 
 const QuestCard = styled.div`
