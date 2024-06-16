@@ -54,7 +54,7 @@ const ProgressBar = styled.div`
 
 const Outer = styled.div`
     display: flex;
-    height: 200px;
+    height: 250px;
     min-width: 350px;
     width: 30%;
     border: 2px solid ${props => props.theme.highlight};
@@ -72,7 +72,7 @@ const Inner = styled.div`
     flex-direction: column;
     text-align: center;
     background: ${props => props.theme.background};
-    padding: 3px 3px;
+    padding: 5px 5px;
     border-radius: 4px;
     box-shadow: -0px -0px 3px 3px inset #230b0457
 
@@ -104,7 +104,7 @@ const Text = styled.div`
 
 `;
 const Title = styled.div`
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     font-family: "SynNova";
 `;
 const Desc = styled.div`
@@ -119,7 +119,7 @@ const RewardSection = styled.div`
     flex-direction: column;
 `;
 const RewardText = styled.div`
-    font-size: 1.2rem;
+    font-size: 1rem;
     font-family: "SynNova";
 `;
 const RewardList = styled.div`
@@ -128,7 +128,7 @@ const RewardList = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     gap: 5px;
-    font-size: 1rem;
+    font-size: 0.8rem;
     font-family: "Fira";
 `;
 

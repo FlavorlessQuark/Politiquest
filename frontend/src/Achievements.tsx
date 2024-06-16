@@ -6,7 +6,7 @@ import InProgress from "./components/InProgress";
 import QuestView from "./components/Quests/QuestView";
 
 const Achievements = () => {
-  const [selected, setSelected] = useState(1);
+  const [selected, setSelected] = useState(0);
 
   const dummyquest = [{ id: 0 }];
 

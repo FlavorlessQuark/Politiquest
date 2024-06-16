@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Progress from "../../assets/QuestProgress.svg";
 import Done from "../../assets/QuestOver.svg";
 
+import Check from "../../assets/Check.svg"
+
 const QuestCard = ({ data }) => {
   // console.log(data, data.progress);
   return (
@@ -10,7 +12,7 @@ const QuestCard = ({ data }) => {
         <Inner>
 
       <TopSection>
-        <Img src={data.completed ? Done : Progress} />
+        <Img src={data.completed ? data.claimed ? Check : Done : Progress} />
         <Requirements>
           <Title> {data.title} </Title>
           <Desc> {data.desc} </Desc>

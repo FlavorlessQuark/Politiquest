@@ -64,7 +64,7 @@ const DisplayInner = styled.div`
 width: 100%;
 display: flex;
 flex-firection: row;
-gap: 30px;
+gap: 10px;
 flex-wrap: wrap;
 min-height: 490px;
 height: 100%;
