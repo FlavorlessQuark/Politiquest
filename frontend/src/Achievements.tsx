@@ -34,13 +34,12 @@ const Achievements = () => {
         ))}
       </SectionBar>
       {sections[selected].component}
-    <Padder/>
+      <Padder />
     </Container>
   );
 };
 
 export default Achievements;
-
 
 const Padder = styled.div`
     display: flex;

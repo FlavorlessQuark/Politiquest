@@ -9,7 +9,7 @@ const CitizenJob = styled.div`
 `;
 
 const CitizenLvl = styled.div`
-  font: 1rem "Fira", monospace;
+  font: 1rem "FiraMono", monospace;
   font-weight: 200;
   margin-right: 1rem;
 `;
@@ -33,13 +33,16 @@ const TMP = styled.section`
 `;
 
 const prefixes = [
+  "Beginner",
   "Novice",
   "Student",
   "Intermediate",
+  "Adept",
   "Advanced",
   "Enlightened",
   "Honorable",
   "Master",
+  "Grandmaster",
   "Glorious",
 ];
 

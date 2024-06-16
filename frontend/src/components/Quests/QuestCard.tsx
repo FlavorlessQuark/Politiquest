@@ -3,42 +3,42 @@ import styled from "styled-components";
 import Progress from "../../assets/QuestProgress.svg";
 import Done from "../../assets/QuestOver.svg";
 
-import Check from "../../assets/Check.svg"
+import Check from "../../assets/Check.svg";
 
 const QuestCard = ({ data }) => {
   // console.log(data, data.progress);
   return (
     <Outer>
-        <Inner>
-
-      <TopSection>
-        <Img src={data.completed ? data.claimed ? Check : Done : Progress} />
-        <Requirements>
-          <Title> {data.title} </Title>
-          <Desc> {data.desc} </Desc>
-          {data.progress.map((e, i) => {
-            <>{i}</>;
-          })}
-        </Requirements>
-      </TopSection>
-      <RewardSection>
-        <RewardText>Rewards</RewardText>
-        <RewardList>
-          {data.rewards &&
-            Object.keys(data.rewards).map(
-              (key) =>
-                data.rewards[key] && (
-                  <Reward key={key}>
-                    {" "}
-                    {data.rewards[key]} {key}
-                  </Reward>
-                ),
-            )}
-        </RewardList>
-        {data.completed && !data.claimed && <Claim> Complete </Claim>}
-      </RewardSection>
-        </Inner>
-
+      <Inner>
+        <TopSection>
+          <Img
+            src={data.completed ? (data.claimed ? Check : Done) : Progress}
+          />
+          <Requirements>
+            <Title> {data.title} </Title>
+            <Desc> {data.desc} </Desc>
+            {data.progress.map((e, i) => {
+              <>{i}</>;
+            })}
+          </Requirements>
+        </TopSection>
+        <RewardSection>
+          <RewardText>Rewards</RewardText>
+          <RewardList>
+            {data.rewards &&
+              Object.keys(data.rewards).map(
+                (key) =>
+                  data.rewards[key] && (
+                    <Reward key={key}>
+                      {" "}
+                      {data.rewards[key]} {key}
+                    </Reward>
+                  ),
+              )}
+          </RewardList>
+          {data.completed && !data.claimed && <Claim> Complete </Claim>}
+        </RewardSection>
+      </Inner>
     </Outer>
   );
 };
@@ -62,11 +62,11 @@ const Requirements = styled.div`
 
 const ImgOuter = styled.div`
     width: 30%;
-    border: 2px solid ${props => props.theme.secondary};
+    border: 2px solid ${(props) => props.theme.secondary};
     padding: 10px 16px;
     background: #673d25;
     border-radius: 4px;
-    box-shadow: 4px 4px ${props => props.theme.background};
+    box-shadow: 4px 4px ${(props) => props.theme.background};
 `;
 
 const Claim = styled.div`
@@ -84,14 +84,13 @@ const Claim = styled.div`
   transition: all .2s ease-in-out;
 `;
 
-
 const Outer = styled.div`
     display: flex;
     height: 200px;
     min-width: 350px;
     width: 30%;
-    border: 2px solid ${props => props.theme.highlight};
-    background: ${props => props.theme.secondary};
+    border: 2px solid ${(props) => props.theme.highlight};
+    background: ${(props) => props.theme.secondary};
     padding: 2px 2px;
 
 `;
@@ -104,13 +103,12 @@ const Inner = styled.div`
     justify-content: space-around;
     flex-direction: column;
     text-align: center;
-    background: ${props => props.theme.background};
+    background: ${(props) => props.theme.background};
     padding: 15px 15px;
     border-radius: 4px;
     box-shadow: -0px -0px 3px 3px inset #230b0457
 
 `;
-
 
 const TopSection = styled.div`
     display: flex;
@@ -157,6 +155,6 @@ const RewardList = styled.div`
 `;
 
 const Reward = styled.div`
-    font-family: "Fira";
+    font-family: "FiraMono";
     font-weight: 600;
 `;
