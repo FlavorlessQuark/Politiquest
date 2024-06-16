@@ -1,13 +1,16 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 import Progress from "../../assets/QuestProgress.svg";
+import Done from "../../assets/QuestOver.svg";
 
 const QuestCard = ({ data }) => {
   console.log(data, data.progress);
   return (
-    <Container>
+    <Outer>
+        <Inner>
+
       <TopSection>
-        <Img src={Progress} />
+        <Img src={data.completed ? Done : Progress} />
         <Requirements>
           <Title> {data.title} </Title>
           <Desc> {data.desc} </Desc>
@@ -34,7 +37,9 @@ const QuestCard = ({ data }) => {
         </Row>
         {data.completed && !data.claimed && <Claim> Complete </Claim>}
       </RewardSection>
-    </Container>
+        </Inner>
+
+    </Outer>
   );
 };
 
@@ -43,12 +48,27 @@ export default QuestCard;
 const Row = styled.div`
     display: flex;
     flex-direction: row;
+    white-space: pre-line;
+    align-items: center;
+    gap: 10px;
 `;
 const Requirements = styled.div`
     display: flex;
     flex-direction: column;
-    width: 48%;
+    height: 100%;
+    width: 60%;
+    justify-content: space-evenly;
 `;
+
+const ImgOuter = styled.div`
+    width: 30%;
+    border: 2px solid ${props => props.theme.secondary};
+    padding: 10px 16px;
+    background: #673d25;
+    border-radius: 4px;
+    box-shadow: 4px 4px ${props => props.theme.background};
+`;
+
 const Claim = styled.div`
     display: flex;
   align-items: center;
@@ -68,17 +88,33 @@ const Claim = styled.div`
   transition: all .2s ease-in-out;
 `;
 
-const Container = styled.div`
+
+const Outer = styled.div`
     display: flex;
     height: 200px;
     min-width: 350px;
     width: 30%;
+    border: 2px solid ${props => props.theme.highlight};
+    background: ${props => props.theme.secondary};
+    padding: 2px 2px;
+
+`;
+
+const Inner = styled.div`
+    display: flex;
+    width: 100%;
     border: 1px solid black;
-    padding: 10px 10px;
+
     justify-content: space-around;
     flex-direction: column;
     text-align: center;
+    background: ${props => props.theme.background};
+    padding: 15px 15px;
+    border-radius: 4px;
+    box-shadow: -0px -0px 3px 3px inset #230b0457
+
 `;
+
 
 const TopSection = styled.div`
     display: flex;
@@ -114,11 +150,13 @@ const RewardSection = styled.div`
     justify-content: space-evenly;
 `;
 const RewardText = styled.div`
-
+    text-decoration: underline;
+    font-weight: bold;
 `;
 const RewardList = styled.div`
     display: flex;
     flex-direction: row;
+    aling-items: center;
 `;
 
 const Reward = styled.div`

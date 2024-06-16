@@ -5,7 +5,9 @@ import Token from "../../assets/Token.svg"
 
 const AchievementCard = ({ data }) => {
   return (
-    <Container>
+    <Outer>
+
+    <Inner>
       <Title> {data.title}</Title>
       <TopSection>
         <ImgOuter>
@@ -32,7 +34,8 @@ const AchievementCard = ({ data }) => {
             )}
         </RewardList>
       </RewardSection>
-    </Container>
+    </Inner>
+    </Outer>
   );
 };
 
@@ -49,26 +52,39 @@ const ProgressBar = styled.div`
     width: 100%;
 `;
 
-const Container = styled.div`
+const Outer = styled.div`
     display: flex;
     height: 200px;
     min-width: 350px;
     width: 30%;
+    border: 2px solid ${props => props.theme.highlight};
+    background: ${props => props.theme.secondary};
+    padding: 2px 2px;
+
+`;
+
+const Inner = styled.div`
+    display: flex;
+    width: 100%;
     border: 1px solid black;
-    padding: 10px 10px;
+
     justify-content: space-around;
     flex-direction: column;
     text-align: center;
+    background: ${props => props.theme.background};
+    padding: 3px 3px;
+    border-radius: 4px;
+    box-shadow: -0px -0px 3px 3px inset #230b0457
+
 `;
 
 const ImgOuter = styled.div`
     width: 30%;
-    border: 2px solid #a38615;
-  padding: 10px 16px;
-  background: #673d25;
-  border-radius: 4px;
-  box-shadow: 4px 4px 1px #2c070742;
-
+    border: 2px solid ${props => props.theme.secondary};
+    padding: 10px 16px;
+    background: #673d25;
+    border-radius: 4px;
+    box-shadow: 4px 4px 1px #2c070742;
 `;
 
 const TopSection = styled.div`
