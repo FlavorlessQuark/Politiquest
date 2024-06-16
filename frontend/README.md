@@ -1,14 +1,17 @@
-# React + TypeScript + Vite
+# Citizen Hero
 
-## Package Manager
-Uses `bun` for the package manager and runtime.
+## Usage
 
-## Develop
+ -- This app requires bun and node 21+
+ ### Install Node and NVM
 
-`bun dev` - start hot refresh vite server
+ ### Install Bun
+    `curl -fsSL https://bun.sh/install | bash`
+ ### Run app
+````
+    bun install
+    bun run
+````
+## About
 
-## Preview
-```sh
-bun run build
-bun preview
-```
+
