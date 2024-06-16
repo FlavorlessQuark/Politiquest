@@ -82,6 +82,7 @@ const Button = styled.a`
     cursor: pointer;
     background-color: ${(p) => p.theme.button};
   }
+    font-weight: 200;
 `;
 const BigButton = styled(Button)`
     padding: 15px 30px;
