@@ -56,12 +56,23 @@ const titles = [
   "Oversight Overlord",
 ];
 
+const colors = [
+  "red",
+  "green",
+  "blue",
+  "purple"
+];
+
 export function randomTitle() {
   return titles[Math.floor(Math.random() * titles.length)];
 }
 
 function levelToPrefix(level: number): string {
-  return prefixes[level % prefixes.length];
+  return prefixes[Math.trunc(level) % prefixes.length];
+}
+
+function levelToColor(level: number): string {
+  return colors[Math.trunc(level) % colors.length];
 }
 
 export function CitizenBar({
@@ -81,7 +92,7 @@ export function CitizenBar({
         </CitizenJob>
         <CitizenLvl>lvl {level}</CitizenLvl>
       </CitizenLayout>
-      <ProgressBar score={(level - levelBase) * 100.0} hideText="true" />
+      <ProgressBar progressColor={levelToColor(level)} score={(level - levelBase) * 100.0} hideText="true" />
     </TMP>
   );
 }
