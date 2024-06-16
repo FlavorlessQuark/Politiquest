@@ -1,9 +1,7 @@
 import InProgress from "../InProgress";
 
 const Ask = () => {
-    return (
-        <InProgress/>
-    )
-}
+  return <InProgress />;
+};
 
 export default Ask;
