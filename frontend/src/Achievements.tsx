@@ -1,41 +1,30 @@
 import { useState } from "react";
 import styled from "styled-components";
+import { UserBar } from "./components/CitizenBar";
+import AchievementsView from "./components/Achievements/AchievementView";
 import InProgress from "./components/InProgress";
-import AchievementCard from "./components/AchievementCard";
+import QuestView from "./components/Quests/QuestView";
 
-const Achievements = () => {
-  const [selected, setSelected] = useState(0);
-  const dummyachivments = [
-    {
-      id: 0,
-      title: "Unlimited power!",
-      desc: "Vote on a poll during a council meeting",
-      rewards: { xp: 50, title: "My opinion matters", cosmetic: undefined },
-    },
-    {
-      id: 1,
-      title: "Touch some grass",
-      desc: "Participate in a meeting in person",
-      rewards: { xp: 200, title: "People person", cosmetic: "Cool Hat" },
-    },
-  ];
+const Achievements = () =>
+{
+    const [selected, setSelected] = useState(1);
 
-  const A_Cards = (id) => {
-    return (
-      <AchievementCard
-        key={dummyachivments[id].title}
-        data={dummyachivments[id]}
-      />
-    );
-  };
-  const sections = [
-    { name: "Achievements", component: A_Cards, data: dummyachivments },
-    { name: "Quests", component: <InProgress />, data: [] },
-  ];
+    const dummyquest = [
+        {id: 0},
+    ]
+
+
+    const sections = [
+        {name: "Achievements", component: <AchievementsView/> },
+        {name: "Quests", component: <QuestView/>, data: dummyquest},
+        {name: "Feats", component: <InProgress/>, data: dummyquest},
+    ]
 
   return (
     <Container>
-      <UserInfo />
+      <UserInfo>
+        <UserBar/>
+      </UserInfo>
       <SectionBar>
         {sections.map((e, i) => (
           <SectionTitle
@@ -48,9 +37,7 @@ const Achievements = () => {
           </SectionTitle>
         ))}
       </SectionBar>
-      <DisplaySection>
-        {sections[selected].data.map((e, i) => sections[selected].component(i))}
-      </DisplaySection>
+        {sections[selected].component}
     </Container>
   );
 };
@@ -64,12 +51,12 @@ const Container = styled.div`
 
 const UserInfo = styled.div`
     width: 100%;
-    height: 20%;
+    height: 10%;
 `;
 
 const SectionBar = styled.div`
     display: flex;
-    flex-direction:
+    flex-direction: row;
     height: 5%;
 `;
 
@@ -83,18 +70,7 @@ const SectionTitle = styled.div`
     }
 `;
 
-const DisplaySection = styled.div`
-    width: 100%;
-    display: flex;
-    flex-firection: row;
-    gap: 30px;
-    flex-wrap: wrap;
-    min-height: 500px;
-    height: fit-content;
-    border: 1px solid black;
-    padding: 20px 20px;
-    box-sizing: border-box;
-`;
+
 
 const QuestCard = styled.div`
 
