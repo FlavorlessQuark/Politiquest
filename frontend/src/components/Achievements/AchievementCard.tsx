@@ -19,7 +19,7 @@ const AchievementCard = ({ data }) => {
                 <RewardList>
                     {
                         data.rewards && Object.keys(data.rewards).map((key) => (
-                            data.rewards[key] && <Reward key={key}> {" "}{data.rewards[key]} {key}</Reward>
+                            data.rewards[key] && <Reward key={key}> {" "}{data.rewards[key]} {key},</Reward>
                         ))
                     }
                 </RewardList>
@@ -87,8 +87,12 @@ const RewardText = styled.div`
 const RewardList = styled.div`
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 5px;
 `
 
 const Reward = styled.div`
     display: flex;
+    flex-direction: row;
 `;
