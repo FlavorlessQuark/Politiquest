@@ -62,7 +62,7 @@ export function CitizenBar({ level = 0, title = randomTitle() }) {
         <CitizenJob>
           Advanced Citizen
           <CitizenTitle>
-            {levelToPrefix(level)} {title}
+            {levelToPrefix(levelBase)} {title}
           </CitizenTitle>
         </CitizenJob>
         <CitizenLvl>lvl.{levelBase}</CitizenLvl>
