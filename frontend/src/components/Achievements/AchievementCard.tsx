@@ -8,14 +8,18 @@ const AchievementCard = ({ data }) => {
             <Title> {data.title}</Title>
             <TopSection>
                 <Img> IMAGE HERE</Img>
-                <Desc> {data.desc}</Desc>
+                <Requirements>
+                    <Desc> {data.desc}</Desc>
+                    {data.progress >= 0 && <>{data.progress}</>}
+                    {data.progress >= 0 && <ProgressBar/>}
+                </Requirements>
             </TopSection>
             <RewardSection>
                 <RewardText> Rewards :</RewardText>
                 <RewardList>
                     {
                         data.rewards && Object.keys(data.rewards).map((key) => (
-                            data.rewards[key] && <Reward key={key}> {data.rewards[key]} {key} |</Reward>
+                            data.rewards[key] && <Reward key={key}> {" "}{data.rewards[key]} {key}</Reward>
                         ))
                     }
                 </RewardList>
@@ -25,6 +29,17 @@ const AchievementCard = ({ data }) => {
 }
 
 export default AchievementCard;
+
+const Requirements = styled.div`
+    display: flex;
+    flex-direction: column;
+    width: 48%;
+`
+const ProgressBar = styled.div`
+    height: 5px;
+    border: 1px solid black;
+    width: 100%;
+`
 
 const Container = styled.div`
     display: flex;
@@ -41,6 +56,7 @@ const TopSection = styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-around;
+    align-items: center;
     height: 80%;
 `
 
@@ -55,10 +71,11 @@ const Title = styled.div`
 
 `;
 const Desc = styled.div`
-    width: 48%;
+    // width: 48%;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-align: center;
 `
 const RewardSection = styled.div`
     display: flex;
@@ -73,5 +90,5 @@ const RewardList = styled.div`
 `
 
 const Reward = styled.div`
-
+    display: flex;
 `;
