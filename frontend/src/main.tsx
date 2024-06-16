@@ -17,6 +17,10 @@ const FontStyles = createGlobalStyle`
     font-family: "SynNova";
     src: url(${SynNovaWoff2}) format("woff2");
 }
+body {
+  font-family: sans-serif;
+  background-color: #f4f4f4
+}
 `;
 
 ReactDOM.createRoot(document.getElementById("root")!).render(

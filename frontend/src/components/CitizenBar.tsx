@@ -43,7 +43,6 @@ const prefixes = [
 ];
 
 const titles = [
-  "Citizen",
   "Meeting Attendee",
   "Voter",
   "Taxpayer",
