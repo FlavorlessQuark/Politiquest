@@ -110,6 +110,7 @@ const ChatRect = styled.div`
   flex-direction: column;
   align-items: center;
   padding: 10px;
+  background: ${props => props.theme.primary};
   height: 90%;
    border: 1px solid black;
 
@@ -117,7 +118,7 @@ const ChatRect = styled.div`
 const ChatTabContainer = styled.div`
     display: flex;
     flex-direction: row;
-    gap: 40px;
+    justify-content: space-around;
     padding: 0px 20px;
 `;
 
@@ -126,7 +127,7 @@ const ChatTab = styled.div<{ $active?: boolean }>`
     padding-bottom: 0px;
     border: 1px solid black;
     z-index: 2;
-    background: white;
+    background:  ${props => (props.$active ? props.theme.primary : props.theme.secondary)};;
     bottom:  ${(props) => (props.$active ? "-1px" : "-0px;")};
     border-bottom: 0px;
     position: relative;

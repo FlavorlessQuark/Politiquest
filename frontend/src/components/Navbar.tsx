@@ -31,6 +31,7 @@ const Container = styled.div`
     bottom: 0;
     width: 100%;
     height: max-content;
+    z-index: 45;
     border-top: 5px solid #b67816;
     justify-content: space-around;
     background: ${(props) => props.theme.primary};
