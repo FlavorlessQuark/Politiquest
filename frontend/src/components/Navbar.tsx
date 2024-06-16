@@ -29,29 +29,29 @@ const Container = styled.div`
     display: flex;
     position: fixed;
     bottom: 0;
-
     width: 100%;
     height: max-content;
     border-top: 1px solid black;
     justify-content: space-around;
-    background: white;
+    background: #bd9e84;
 `;
 
 const Tab = styled.a<{ $active?: boolean }>`
     padding: .5rem 1rem;
     margin-bottom: .5rem;
     display: inline-block;
+    background: #bd9e84;
     text-decoration: none;
     transition: all .3s ease-in-out;
     font: 1.1rem "SynNova";
     font-weight: 300;
-    color: #000;
+    color: #ffffff;
     text-transform: capitalize;
     text-underline-offset: 10px;
-    color: ${(props) => (props.$active ? "#00b8ff" : "black")};
+    color: ${(props) => (props.$active ? "#000000" : "#ffffff")};
     text-decoration:  ${(props) => (props.$active ? "underline" : "none")};
     &:hover {
-        background-color: #EAEAEA;
+        background-color: #ad8e74;
         cursor : pointer;
     }
 `;

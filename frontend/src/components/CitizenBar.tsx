@@ -29,7 +29,7 @@ const CitizenLayout = styled.div`
 
 const TMP = styled.section`
     width: 100%;
-`
+`;
 
 const prefixes = [
   "Novice",
@@ -42,35 +42,52 @@ const prefixes = [
   "Glorious",
 ];
 
+const titles = [
+  "Meeting Attendee",
+  "Voter",
+  "Taxpayer",
+  "Constituent",
+  "Community Stakeholder",
+  "Interested Party",
+  "Oversight Overlord",
+];
 
+export function randomTitle() {
+  return titles[Math.floor(Math.random() * titles.length)];
+}
 
 function levelToPrefix(level: number): string {
   return prefixes[level % prefixes.length];
 }
 
-export function CitizenBar({ level = 0}) {
-  const {title , user} = useUserConsumer();
-
-    console.log("user", user)
-
+export function CitizenBar({
+  level = 0,
+  title = "Citizen",
+  username = "Advanced Citizen",
+}) {
   const levelBase = Math.trunc(level);
   return (
     <TMP>
       <CitizenLayout>
         <CitizenJob>
-            {user.name}, {user.surname}
-          {/* {user.name && user.name}, {user.surname && user.surname} */}
+          {username}
           <CitizenTitle>
             {levelToPrefix(levelBase)} {title}
           </CitizenTitle>
         </CitizenJob>
-        <CitizenLvl>lvl.{levelBase}</CitizenLvl>
+        <CitizenLvl>lvl {level}</CitizenLvl>
       </CitizenLayout>
-      <ProgressBar score={level - levelBase} hideText="true" />
+      <ProgressBar score={(level - levelBase) * 100.0} hideText="true" />
     </TMP>
   );
 }
 
-// export function UserBar() {
-//   return <CitizenBar {...props} />;
-// }
+export function UserBar() {
+  const { title, user, level } = useUserConsumer();
+  const props = {
+    level,
+    title,
+    username: `${user.name}, ${user.surname}`,
+  };
+  return <CitizenBar {...props} />;
+}

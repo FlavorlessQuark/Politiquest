@@ -1,43 +1,36 @@
-import styled from "styled-components"
+import styled from "styled-components";
 
-const MeetingCard = ({data}) =>
-{
-    return (
-        <Container>
-            <Sidebar/>
-            <Section>
-                <Title> {data.title}</Title>
-                <Row>
-                    <CommittedText>Committee Chair: </CommittedText>
-                    <MemberName> {data.member} </MemberName>
-                </Row>
-                <BigButton href={"/meeting/" + data.id}> JOIN MEETING </BigButton>
-                <BottmRow>
-                    <Button> + Follow</Button>
-                    <XP> 50 XP</XP>
-                    <Time> {data.start}</Time>
-                </BottmRow>
-            </Section>
-        </Container>
-    )
-}
+const MeetingCard = ({ data }) => {
+  return (
+    <Container>
+      <Section>
+        <Title> {data.title}</Title>
+        <Row>
+          <CommittedText>Chair</CommittedText>
+          <MemberName> {data.member} </MemberName>
+        </Row>
+        <BigButton href={`/meeting/${data.id}`}> JOIN MEETING </BigButton>
+        <BottmRow>
+          <Button>Follow</Button>
+          <XP>{data.xp} XP</XP>
+          <Time>
+            {data.start}-{data.end}
+          </Time>
+        </BottmRow>
+      </Section>
+    </Container>
+  );
+};
 
 const Container = styled.div`
     display: flex;
-    flex-direction: row;
     gap: 10px;
-`
-
-const Sidebar = styled.div`
-    width: 2px;
-    border: 1px solid black;
-    background: green;
-`
+`;
 
 const Section = styled.div`
     display: flex;
     flex-direction: column;
-    border: 1px solid black;
+    background-color: #FFF;
     border-radius: 8px;
     padding: 20px 20px;
     width: 90%;
@@ -45,39 +38,40 @@ const Section = styled.div`
     gap:30px;
     height: 90%;
     margin: 10px 0px;
-`
+`;
 
-const Title= styled.div`
-    font-size: 30px;
-    font-weight: bold;
-`
+const Title = styled.div`
+    font-size: 24px;
+    font-weight: 300;
+`;
+
 const Row = styled.div`
     display: flex;
     flex-direction: row;
     gap : 5px;
-`
+`;
+
 const CommittedText = styled.div`
-    text-decoration: underline;
-`
+`;
+
 const MemberName = styled.div`
-`
+    font-weight: 200;
+    font-style: italic;
+`;
 
 const Button = styled.a`
-    display: flex;
-    border: 1px solid black;
-    border-radius: 8px;
-    padding: 5px 5px;
+    padding: .5rem 1rem .5rem 1rem;
+    margin-bottom: .5rem;
+    background-color: #EAEAEA;
+    border-radius: 4px;
     cursor: pointer;
     text-decoration: none;
     color: black;
-`
+`;
 const BigButton = styled(Button)`
-    display: flex;
-    border: 1px solid black;
-    border-radius: 8px;
     padding: 15px 30px;
     font-size: 20px;
-`
+`;
 
 const BottmRow = styled.div`\
     display: flex;
@@ -85,16 +79,17 @@ const BottmRow = styled.div`\
     width: 100%;
     justify-content: space-around;
     align-items: center;
-`
-const XP = styled.div`
-text-underline-offset: 5px;
-text-decoration: underline;
-`
-const Time = styled.div`
-    padding: 5px 10px;
-     border: 1px solid black;
-    border-radius: 8px;
-`
+`;
 
+const XP = styled.div`
+    text-underline-offset: 5px;
+    font-family: "Monoid"
+`;
+
+const Time = styled.div`
+    font-size: .8rem;
+    padding: 5px 10px;
+    font-family: "Monoid";
+`;
 
 export default MeetingCard;

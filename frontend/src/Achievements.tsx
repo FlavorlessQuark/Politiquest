@@ -1,29 +1,25 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { CitizenBar } from "./components/CitizenBar";
+import { UserBar } from "./components/CitizenBar";
 import AchievementsView from "./components/Achievements/AchievementView";
 import InProgress from "./components/InProgress";
 import QuestView from "./components/Quests/QuestView";
 
-const Achievements = () =>
-{
-    const [selected, setSelected] = useState(0);
+const Achievements = () => {
+  const [selected, setSelected] = useState(1);
 
-    const dummyquest = [
-        {id: 0},
-    ]
+  const dummyquest = [{ id: 0 }];
 
-
-    const sections = [
-        {name: "Achievements", component: <AchievementsView/> },
-        {name: "Quests", component: <QuestView/>, data: dummyquest},
-        {name: "Feats", component: <InProgress/>, data: dummyquest},
-    ]
+  const sections = [
+    { name: "Achievements", component: <AchievementsView /> },
+    { name: "Quests", component: <QuestView />, data: dummyquest },
+    { name: "Feats", component: <InProgress />, data: dummyquest },
+  ];
 
   return (
     <Container>
       <UserInfo>
-        <CitizenBar/>
+        <UserBar />
       </UserInfo>
       <SectionBar>
         {sections.map((e, i) => (
@@ -37,7 +33,7 @@ const Achievements = () =>
           </SectionTitle>
         ))}
       </SectionBar>
-        {sections[selected].component}
+      {sections[selected].component}
     </Container>
   );
 };
@@ -72,8 +68,6 @@ const SectionTitle = styled.div`
         cursor : pointer;
     }
 `;
-
-
 
 const QuestCard = styled.div`
 

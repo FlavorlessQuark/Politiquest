@@ -2,9 +2,8 @@ import styled from "styled-components";
 import { useState } from "react";
 import RepCard from "./components/RepCard";
 
-
-const Reps = () =>
-{const [activeTab, setActiveTab] = useState(0);
+const Reps = () => {
+  const [activeTab, setActiveTab] = useState(0);
 
   const meetData = {
     title: "Test Council Meeting",
@@ -14,57 +13,65 @@ const Reps = () =>
   };
 
   const Tabs = [
-    {name: "District 1", members : [
-        {name: "Some Member",
-         chair: "Some committee",
-         vicechair: "Some committee",
-         member: ["Committee 1", "committee 2"],
-         info: "Some link",
+    {
+      name: "District 1",
+      members: [
+        {
+          name: "Some Member",
+          chair: "Some committee",
+          vicechair: "Some committee",
+          member: ["Committee 1", "committee 2"],
+          info: "Some link",
         },
-        {name: "Some Member",
-         vicechair: "Some committee",
-         member: ["Committee 1"],
-         info: "Some link",
+        {
+          name: "Some Member",
+          vicechair: "Some committee",
+          member: ["Committee 1"],
+          info: "Some link",
         },
-    ]},
-    {name: "District 2", members : [
-        {name: "Some Member",
-         chair: "Some committee",
-         vicechair: "Some committee",
-         member: ["Committee 1", "committee 2"],
-         info: "Some link",
-        }
-    ]},
-    {name: "District 3", members : [
-        {name: "Some Member",
-         chair: "Some committee",
-         member: ["Committee 1", "committee 2", "committee 33"],
-         info: "Some link",
-        }
-    ]},
-
+      ],
+    },
+    {
+      name: "District 2",
+      members: [
+        {
+          name: "Some Member",
+          chair: "Some committee",
+          vicechair: "Some committee",
+          member: ["Committee 1", "committee 2"],
+          info: "Some link",
+        },
+      ],
+    },
+    {
+      name: "District 3",
+      members: [
+        {
+          name: "Some Member",
+          chair: "Some committee",
+          member: ["Committee 1", "committee 2", "committee 33"],
+          info: "Some link",
+        },
+      ],
+    },
   ];
 
   return (
     <Container>
-        <RepTabContainer>
-          {Tabs.map((e, i) => (
-            <RepTab
-              onClick={() => setActiveTab(i)}
-              {...(activeTab === i ? { $active: "true" } : {})}
-              key={e.name}
-            >
-              {e.name}
-            </RepTab>
-          ))}
-        </RepTabContainer>
-        <RepRect>
-            {
-                Tabs[activeTab].members.map((e) => [
-                    <RepCard data={e}/>
-                ])
-            }
-        </RepRect>
+      <RepTabContainer>
+        {Tabs.map((e, i) => (
+          <RepTab
+            onClick={() => setActiveTab(i)}
+            {...(activeTab === i ? { $active: "true" } : {})}
+            key={e.name}
+          >
+            {e.name}
+          </RepTab>
+        ))}
+      </RepTabContainer>
+      <RepRect>
+        {Tabs[activeTab].members.map((e) => [<RepCard data={e} />])}
+      </RepRect>
     </Container>
   );
 };
