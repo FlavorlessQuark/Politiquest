@@ -2,12 +2,12 @@ import InProgress from "../InProgress";
 import styled from "styled-components";
 
 const Chat = () => {
-    return (
-        <ChatBoxContainer>
-            <ChatBox/>
-            <ChatSend> Send </ChatSend>
-        </ChatBoxContainer>
-    )
+  return (
+    <ChatBoxContainer>
+      <ChatBox />
+      <ChatSend> Send </ChatSend>
+    </ChatBoxContainer>
+  );
 };
 
 const ChatBoxContainer = styled.div`
