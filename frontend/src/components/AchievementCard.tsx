@@ -38,7 +38,6 @@ const Container = styled.div`
     height: 30%;
     width: 25%;
     border: 1px solid black;
-<<<<<<< HEAD
     padding: 10px 10px;
 `
 
@@ -73,32 +72,3 @@ const RewardList = styled.div`
 const Reward = styled.div`
 
 `
-=======
-`;
-
-const TopSection = styled.div`
-
-`;
-
-const Img = styled.div`
-
-`;
-const Text = styled.div`
-
-`;
-const Title = styled.div`
-
-`;
-const Desc = styled.div`
-
-`;
-const RewardSection = styled.div`
-
-`;
-const RewardText = styled.div`
-
-`;
-const RewardList = styled.div`
-
-`;
->>>>>>> 4ff81969bbea877c16b7d452ede2c0735f14a16b
