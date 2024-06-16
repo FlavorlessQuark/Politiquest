@@ -15,37 +15,21 @@ import { Palette } from "./styles";
 const App = () => {
   return (
     <Router>
-<<<<<<< HEAD
-        <ThemeProvider theme={Palette}>
+      <ThemeProvider theme={Palette}>
         <UserProvider>
-                <Container>
-                <Routes>
-                    <Route path="/home" element={<Home />} />
-                    <Route path="/achievements" element={<Achievements />} />
-                    <Route path="/meeting/:id" element={<Meeting />} />
-                    <Route path="/user/:id" element={<Profile />} />
-                    <Route path="/reps" element={<Reps />} />
-                    <Route path="/leaderboard" element={<Leaderboard/>} />
-                </Routes>
-                <Navbar />
-                </Container>
-            </UserProvider>
-        </ThemeProvider>
-=======
-      <UserProvider>
-        <Container>
-          <Routes>
-            <Route path="/home" element={<Home />} />
-            <Route path="/achievements" element={<Achievements />} />
-            <Route path="/meeting/:id" element={<Meeting />} />
-            <Route path="/user/:id" element={<Profile />} />
-            <Route path="/reps" element={<Reps />} />
-            <Route path="/leaderboard" element={<Leaderboard />} />
-          </Routes>
-          <Navbar />
-        </Container>
-      </UserProvider>
->>>>>>> 89a479fd7c46608d6f8189e3c045a2e3c056f9d4
+          <Container>
+            <Routes>
+              <Route path="/home" element={<Home />} />
+              <Route path="/achievements" element={<Achievements />} />
+              <Route path="/meeting/:id" element={<Meeting />} />
+              <Route path="/user/:id" element={<Profile />} />
+              <Route path="/reps" element={<Reps />} />
+              <Route path="/leaderboard" element={<Leaderboard />} />
+            </Routes>
+            <Navbar />
+          </Container>
+        </UserProvider>
+      </ThemeProvider>
     </Router>
   );
 };
