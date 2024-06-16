@@ -43,6 +43,9 @@ export default Achievements;
 const Container = styled.div`
     height: 100%;
     padding: 10px 10px;
+    gap: 20px;
+    display: flex;
+    flex-direction: column;
 `;
 
 const UserInfo = styled.div`

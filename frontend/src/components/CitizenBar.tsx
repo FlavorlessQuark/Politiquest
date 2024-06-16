@@ -52,7 +52,7 @@ const titles = [
   "Oversight Overlord",
 ];
 
-function randomTitle() {
+export function randomTitle() {
   return titles[Math.floor(Math.random() * titles.length)];
 }
 
@@ -60,13 +60,17 @@ function levelToPrefix(level: number): string {
   return prefixes[level % prefixes.length];
 }
 
-export function CitizenBar({ level = 0, title = randomTitle() }) {
+export function CitizenBar({
+  level = 0,
+  title = "Citizen",
+  username = "Advanced Citizen",
+}) {
   const levelBase = Math.trunc(level);
   return (
     <TMP>
       <CitizenLayout>
         <CitizenJob>
-          Advanced Citizen
+          {username}
           <CitizenTitle>
             {levelToPrefix(levelBase)} {title}
           </CitizenTitle>
@@ -79,6 +83,11 @@ export function CitizenBar({ level = 0, title = randomTitle() }) {
 }
 
 export function UserBar() {
-  const props = useUserConsumer();
+  const { title, user, level } = useUserConsumer();
+  const props = {
+    level,
+    title,
+    username: `${user.name}, ${user.surname}`,
+  };
   return <CitizenBar {...props} />;
 }

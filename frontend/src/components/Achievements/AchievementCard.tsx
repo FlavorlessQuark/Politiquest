@@ -48,7 +48,8 @@ const ProgressBar = styled.div`
 const Container = styled.div`
     display: flex;
     height: 200px;
-    width: 27%;
+    min-width: 350px;
+    width: 30%;
     border: 1px solid black;
     padding: 10px 10px;
     justify-content: space-around;
