@@ -33,8 +33,8 @@ const Section = styled.div`
     display: flex;
     flex-direction: column;
     background-color: ${(props) => props.theme.secondary};
-    border-radius: 8px;
-    padding: 8px 8px;
+    border-radius: 4px;
+    padding: 4px 4px;
     width: 100%;
     align-items: center;
     height: 90%;
@@ -47,6 +47,7 @@ const SectionInner = styled.div`
   padding: 5px 5px;
   width: 100%;
   height: 100%;
+  border-radius: 6px;
   align-items: center;
 `;
 
@@ -88,9 +89,10 @@ const BigButton = styled(Button)`
     padding: 15px 30px;
     margin: 1rem;
     font-size: 20px;
+    background-color: orange;
 `;
 
-const BottmRow = styled.div`\
+const BottmRow = styled.div`
     display: flex;
     flex-direction: row;
     width: 100%;

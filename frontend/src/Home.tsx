@@ -104,7 +104,7 @@ const ButtonList = styled.div`
 const WeekButton = styled.div<{ $active?: boolean }>`
     ${(p) => p.active && "color: #FAFAFA;"}
     border-bottom: 3px solid ${(p) => (p.active ? p.theme.secondary : p.theme.primary)};
-    background-color: ${(p) => (p.active ? p.theme.primary : p.theme.secondary)};
+    background-color: ${(p) => (p.active ? "#8e823e": "#cab74f")};
     padding: 10px 20px;
      &: hover {
         cursor: pointer;
