@@ -10,14 +10,6 @@ import SynNovaWoff2 from "./assets/synnova-regular.woff2";
 
 const FontStyles = createGlobalStyle`
 @font-face {
-    font-family: "Pixels";
-    src: url(${PixelsWoff2}) format("woff2");
-}
-@font-face {
-    font-family: "Starzone";
-    src: url(${StarZoneWoff2}) format("woff2");
-}
-@font-face {
     font-family: "Monoid";
     src: url(${MonoidWoff2}) format("woff2");
 }

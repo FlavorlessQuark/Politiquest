@@ -4,7 +4,7 @@ const InProgress = () => {
   return (
     <Container>
       <Title>PAGE UNDER CONSTRUCTION</Title>
-      <SubText>Something goes there but isn't ready yet</SubText>
+      <SubText>Something goes here, but it isn't ready yet</SubText>
     </Container>
   );
 };
