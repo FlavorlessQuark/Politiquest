@@ -106,6 +106,7 @@ const Desc = styled.div`
     align-items: center;
     justify-content: center;
     text-align: center;
+    font-size: 12px;
 `;
 const RewardSection = styled.div`
     display: flex;

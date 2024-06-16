@@ -1,12 +1,14 @@
 import { useEffect } from "react";
 import styled from "styled-components";
 
+import Token from "../../assets/Token.svg"
+
 const AchievementCard = ({ data }) => {
   return (
     <Container>
       <Title> {data.title}</Title>
       <TopSection>
-        <Img> IMAGE HERE</Img>
+        <Img src={Token}/>
         <Requirements>
           <Desc> {data.desc}</Desc>
           {data.progress >= 0 && data.progress}
@@ -65,15 +67,17 @@ const TopSection = styled.div`
     height: 80%;
 `;
 
-const Img = styled.div`
+const Img = styled.img`
     width: 48%;
+    height: 70%;
 `;
 const Text = styled.div`
     width: 48%;
 
 `;
 const Title = styled.div`
-
+    font-size: 20px;
+    font-weight: bold;
 `;
 const Desc = styled.div`
     // width: 48%;
@@ -87,7 +91,9 @@ const RewardSection = styled.div`
     flex-direction: column;
 `;
 const RewardText = styled.div`
-
+    font-weight: bold;
+    text-decoration: underline;
+    font-size: 15px;
 `;
 const RewardList = styled.div`
     display: flex;
@@ -95,6 +101,7 @@ const RewardList = styled.div`
     flex-wrap: wrap;
     justify-content: center;
     gap: 5px;
+    font-size: 11px;
 `;
 
 const Reward = styled.div`

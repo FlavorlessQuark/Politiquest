@@ -34,11 +34,24 @@ const Achievements = () => {
         ))}
       </SectionBar>
       {sections[selected].component}
+      <Padder/>
     </Container>
   );
 };
 
 export default Achievements;
+
+const Padder = styled.div`
+    display: flex;
+    position: relative;
+    bottom: 0;
+
+    width: 100%;
+    height: 5%;
+    max-height: 100px;
+    min-height: 40px;
+    justify-content: space-around;
+`;
 
 const Container = styled.div`
     height: 100%;
