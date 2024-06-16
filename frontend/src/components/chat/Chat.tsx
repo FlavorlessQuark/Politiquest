@@ -1,20 +1,14 @@
 import InProgress from "../InProgress";
 import styled from "styled-components";
 
-
 const Chat = () => {
-    return (
-        <ChatBoxContainer>
-            <ChatBox/>
-            <ChatSend> Send </ChatSend>
-        </ChatBoxContainer>
-    )
-}
-
-
-const ChatMessage = styled.div`
-
-`
+  return (
+    <ChatBoxContainer>
+      <ChatBox />
+      <ChatSend> Send </ChatSend>
+    </ChatBoxContainer>
+  );
+};
 
 const ChatBoxContainer = styled.div`
     display: flex;
@@ -29,7 +23,7 @@ const ChatBoxContainer = styled.div`
     justify-content: center;
     padding: 0px 10px;
     box-sizing: border-box;
-`
+`;
 
 const ChatBox = styled.textarea`
     flex: 1;
@@ -57,7 +51,7 @@ const ChatBox = styled.textarea`
   max-height: 30px;
   text-wrap:wrap;
   padding: 10px 20px;
-`
+`;
 
 const ChatSend = styled.div`
     display: flex;
@@ -77,6 +71,6 @@ const ChatSend = styled.div`
   }
 
   transition: all .2s ease-in-out;
-`
+`;
 
 export default Chat;

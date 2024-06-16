@@ -28,6 +28,10 @@ const App = () => {
 const Container = styled.div`
     height: 100vh;
     // width: 100vw;
+<<<<<<< HEAD
 `
+=======
+`;
+>>>>>>> 4ff81969bbea877c16b7d452ede2c0735f14a16b
 
 export default App;

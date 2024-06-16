@@ -1,8 +1,6 @@
 import { styled } from "styled-components";
 
-
 const Navbar = () => {
-
   const pages = [
     { name: "City Meetings", ref: "/home" },
     { name: "Achievements", ref: "/achievements" },
@@ -13,8 +11,13 @@ const Navbar = () => {
   return (
     <Container>
       {pages.map((elem) => (
-        <Tab key={elem.ref} href={elem.ref}
-          {...document.location.pathname === elem.ref ? {$active: "true"} : {}} >
+        <Tab
+          key={elem.ref}
+          href={elem.ref}
+          {...(document.location.pathname === elem.ref
+            ? { $active: "true" }
+            : {})}
+        >
           {elem.name}
         </Tab>
       ))}
@@ -35,18 +38,7 @@ const Container = styled.div`
     justify-content: space-around;
 `;
 
-// const Tab = styled.a`
-//     display: flex;
-//     // border-left: 1px solid black;
-//     // border-right: 1px solid black;
-//     padding: 5px 20px;
-//     align-items: center;
-//     text-underline-offset: 10px;
-//     color: ${props => props.selected ? "#00b8ff" : "black"};
-//     text-decoration:  ${props => props.selected ? "underline" : "none"};
-// `;
-
-const Tab = styled.a<{ $active?: boolean; }>`
+const Tab = styled.a<{ $active?: boolean }>`
     padding: .5rem 1rem;
     margin-bottom: .5rem;
     display: inline-block;
@@ -57,11 +49,11 @@ const Tab = styled.a<{ $active?: boolean; }>`
     color: #000;
     text-transform: capitalize;
     // border-bottom: solid 1px;
-    // border-color: ${props => props.$active ? "black" : "white" };
+    // border-color: ${(props) => (props.$active ? "black" : "white")};
 
     text-underline-offset: 10px;
-    color: ${props => props.$active ? "#00b8ff" : "black"};
-    text-decoration:  ${props => props.$active ? "underline" : "none"};
+    color: ${(props) => (props.$active ? "#00b8ff" : "black")};
+    text-decoration:  ${(props) => (props.$active ? "underline" : "none")};
     &:hover {
         background-color: #EAEAEA;
         cursor : pointer;

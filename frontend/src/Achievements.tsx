@@ -53,28 +53,49 @@ export default Achievements;
 const Container = styled.div`
     height: 100%;
     padding: 10px 10px;
+<<<<<<< HEAD
 `
+=======
+`;
+>>>>>>> 4ff81969bbea877c16b7d452ede2c0735f14a16b
 
 const UserInfo = styled.div`
     width: 100%;
     height: 20%;
+<<<<<<< HEAD
 `
+=======
+`;
+>>>>>>> 4ff81969bbea877c16b7d452ede2c0735f14a16b
 
 const SectionBar = styled.div`
     display: flex;
     flex-direction:
     height: 5%;
+<<<<<<< HEAD
 `
+=======
+`;
+>>>>>>> 4ff81969bbea877c16b7d452ede2c0735f14a16b
 
 const SectionTitle = styled.div`
     padding: 10px 10px;
     text-underline-offset: 3px;
+<<<<<<< HEAD
     font-weight: ${props => props.$active ? "bold" : "normal"};
     text-decoration:  ${props => props.$active ? "underline" : "none"};
     &:hover {
         cursor : pointer;
     }
 `
+=======
+    font-weight: ${(props) => (props.$active ? "bold" : "normal")};
+    text-decoration:  ${(props) => (props.$active ? "underline" : "none")};
+    &:hover {
+        cursor : pointer;
+    }
+`;
+>>>>>>> 4ff81969bbea877c16b7d452ede2c0735f14a16b
 
 const DisplaySection = styled.div`
     width: 100%;
@@ -82,6 +103,7 @@ const DisplaySection = styled.div`
     flex-firection: row;
     gap: 30px;
     flex-wrap: wrap;
+<<<<<<< HEAD
     min-height: 500px;
     height: fit-content;
     border: 1px solid black;
@@ -94,3 +116,13 @@ const QuestCard = styled.div`
 `
 
 
+=======
+    min-height: 100px;
+    height: fit-content;
+    border: 1px solid black;
+`;
+
+const QuestCard = styled.div`
+
+`;
+>>>>>>> 4ff81969bbea877c16b7d452ede2c0735f14a16b
