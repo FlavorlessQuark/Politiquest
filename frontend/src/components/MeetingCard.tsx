@@ -63,7 +63,7 @@ const Button = styled.a`
     padding: .5rem 1rem .5rem 1rem;
     margin-bottom: .5rem;
     background-color: #EAEAEA;
-    border-radius: 4px;
+    border-radius: 9999px;
     cursor: pointer;
     text-decoration: none;
     color: black;
