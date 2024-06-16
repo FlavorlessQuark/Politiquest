@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Progress from "../../assets/QuestProgress.svg";
 
 const QuestCard = ({ data }) => {
-  console.log(data, data.progress);
+  // console.log(data, data.progress);
   return (
     <Container>
       <TopSection>
@@ -17,21 +17,19 @@ const QuestCard = ({ data }) => {
         </Requirements>
       </TopSection>
       <RewardSection>
-        <Row>
-          <RewardText> Rewards :</RewardText>
-          <RewardList>
-            {data.rewards &&
-              Object.keys(data.rewards).map(
-                (key) =>
-                  data.rewards[key] && (
-                    <Reward key={key}>
-                      {" "}
-                      {data.rewards[key]} {key}
-                    </Reward>
-                  ),
-              )}
-          </RewardList>
-        </Row>
+        <RewardText>Rewards</RewardText>
+        <RewardList>
+          {data.rewards &&
+            Object.keys(data.rewards).map(
+              (key) =>
+                data.rewards[key] && (
+                  <Reward key={key}>
+                    {" "}
+                    {data.rewards[key]} {key}
+                  </Reward>
+                ),
+            )}
+        </RewardList>
         {data.completed && !data.claimed && <Claim> Complete </Claim>}
       </RewardSection>
     </Container>
@@ -40,31 +38,23 @@ const QuestCard = ({ data }) => {
 
 export default QuestCard;
 
-const Row = styled.div`
-    display: flex;
-    flex-direction: row;
-`;
 const Requirements = styled.div`
     display: flex;
     flex-direction: column;
     width: 48%;
 `;
 const Claim = styled.div`
-    display: flex;
-  align-items: center;
-  justify-content: center;
   height: fit-content;
-  padding: 5px 5px;
-  border: solid 1px black;
-  border-radius: 5px;
+  padding: 10px;
+  border-radius: 9999px;
   font-size: 15px;
   text-align: center;
   color: black;
+  background-color: ${(p) => p.theme.secondary};
   &:hover {
     cursor: pointer;
-    background-color: "#00b8ff";
+    background-color: ${(p) => p.theme.button};
   }
-
   transition: all .2s ease-in-out;
 `;
 
@@ -73,7 +63,8 @@ const Container = styled.div`
     height: 200px;
     min-width: 350px;
     width: 30%;
-    border: 1px solid black;
+    background-color: ${(p) => p.theme.background};
+    border-radius: 8px;
     padding: 10px 10px;
     justify-content: space-around;
     flex-direction: column;
@@ -98,7 +89,7 @@ const List = styled.ul`
 `;
 const Title = styled.div`
     font-size: 20px;
-    font-weight: bold;
+    font-weight: 400;
 `;
 const Desc = styled.div`
     // width: 48%;
@@ -118,9 +109,9 @@ const RewardText = styled.div`
 `;
 const RewardList = styled.div`
     display: flex;
-    flex-direction: row;
 `;
 
 const Reward = styled.div`
-    display: flex;
+    font-family: "Fira";
+    font-weight: 600;
 `;

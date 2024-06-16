@@ -74,9 +74,9 @@ const Padder = styled.div`
 const Container = styled.div`
     width: 100%;
     height: fit-content;
-    background: ${props => props.theme.background};
+    background: ${(props) => props.theme.background};
     align-content: center;
-    color: ${p => p.theme.text}
+    color: ${(p) => p.theme.text}
 `;
 
 const TopBar = styled.section`
@@ -108,7 +108,7 @@ const WeekButton = styled.div<{ $active?: boolean }>`
     padding: 10px 20px;
      &: hover {
         cursor: pointer;
-        background: ${p => p.theme.button};
+        background: ${(p) => p.theme.button};
      }
 `;
 const MeetingList = styled.div`

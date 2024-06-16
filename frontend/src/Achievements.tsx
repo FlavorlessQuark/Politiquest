@@ -34,24 +34,11 @@ const Achievements = () => {
         ))}
       </SectionBar>
       {sections[selected].component}
-      <Padder/>
     </Container>
   );
 };
 
 export default Achievements;
-
-const Padder = styled.div`
-    display: flex;
-    position: relative;
-    bottom: 0;
-
-    width: 100%;
-    height: 5%;
-    max-height: 100px;
-    min-height: 40px;
-    justify-content: space-around;
-`;
 
 const Container = styled.div`
     height: 100%;
@@ -59,7 +46,7 @@ const Container = styled.div`
     gap: 20px;
     display: flex;
     flex-direction: column;
-    background: ${props => props.theme.background};
+    background: ${(props) => props.theme.background};
 `;
 
 const UserInfo = styled.div`
@@ -82,8 +69,4 @@ const SectionTitle = styled.div`
     &:hover {
         cursor : pointer;
     }
-`;
-
-const QuestCard = styled.div`
-
 `;

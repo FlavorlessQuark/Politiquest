@@ -32,7 +32,7 @@ const Container = styled.div`
 const Section = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${props => props.theme.secondary};
+    background-color: ${(props) => props.theme.secondary};
     border-radius: 8px;
     padding: 8px 8px;
     width: 100%;
@@ -43,7 +43,7 @@ const Section = styled.div`
 const SectionInner = styled.div`
   display: flex;
   flex-direction: column;
-  background-color: ${props => props.theme.primary};
+  background-color: ${(props) => props.theme.primary};
   padding: 5px 5px;
   width: 100%;
   height: 100%;
@@ -72,11 +72,16 @@ const MemberName = styled.div`
 const Button = styled.a`
     padding: .5rem 1rem .5rem 1rem;
     margin-bottom: .5rem;
-    background-color: #EAEAEA;
+    background-color: ${(p) => p.theme.secondary};
     border-radius: 9999px;
     cursor: pointer;
     text-decoration: none;
-    color: black;
+    color: ${(p) => p.theme.text};
+    transition: all .2s ease-in-out;
+  &:hover {
+    cursor: pointer;
+    background-color: ${(p) => p.theme.button};
+  }
 `;
 const BigButton = styled(Button)`
     padding: 15px 30px;
