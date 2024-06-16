@@ -10,7 +10,6 @@ const Navbar = () => {
 
   return (
     <Container>
-      <ContainerInner>
         {pages.map((elem) => (
           <Tab
             key={elem.ref}
@@ -22,7 +21,6 @@ const Navbar = () => {
             {elem.name}
           </Tab>
         ))}
-      </ContainerInner>
     </Container>
   );
 };
@@ -33,19 +31,9 @@ const Container = styled.div`
     bottom: 0;
     width: 100%;
     height: max-content;
+    border-top: 5px solid #b67816;
     justify-content: space-around;
-    background: ${props => props.theme.secondary};
-`;
-
-const ContainerInner = styled.div`
-  display: flex;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: max-content;
-  border-top: 1px solid black;
-  justify-content: space-around;
-  background: ${props => props.theme.primary};
+    background: ${props => props.theme.primary};
 `;
 
 const Tab = styled.a<{ $active?: boolean }>`
