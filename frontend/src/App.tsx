@@ -5,6 +5,7 @@ import Navbar from "./components/Navbar";
 import Meeting from "./Meeting";
 import { UserProvider } from "./components/UserContext";
 import styled from "styled-components";
+import Achievements from "./Achievements";
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
 
             <Routes>
                 <Route path="/home" element={<Home />} />
+                <Route path="/achievements" element={<Achievements/>} />
                 <Route path="/meeting/:id" element={<Meeting/>} />
             </Routes>
             <Navbar />
@@ -25,7 +27,7 @@ const App = () => {
 
 const Container = styled.div`
     height: 100vh;
-    width: 100vw;
+    // width: 100vw;
 `
 
 export default App;
