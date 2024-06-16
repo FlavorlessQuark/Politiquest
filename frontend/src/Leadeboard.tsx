@@ -27,11 +27,21 @@ const Leaderboard = () => {
           </Position>
         ))}
       </Table>
+      <Padder/>
     </Container>
   );
 };
 
 export default Leaderboard;
+
+const Padder = styled.div`
+    display: flex;
+
+    width: 100%;
+    height: 5%;
+    max-height: 100px;
+    min-height: 60px;
+`;
 
 const Container = styled.div`
     display: flex;

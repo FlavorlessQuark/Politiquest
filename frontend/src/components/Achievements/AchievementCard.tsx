@@ -53,9 +53,13 @@ const ProgressBar = styled.div`
 
 const Outer = styled.div`
     display: flex;
-    height: 250px;
-    min-width: 350px;
-    width: 30%;
+    // height: 250px;
+    // min-width: 350px;
+    // width: 30%;
+    max-height: 250px;
+  max-width: 350px;
+  width: 100%;
+  height: 50%;
     border: 2px solid ${(props) => props.theme.highlight};
     background: ${(props) => props.theme.secondary};
     padding: 2px 2px;

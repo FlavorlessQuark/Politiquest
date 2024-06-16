@@ -23,6 +23,7 @@ const ChatBoxContainer = styled.div`
     justify-content: center;
     padding: 0px 10px;
     box-sizing: border-box;
+    background: ${props => props.theme.primary};
 `;
 
 const ChatBox = styled.textarea`
@@ -59,12 +60,13 @@ const ChatSend = styled.div`
   justify-content: center;
   width: 20%;
   height: fit-content;
-  padding: 10px 10px;
+  padding: 6px 15px;
   border: solid 1px black;
   border-radius: 10px;
   font-size: 20px;
   text-align: center;
   color: black;
+  font-size: 11px;
   &:hover {
     cursor: pointer;
     background-color: "#00b8ff";
