@@ -18,7 +18,7 @@ const QuestView = () => {
       completed: true
     },
     {
-      id: 0,
+      id: 1,
       title: "WeeklyRoutine2",
       desc: "Ask a question in a meeting this week",
       progress: [{
@@ -30,9 +30,9 @@ const QuestView = () => {
       completed: true
     },
     {
-      id: 1,
+      id: 2,
       title: "I've done it all",
-      desc: "Chat, ask as question and vote on a poll during the same meeting",
+      desc: "Chat, ask a question, and vote on a poll during the same meeting",
       progress: [
         {
         desc: "Chat in a meeting",
@@ -57,7 +57,7 @@ const QuestView = () => {
         <DisplaySection>
             {
                 dummyquests.map((e) => (
-                    <QuestCard data={e}/>
+                    <QuestCard key={e.id} data={e}/>
                 ))
             }
         </DisplaySection>

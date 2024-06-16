@@ -44,6 +44,9 @@ const titles = [
   "Voter",
   "Taxpayer",
   "Constituent",
+  "Community Stakeholder",
+  "Interested Party",
+  "Oversight Overlord"
 ];
 
 function randomTitle() {

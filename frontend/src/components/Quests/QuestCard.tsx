@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const QuestCard = ({ data }) => {
 
-    console.log(data, data.progress)
+    // console.log(data, data.progress)
     return (
         <Container>
             <TopSection>
