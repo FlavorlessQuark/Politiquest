@@ -1,21 +1,35 @@
 import styled from "styled-components";
+import ButtonImg from "../assets/button.png"
+import BGImg from "../assets/bg.png"
 
-const MeetingCard = ({ data }) => {
+import { ICalItem } from "../Imeetings";
+import { useEffect, useState } from "react";
+
+const MeetingCard = ({ data }: { data: ICalItem}) => {
+    const [datetime, setDateTime] = useState("");
+
+    useEffect(()=> {
+        const date = new Date(data.date);
+
+        const dt = date.toLocaleDateString() + "  " +  date.toLocaleTimeString()
+        setDateTime(dt);
+    }, [])
+
   return (
     <Container>
       <Section>
         <SectionInner>
-          <Title> {data.title}</Title>
+          <Title> {data.category}</Title>
           <Row>
             <CommittedText>Chair</CommittedText>
-            <MemberName> {data.member} </MemberName>
+            <MemberName> "Test" </MemberName>
           </Row>
-          <BigButton href={`/meeting/${data.id}`}> JOIN MEETING </BigButton>
+          <BigButton href={`/meeting/${data.id}`}> { data.cancelled ? "CANCELLED" : 'JOIN MEETING'} </BigButton>
           <BottmRow>
             <Button>Follow</Button>
-            <XP>{data.xp} XP</XP>
+            <XP> 50 XP</XP>
             <Time>
-              {data.start}-{data.end}
+              {data.date}
             </Time>
           </BottmRow>
         </SectionInner>
@@ -32,7 +46,7 @@ const Container = styled.div`
 const Section = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: ${(props) => props.theme.secondary};
+    // background-color: ${(props) => props.theme.secondary};
     border-radius: 4px;
     padding: 4px 4px;
     width: 100%;
@@ -44,6 +58,7 @@ const SectionInner = styled.div`
   display: flex;
   flex-direction: column;
   background-color: ${(props) => props.theme.primary};
+    // background-image: url(${BGImg});
   padding: 5px 5px;
   width: 100%;
   height: 100%;
@@ -73,23 +88,25 @@ const MemberName = styled.div`
 const Button = styled.a`
     padding: .5rem 1rem .5rem 1rem;
     margin-bottom: .5rem;
-    background-color: ${(p) => p.theme.secondary};
-    border-radius: 9999px;
+    background: url(${ButtonImg});
     cursor: pointer;
     text-decoration: none;
-    color: ${(p) => p.theme.text};
+    color: black;
     transition: all .2s ease-in-out;
   &:hover {
     cursor: pointer;
     background-color: ${(p) => p.theme.button};
   }
-    font-weight: 200;
+    font-weight: 402;
+  background-size: 100% 95%;
+  background-repeat: no-repeat;
 `;
 const BigButton = styled(Button)`
     padding: 15px 30px;
     margin: 1rem;
     font-size: 20px;
-    background-color: orange;
+    // background-color: orange;
+
 `;
 
 const BottmRow = styled.div`

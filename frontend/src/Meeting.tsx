@@ -1,11 +1,17 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import Ask from "./components/chat/Ask";
 import Poll from "./components/chat/Poll";
 import Chat from "./components/chat/Chat";
 
+import axios from "axios";
+import ZoomMtgEmbedded from '@zoom/meetingsdk/embedded';
+
 const Meeting = () => {
   const [activeTab, setActiveTab] = useState(0);
+
+    const client = ZoomMtgEmbedded.createClient();
+
 
   const meetData = {
     title: "Test Council Meeting",
@@ -20,11 +26,58 @@ const Meeting = () => {
     { name: "Polls", component: <Poll /> },
   ];
 
+
+    const  getSignature = async (meetnumber:string) => {
+        // NEED SERVER
+         axios.defaults.baseURL = "http://localhost:5000"
+
+        let res = await
+
+        console.log(res.data)
+
+        return res
+    }
+
+//   useEffect(() => {
+
+//     const data = {
+//         signature: "signature",
+//         sdkKey: "",
+//         meetingNumber: "82592136594",
+//         password: "",
+//         userName: "userName",
+//         userEmail: "mahthaki@gmail.com",
+//         tk: "",
+//         zak: ""
+//     }
+
+//     let meetingSDkElem = document.getElementById('meetingSDKElement');
+//     if (!meetingSDkElem)
+//     {
+//         console.log("no elem");
+//         return
+//     }
+//     axios.defaults.baseURL = "http://localhost:5000"
+//     axios.post("/zoom/get-signature",{meetNumber:data.meetingNumber, role:0}).then((res) => {
+//         data.signature = res.data.signature;
+//         console.log("Signature :", data.signature)
+//         client.init({zoomAppRoot: meetingSDkElem, language: "en-US", patchJsMedia:true, leaveOnPageUnload:true}).then(() =>
+//         {
+//             client.join(data).then(() => {
+//                 console.log("success")
+//             }).catch((error)=> {
+//                 console.log("fai9led to join", error)
+//             })
+//         }).catch((error) => {
+//             console.log("failed to init", error)
+//         })
+//     })
+//   })
+
   return (
     <Container>
       <VidCol>
-        <VidPlaceHolder>
-          <TextPlaceHolder> PLACEHOLDER FOR STREAM </TextPlaceHolder>
+        <VidPlaceHolder id="meetingSDKElement">
         </VidPlaceHolder>
         <VidInfo>
           <Title> {meetData.title} </Title>

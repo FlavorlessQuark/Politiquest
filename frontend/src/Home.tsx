@@ -1,38 +1,42 @@
 import styled from "styled-components";
 import { UserBar } from "./components/CitizenBar";
 import MeetingCard from "./components/MeetingCard";
-import Navbar from "./components/Navbar";
+import { useEffect, useState } from "react";
+import axios from "axios"
 
 const Home = () => {
-  const dummyMettings = [
-    {
-      title: "Test Council Meeting",
-      id: 0,
-      date: "01/01/2024",
-      start: "9AM",
-      end: "10:30am",
-      xp: "50",
-      member: "Berj Alister",
-    },
-    {
-      title: "Test Council Meeting",
-      id: 1,
-      date: "01/01/2024",
-      start: "9am",
-      end: "10:30am",
-      xp: "100",
-      member: "Sally Brewer",
-    },
-    {
-      title: "Test Council Meeting",
-      id: 2,
-      date: "01/01/2024",
-      start: "9am",
-      end: "10:30am",
-      xp: "60",
-      member: "Omar Hendricks",
-    },
-  ];
+  const [month, setMonth] = useState("")
+  const [activeWeek, setActiveWeek] = useState(0)
+  const [meetData, setmeetData] = useState({})
+
+  useEffect(() => {
+    axios.defaults.baseURL = "http://localhost:5000"
+    // ADD : Month param
+    const today = new Date();
+    const _month = today.toLocaleString('default', {month:'long'});
+    setMonth(_month)
+    setActiveWeek( Math.ceil(today.getDate() / 7) - 1)
+
+    axios.get("/meetings/get-all", {params : {from: "FCSM"}}).then((res):any => {
+        const data = { [_month] : {weeks: [[], [], [], []]}};
+
+        for (let meeting of res.data){
+            const date = new Date(meeting.date);
+            const day = Math.ceil(date.getDate() / 7)
+                console.log("date ", date, "week", Math.ceil(date.getDate() / 7))
+
+            meeting["_date"] = meeting.date
+            meeting.date =  date.toLocaleDateString() + "  " +  date.toLocaleTimeString();
+            data[_month].weeks[day - 1].push(meeting);
+        }
+        for (let week of data[_month].weeks) {
+            week.sort((a, b) => new Date(a._date).getDate() - new Date(b._date).getDate())
+        }
+
+     console.log(data)
+        setmeetData(data)
+    })
+  }, [])
 
   return (
     <Container>
@@ -41,14 +45,20 @@ const Home = () => {
         <UserBar />
       </TopBar>
       <MeetingSection>
+        {month}
         <ButtonList>
-          <WeekButton>Last Week</WeekButton>
-          <WeekButton active="true">This Week</WeekButton>
-          <WeekButton>Next Week</WeekButton>
+            {
+                meetData[month] && meetData[month].weeks.map((_, i) =>
+                    <WeekButton $active={i == activeWeek}
+                        onClick={() => setActiveWeek(i)}
+                        key={i}
+                    > Week {i + 1} </WeekButton>
+                )
+            }
         </ButtonList>
         <MeetingList>
-          {dummyMettings.map((e) => (
-            <MeetingCard key={e.id} data={e} />
+          {meetData[month] && meetData[month].weeks[activeWeek].map((e) => (
+            <MeetingCard key={e.uid} data={e} />
           ))}
         </MeetingList>
       </MeetingSection>
@@ -102,9 +112,9 @@ const ButtonList = styled.div`
     justify-content: center;
 `;
 const WeekButton = styled.div<{ $active?: boolean }>`
-    ${(p) => p.active && "color: #FAFAFA;"}
-    border-bottom: 3px solid ${(p) => (p.active ? p.theme.secondary : p.theme.primary)};
-    background-color: ${(p) => (p.active ? "#8e823e": "#cab74f")};
+    ${(p) => p.$active && "color: #FAFAFA;"}
+    border-bottom: 3px solid ${(p) => (p.$active ? p.theme.secondary : p.theme.primary)};
+    background-color: ${(p) => (p.$active ? "#8e823e": "#cab74f")};
     padding: 10px 20px;
      &: hover {
         cursor: pointer;

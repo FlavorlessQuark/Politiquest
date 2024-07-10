@@ -10,6 +10,7 @@
     "format": "biome format --write . && biome lint --write ."
   },
   "dependencies": {
+    "@zoom/meetingsdk": "^3.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-progressbar-fancy": "^1.1.4",
@@ -22,6 +23,7 @@
     "@types/react-dom": "^18.2.22",
     "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react-swc": "^3.5.0",
+    "axios": "^1.7.2",
     "typescript": "^5.2.2",
     "vite": "^5.2.0"
   }
