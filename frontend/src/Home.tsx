@@ -5,37 +5,70 @@ import { useEffect, useState } from "react";
 import axios from "axios"
 
 const Home = () => {
-  const [month, setMonth] = useState("")
+  const [month, setMonth] = useState(0)
   const [activeWeek, setActiveWeek] = useState(0)
-  const [meetData, setmeetData] = useState({})
+  const [meetData, setmeetData] = useState<{[month:number] : Object}>({})
+
+  const months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
+
+
+  const get_month_meetings = async(month: number) => {
+    axios.defaults.baseURL = "http://localhost:5000"
+    console.log("here");
+
+    try {
+        // console.log(Object.keys(meetData), month.toString(),Object.keys(meetData).includes(month.toString()) )
+        if (!Object.keys(meetData).includes(month.toString()))
+        {
+            axios.get("/meetings/get-all", {params : {from: "FCSM", month:month, year: 2024}}).then((res):any => {
+                const data = meetData;
+
+                data[month] = {weeks: [[], [], [], []]};
+
+                console.log("here1");
+                for (let meeting of res.data){
+                    const date = new Date(meeting.date);
+                    const day = Math.min(4, Math.max(1, Math.ceil(date.getDate() / 7)))
+                    console.log("date ", date, "week", Math.ceil(date.getDate() / 7))
+
+                    meeting["_date"] = meeting.date
+                    meeting.date =  date.toLocaleDateString() + "  " +  date.toLocaleTimeString();
+                    data[month].weeks[day - 1].push(meeting);
+                }
+                for (let week of data[month].weeks) {
+                    week.sort((a, b) => new Date(a._date).getDate() - new Date(b._date).getDate())
+                }
+
+                console.log("here2", res.data);
+                console.log(data)
+                setmeetData({...data})
+            })
+        }
+        console.log(meetData)
+    } catch(err) {
+        console.log("errorfecthing data", err)
+    }
+
+  }
+
+  const setCurrentMonth = async (next:number) => {
+
+    const newMonth = Math.max(1, (month + next) % 12);
+    await get_month_meetings(newMonth)
+    setMonth(newMonth);
+  }
 
   useEffect(() => {
     axios.defaults.baseURL = "http://localhost:5000"
     // ADD : Month param
     const today = new Date();
-    const _month = today.toLocaleString('default', {month:'long'});
+    const _month = parseInt(today.toLocaleString('default', {month: "numeric"}));
     setMonth(_month)
     setActiveWeek( Math.ceil(today.getDate() / 7) - 1)
 
-    axios.get("/meetings/get-all", {params : {from: "FCSM"}}).then((res):any => {
-        const data = { [_month] : {weeks: [[], [], [], []]}};
+    get_month_meetings(_month).then((res) => console.log("setting up"))
 
-        for (let meeting of res.data){
-            const date = new Date(meeting.date);
-            const day = Math.ceil(date.getDate() / 7)
-                console.log("date ", date, "week", Math.ceil(date.getDate() / 7))
-
-            meeting["_date"] = meeting.date
-            meeting.date =  date.toLocaleDateString() + "  " +  date.toLocaleTimeString();
-            data[_month].weeks[day - 1].push(meeting);
-        }
-        for (let week of data[_month].weeks) {
-            week.sort((a, b) => new Date(a._date).getDate() - new Date(b._date).getDate())
-        }
-
-     console.log(data)
-        setmeetData(data)
-    })
   }, [])
 
   return (
@@ -45,7 +78,11 @@ const Home = () => {
         <UserBar />
       </TopBar>
       <MeetingSection>
-        {month}
+        <MonthSelecContainer>
+            <MonthSelecButton onClick={async () => {await setCurrentMonth(-1)}}> {"<"} </MonthSelecButton>
+            <MonthSelecCurrent>{months[month]}</MonthSelecCurrent>
+            <MonthSelecButton onClick={async () => {await setCurrentMonth(+1)}}> {">"}</MonthSelecButton>
+        </MonthSelecContainer>
         <ButtonList>
             {
                 meetData[month] && meetData[month].weeks.map((_, i) =>
@@ -68,6 +105,29 @@ const Home = () => {
 };
 
 export default Home;
+
+const MonthSelecContainer = styled.div`
+    margin: 20px;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+`
+const MonthSelecButton = styled.div`
+    font-size:20px;
+    font-weight: bold;
+    padding: 0px 5px;
+    &:hover {
+        cursor:pointer;
+        background: #79ffcd4a;
+    }
+`
+
+const MonthSelecCurrent = styled.div`
+    font-size:20px;
+    font-weight: bold;
+`
 
 const Padder = styled.div`
     display: flex;
