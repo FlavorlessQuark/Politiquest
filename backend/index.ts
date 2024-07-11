@@ -8,7 +8,7 @@ import mongoose, { connect } from "mongoose";
 
 import meettingsrouter from "./routes/meetings.route";
 import zoomrouter from "./zoom/zoom.router";
-import { fetchMeetingForDate } from "./routes/utils/fetchMeetings";
+import cronrouter from "./routes/cron.router"
 
 dotenv.config();
 
@@ -36,7 +36,7 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use("/meetings", meettingsrouter)
 app.use("/zoom", zoomrouter)
-
+app.use( "_", cronrouter)
 
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
