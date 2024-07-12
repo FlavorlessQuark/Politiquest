@@ -18,7 +18,7 @@ export const MeetingCalendar = new Schema<IMeetCal> ({
     meetings: {
         type: [{
             type: mongoose.Schema.Types.ObjectId,
-            ref: "calitems"
+            ref: "CalItem"
         }],
     }
 })

@@ -16,8 +16,7 @@ export const fetchMeetingForDate = async (year: number, month:number) => {
     console.log("url would be", url);
 
 
-    const coll = mongoose.model<ICalItem>("calitems", CalendarItemSchema)
-    // const browser = await puppeteer.launch( {headless: false, slowMo: 1000});
+    const coll = mongoose.model<ICalItem>("CalItem", CalendarItemSchema)
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto(url);
@@ -107,16 +106,8 @@ export const fetchMeetingForDate = async (year: number, month:number) => {
     )
 
     console.log("nres", nres)
-    // for (let i of res.upsertedIds)
-    // const result = await page.evaluate(() => {
-    //     let items = document.getElementsByClassName("field-content aha_ada_fixes_span");
 
-    //     return items
-    // })
 
-    // console.log("selectors awaited")
-    // const events = await page.$$eval('.item', async (elems) => {
-    //     console.log("found", elems)
-    // });
+
     console.log("done")
 }

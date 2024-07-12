@@ -4,15 +4,7 @@ const express = require("express");
 const router = express.Router();
 const cron = require("node-cron");
 
-cron.schedule("*/15 * * * *", async () =>
-{
-    console.log('transfer crons')
-    try {
-    }
-    catch(error) {
-        console.log(error);
-    }
-})
+
 
 cron.schedule("0 0 0 * * *", async () =>
 {
