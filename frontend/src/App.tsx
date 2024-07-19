@@ -11,6 +11,7 @@ import Leaderboard from "./Leadeboard";
 import Profile from "./Profile";
 
 import { Palette } from "./styles";
+import Archive from "./Archive";
 
 // change this if you want to change background
 document.body.style.backgroundColor = "#aaaa99";
@@ -28,6 +29,7 @@ const App = () => {
               <Route path="/user/:id" element={<Profile />} />
               <Route path="/reps" element={<Reps />} />
               <Route path="/leaderboard" element={<Leaderboard />} />
+              <Route path="/archive" element={<Archive/>} />
             </Routes>
             <Navbar />
           </Container>

@@ -5,7 +5,7 @@ import BGImg from "../assets/bg.png"
 import { ICalItem } from "../Imeetings";
 import { useEffect, useState } from "react";
 
-const MeetingCard = ({ data }: { data: ICalItem}) => {
+export const MeetingCard = ({ data }: { data: ICalItem}) => {
     const [datetime, setDateTime] = useState("");
 
     useEffect(()=> {
@@ -127,4 +127,3 @@ const Time = styled.div`
     font-family: "FiraMono";
 `;
 
-export default MeetingCard;

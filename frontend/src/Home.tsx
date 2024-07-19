@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { UserBar } from "./components/CitizenBar";
-import MeetingCard from "./components/MeetingCard";
+import {MeetingCard} from "./components/MeetingCard";
 import { useEffect, useState } from "react";
 import axios from "axios"
 
@@ -15,12 +15,13 @@ const Home = () => {
 
   const get_month_meetings = async(month: number) => {
     axios.defaults.baseURL = "http://localhost:5000"
-    console.log("here");
 
     try {
         // console.log(Object.keys(meetData), month.toString(),Object.keys(meetData).includes(month.toString()) )
         if (!Object.keys(meetData).includes(month.toString()))
         {
+            console.log("trying");
+
             axios.get("/meetings/get-all", {params : {from: "FCSM", month:month, year: 2024}}).then((res):any => {
                 const data = meetData;
 
@@ -60,7 +61,6 @@ const Home = () => {
   }
 
   useEffect(() => {
-    axios.defaults.baseURL = "http://localhost:5000"
     // ADD : Month param
     const today = new Date();
     const _month = parseInt(today.toLocaleString('default', {month: "numeric"}));
