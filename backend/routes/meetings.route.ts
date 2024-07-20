@@ -1,27 +1,82 @@
 import { Router } from "express";
 import mongoose from "mongoose";
 import { IMeetCal, MeetingCalendar } from "../schemas/meetingCalendar.schema";
-import { fetchMeetingForDate } from "./utils/fetchMeetings";
+import { buildMeetingsBy_Month_FCSM } from "./utils/FCSM";
 import { ICalItem, CalendarItemSchema } from "../schemas/calendarItem.schema";
 
 const router = Router();
 
-const schemas = {
-    "FCSM": mongoose.model<IMeetCal>("FCSMCalendar", MeetingCalendar)
+
+
+interface ICitiesMap {
+    collection: mongoose.Model<IMeetCal>;
+    build: (
+        year: number,
+        month: number,
+        calItem: mongoose.Model<ICalItem>,
+        calendar: mongoose.Model<IMeetCal>
+    ) => Promise<void>;
+}
+
+type CitiesMap = { [key: string]: ICitiesMap }
+
+const cities: CitiesMap = {
+    "FCSM": {collection: mongoose.model<IMeetCal>("FCSMCalendars", MeetingCalendar), build: buildMeetingsBy_Month_FCSM},
 }
 
 
-import {RequestHandler} from "express";``
+const itemColl = mongoose.model<ICalItem>("CalItem", CalendarItemSchema);
+router.get("/get-year", async (req, res) => {
+    try {
 
-type Params = {};
-type ResBody = {};
-type ReqBody = {};
-type ReqQuery = {
-    query: string;
-}
+        if (!req.query.year || !req.query.month || !req.query.from)
+            throw "Invalid params"
+
+        let from = req.query.from?.toString();
+        let year = parseInt(req.query.year as string);
+
+        if (from in cities)
+        {
+            const key = from as keyof typeof cities;
+            const response:any = {};
+            const exists = new Set<number>();
+            let calColl = cities[key].collection;
+
+            let result = await calColl.find({year: year}).populate("meetings")
+            if (result) {
+                for (const entry of result) {
+                    exists.add(entry.month)
+                    response[entry.month] = entry.meetings;
+                }
+            }
 
 
-router.get("/get-all", async (req, res) => {
+            console.log(exists)
+
+
+            for (let i = 1; i <= 12; i++)
+            {
+                if (!(exists.has(i)))
+                {
+                    await cities[from].build(year, i, itemColl, calColl)
+                    let meetings = await calColl.find({ year: year}).populate("meetings")
+                    response[i]= meetings
+                }
+            }
+            // console.log('Query result', response)
+            return res.status(200).send(response)
+            // return res.status(200).send([])
+        }
+        else
+            throw "From field not supported or inexistant " + from
+    }
+    catch(err) {
+        return res.status(500)
+    }
+
+})
+
+router.get("/get-month", async (req, res) => {
     try {
 
         if (!req.query.year || !req.query.month || !req.query.from)
@@ -31,20 +86,16 @@ router.get("/get-all", async (req, res) => {
         let month = parseInt(req.query.month as string)
         let year = parseInt(req.query.year as string);
 
-        mongoose.model<ICalItem>("CalItem", CalendarItemSchema)
-        console.log("get all1", from, month, year)
-        if (from && Object.keys(schemas).includes(from))
+        if (from && Object.keys(cities).includes(from))
         {
-            const coll = schemas.FCSM;
+            let calColl = cities[from].collection;
 
-            console.log("get all2")
-            let result = await coll.findOne({month: month, year: year}).populate("meetings")
-
-            console.log("get all 3", result)
+            let result = await calColl.findOne({month: month, year: year}).populate("meetings")
+let itemColl = mongoose.model<ICalItem>("CalItem", CalendarItemSchema);
             if ( result == null)
             {
-                await fetchMeetingForDate(year, month)
-                result = await coll.findOne({month: month, year: year}).populate("meetings")
+                await  cities[from].build(year, month, itemColl, calColl)
+                result = await calColl.findOne({month: month, year: year}).populate("meetings")
             }
 
             console.log('Query result', result)

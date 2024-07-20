@@ -1,10 +1,14 @@
 import puppeteer from 'puppeteer';
 import mongoose, { connect } from "mongoose";
 import meetCat from "../../schemas/meetingCategories.schema"
-import { ICalItem, CalendarItemSchema } from "../../schemas/calendarItem.schema";
-import { IMeetCal, MeetingCalendar } from '../../schemas/meetingCalendar.schema';
+import { ICalItem } from "../../schemas/calendarItem.schema";
+import { IMeetCal } from '../../schemas/meetingCalendar.schema';
 
-export const fetchMeetingForDate = async (year: number, month:number) => {
+export const buildMeetingsBy_Month_FCSM = async (
+    year: number,
+    month:number,
+    calItem: mongoose.Model<ICalItem>,
+    calendar: mongoose.Model<IMeetCal>) => {
     let formatter = new Intl.NumberFormat('en-US', {
         minimumIntegerDigits: 2,
         useGrouping: false
@@ -16,7 +20,6 @@ export const fetchMeetingForDate = async (year: number, month:number) => {
     console.log("url would be", url);
 
 
-    const coll = mongoose.model<ICalItem>("CalItem", CalendarItemSchema)
     const browser = await puppeteer.launch();
     const page = await browser.newPage();
     await page.goto(url);
@@ -37,7 +40,6 @@ export const fetchMeetingForDate = async (year: number, month:number) => {
 
         if (Etype && include)
         {
-
             let type = await Etype.evaluate(e =>e.getAttribute("title"));
 
             const Etime = await r.$(".date-display-single")
@@ -53,9 +55,6 @@ export const fetchMeetingForDate = async (year: number, month:number) => {
             type = type.slice(5);
             types.add(type);
 
-
-            // console.log("Title: ", type, "time", time, "ref", info, "Is meeting", include, status)
-
             const update : ICalItem = {
                 cancelled : status,
                 date: time,
@@ -63,21 +62,19 @@ export const fetchMeetingForDate = async (year: number, month:number) => {
                 uid : type + time,
                 category: type
             }
-            bulkData.push(
-                {
-                    "updateOne": {
-                        "filter": {
-                            "uid": update.uid
-                        },
-                        "update": update,
-                        "upsert": true
-                    }
+
+            bulkData.push({
+                "updateOne": {
+                    "filter": {
+                        "uid": update.uid
+                    },
+                    "update": update,
+                    "upsert": true
                 }
-            )
+            })
         }
     }
 
-    // console.log("typoes shoud add", types)
     await meetCat.updateOne(
         {city: "Foster City", county:"San Mateo"},
         {city: "Foster City",
@@ -87,9 +84,8 @@ export const fetchMeetingForDate = async (year: number, month:number) => {
         {upsert: true}
     )
 
-    let res = await coll.bulkWrite(bulkData);
+    let res = await calItem.bulkWrite(bulkData);
 
-    const meetingCalendar = mongoose.model<IMeetCal>("FCSMCalendar", MeetingCalendar)
     console.log(res)
 
     let newIds = []
@@ -98,16 +94,12 @@ export const fetchMeetingForDate = async (year: number, month:number) => {
         newIds.push(res.upsertedIds[item])
     }
 
-    console.log("new ids", newIds)
-    let nres = await meetingCalendar.updateOne(
+    let nres = await calendar.updateOne(
         {month : month, year: year},
         {$addToSet : {meetings: {$each: newIds}}},
         {upsert:true}
     )
 
     console.log("nres", nres)
-
-
-
-    console.log("done")
 }
+
