@@ -6,27 +6,19 @@ import ArchiveDay from "./components/ArchiveDay";
 
 
 const Archive = () => {
-    const [year, setYear] = useState(0)
+    const [currYear, setYear] = useState(0)
     const [meetData, setmeetData] = useState<{[year:number] : Object}>({})
     const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 
 
-    const get_month_meetings = async(month: number) => {
+    const get_meetings = async(year: number) => {
         axios.defaults.baseURL = "http://localhost:5000"
 
-        try {
-            // console.log(Object.keys(meetData), month.toString(),Object.keys(meetData).includes(month.toString()) )
-            if (!Object.keys(meetData).includes(month.toString()))
+            if (!Object.keys(meetData).includes(year.toString()))
             {
-                console.log("trying");
-
-                axios.get("/meetings/get-year", {params : {from: "FCSM", month:7, year: 2024}}).then((res):any => {
+                axios.get("/meetings/get-year", {params : {from: "FCSM", year: year}}).then((res):any => {
                     const data = [{},{},{},{},{},{},{},{},{},{},{},{}]
-
-                    // data[month] = {}
-
-                    // console.log("here1");
                     for (const key of Object.keys(res.data)){
                         for (const meeting of res.data[key])
                         {
@@ -37,40 +29,30 @@ const Archive = () => {
                                 data[date.getMonth()][meeting.date] = []
                             }
                             data[date.getMonth()][meeting.date].push(meeting);
-
-                            // console.log("Array",data[date.getMonth()], data[date.getMonth()][meeting.date])
                         }
-                        // console.log(data[date.getMonth()])
                     }
-
-                    // console.log("here2", res.data);
-                    // console.log(data)
                     setmeetData({...data})
-                })
-            }
-            console.log(meetData)
-        } catch(err) {
-            console.log("errorfecthing data", err)
+                }).catch((err) => {
+                console.log("error fecthing data", err)
+            })
+        }
     }
-
-  }
 
 
   useEffect(() => {
     const today = new Date();
-    const _month = parseInt(today.toLocaleString('default', {month: "numeric"}));
-
-    get_month_meetings(_month).then((res) => console.log("setting up"))
-
+    const _year = today.getFullYear();
+    get_meetings(_year).then((_) => console.log("setting up"))
+    setYear(_year)
   }, [])
 
     return (
         <Container>
             <Title> Archive </Title>
             <YearContainer>
-                <YearArrow> {"<"} </YearArrow>
-                <YearText> 2024 </YearText>
-                <YearArrow> {">"} </YearArrow>
+                <YearArrow onClick={async () => {await get_meetings(currYear - 1); setYear( currYear - 1); }}> {"<"} </YearArrow>
+                <YearText> {currYear} </YearText>
+                <YearArrow onClick={async () => {await get_meetings(currYear + 1); setYear( currYear + 1); }}> {">"} </YearArrow>
             </YearContainer>
             <CalendarContainer>
             {
@@ -113,7 +95,9 @@ const YearContainer = styled.div`
 `
 
 const YearArrow = styled.div`
-
+    &:hover {
+        cursor: pointer;
+    }
 `
 
 const YearText = styled.div`

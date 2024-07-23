@@ -29,7 +29,7 @@ const itemColl = mongoose.model<ICalItem>("CalItem", CalendarItemSchema);
 router.get("/get-year", async (req, res) => {
     try {
 
-        if (!req.query.year || !req.query.month || !req.query.from)
+        if (!req.query.year || !req.query.from)
             throw "Invalid params"
 
         let from = req.query.from?.toString();
@@ -63,7 +63,7 @@ router.get("/get-year", async (req, res) => {
                     response[i]= meetings
                 }
             }
-            // console.log('Query result', response)
+            // console.log('Query result', response)s
             return res.status(200).send(response)
             // return res.status(200).send([])
         }

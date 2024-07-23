@@ -16,40 +16,38 @@ const Home = () => {
   const get_month_meetings = async(month: number) => {
     axios.defaults.baseURL = "http://localhost:5000"
 
-    try {
-        // console.log(Object.keys(meetData), month.toString(),Object.keys(meetData).includes(month.toString()) )
-        if (!Object.keys(meetData).includes(month.toString()))
-        {
-            console.log("trying");
+    if (!Object.keys(meetData).includes(month.toString()))
+    {
 
-            axios.get("/meetings/get-all", {params : {from: "FCSM", month:month, year: 2024}}).then((res):any => {
-                const data = meetData;
+        axios.get("/meetings/get-month", {params : {from: "FCSM", month:month, year: 2024}})
+        .then((res):any => {
+            const data = meetData;
 
-                data[month] = {weeks: [[], [], [], []]};
+            data[month] = {weeks: [[], [], [], []]};
 
-                console.log("here1");
-                for (let meeting of res.data){
-                    const date = new Date(meeting.date);
-                    const day = Math.min(4, Math.max(1, Math.ceil(date.getDate() / 7)))
-                    console.log("date ", date, "week", Math.ceil(date.getDate() / 7))
+            console.log("here1");
+            for (let meeting of res.data){
+                const date = new Date(meeting.date);
+                const day = Math.min(4, Math.max(1, Math.ceil(date.getDate() / 7)))
+                console.log("date ", date, "week", Math.ceil(date.getDate() / 7))
 
-                    meeting["_date"] = meeting.date
-                    meeting.date =  date.toLocaleDateString() + "  " +  date.toLocaleTimeString();
-                    data[month].weeks[day - 1].push(meeting);
-                }
-                for (let week of data[month].weeks) {
-                    week.sort((a, b) => new Date(a._date).getDate() - new Date(b._date).getDate())
-                }
+                meeting["_date"] = meeting.date
+                meeting.date =  date.toLocaleDateString() + "  " +  date.toLocaleTimeString();
+                data[month].weeks[day - 1].push(meeting);
+            }
+            for (let week of data[month].weeks) {
+                week.sort((a, b) => new Date(a._date).getDate() - new Date(b._date).getDate())
+            }
 
-                console.log("here2", res.data);
-                console.log(data)
-                setmeetData({...data})
-            })
-        }
-        console.log(meetData)
-    } catch(err) {
-        console.log("errorfecthing data", err)
+            console.log("here2", res.data);
+            console.log(data)
+            setmeetData({...data})
+        })
+        .catch((error) => {
+            console.log("Eerror fecthing meetings", error)
+        })
     }
+    console.log(meetData)
 
   }
 
