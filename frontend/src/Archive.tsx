@@ -21,24 +21,30 @@ const Archive = () => {
             {
                 console.log("trying");
 
-                axios.get("/meetings/get-all", {params : {from: "FCSM", month:7, year: 2024}}).then((res):any => {
-                    const data = meetData;
+                axios.get("/meetings/get-year", {params : {from: "FCSM", month:7, year: 2024}}).then((res):any => {
+                    const data = [{},{},{},{},{},{},{},{},{},{},{},{}]
 
-                    data[month] = {}
+                    // data[month] = {}
 
-                    console.log("here1");
-                    for (let meeting of res.data){
-                        const date = new Date(meeting.date);
+                    // console.log("here1");
+                    for (const key of Object.keys(res.data)){
+                        for (const meeting of res.data[key])
+                        {
+                            const date = new Date(meeting.date);
+                            meeting["_date"] = meeting.date
+                            meeting.date =  date.getDate();
+                            if (!(meeting.date in data[date.getMonth()])) {
+                                data[date.getMonth()][meeting.date] = []
+                            }
+                            data[date.getMonth()][meeting.date].push(meeting);
 
-                        meeting["_date"] = meeting.date
-                        meeting.date =  date.getDate();
-                        if (!(meeting.date in data[month]))
-                            data[month][meeting.date] = []
-                        data[month][meeting.date].push(meeting);
+                            // console.log("Array",data[date.getMonth()], data[date.getMonth()][meeting.date])
+                        }
+                        // console.log(data[date.getMonth()])
                     }
 
-                    console.log("here2", res.data);
-                    console.log(data)
+                    // console.log("here2", res.data);
+                    // console.log(data)
                     setmeetData({...data})
                 })
             }
@@ -71,7 +77,7 @@ const Archive = () => {
                 months.map((e, i) =>
                 <CalCell>
                     <CalMonth> {e} {i}</CalMonth>
-                    <ArchiveDay data = { meetData[i + 1]}>
+                    <ArchiveDay data = { meetData[i]}>
                     </ArchiveDay>
                 </CalCell>
                 )
