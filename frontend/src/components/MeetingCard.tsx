@@ -10,7 +10,7 @@ export const MeetingCard = ({ data }: { data: ICalItem}) => {
 
     useEffect(()=> {
         const date = new Date(data.date);
-
+        console.log("data", data)
         const dt = date.toLocaleDateString() + "  " +  date.toLocaleTimeString()
         setDateTime(dt);
     }, [])
@@ -24,7 +24,7 @@ export const MeetingCard = ({ data }: { data: ICalItem}) => {
             <CommittedText>Chair</CommittedText>
             <MemberName> "Test" </MemberName>
           </Row>
-          <BigButton href={`/meeting/${data.id}`}> { data.cancelled ? "CANCELLED" : 'JOIN MEETING'} </BigButton>
+          <BigButton href={`/meeting/${data._id}`}> { data.cancelled ? "CANCELLED" : 'JOIN MEETING'} </BigButton>
           <BottmRow>
             <Button>Follow</Button>
             <XP> 50 XP</XP>

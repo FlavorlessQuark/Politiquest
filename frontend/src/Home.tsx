@@ -25,11 +25,9 @@ const Home = () => {
 
             data[month] = {weeks: [[], [], [], []]};
 
-            console.log("here1");
             for (let meeting of res.data){
                 const date = new Date(meeting.date);
                 const day = Math.min(4, Math.max(1, Math.ceil(date.getDate() / 7)))
-                console.log("date ", date, "week", Math.ceil(date.getDate() / 7))
 
                 meeting["_date"] = meeting.date
                 meeting.date =  date.toLocaleDateString() + "  " +  date.toLocaleTimeString();
@@ -39,8 +37,6 @@ const Home = () => {
                 week.sort((a, b) => new Date(a._date).getDate() - new Date(b._date).getDate())
             }
 
-            console.log("here2", res.data);
-            console.log(data)
             setmeetData({...data})
         })
         .catch((error) => {

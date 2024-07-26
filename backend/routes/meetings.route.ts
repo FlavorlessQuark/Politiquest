@@ -26,6 +26,28 @@ const cities: CitiesMap = {
 
 
 const itemColl = mongoose.model<ICalItem>("CalItem", CalendarItemSchema);
+
+router.get("/get-by-id", async (req, res) => {
+    try {
+        console.log("got request for ", req.query)
+        if (!req.query.id)
+            throw "Invalid request"
+
+        console.log("got request for id", req.query.id)
+
+        const meeting = await itemColl.findOne({_id: req.query.id});
+
+        if (!meeting)
+            throw "Invalid request"
+
+        return res.status(200).send(meeting)
+    }
+    catch(err) {
+        return res.status(500).send(err)
+    }
+})
+
+
 router.get("/get-year", async (req, res) => {
     try {
 

@@ -6,10 +6,12 @@ import Chat from "./components/chat/Chat";
 
 import axios from "axios";
 import ZoomMtgEmbedded from '@zoom/meetingsdk/embedded';
+import { useParams } from "react-router-dom";
 
 const Meeting = () => {
+  const { id } = useParams();
   const [activeTab, setActiveTab] = useState(0);
-
+  const [data, setData] = useState({})
     const client = ZoomMtgEmbedded.createClient();
 
 
@@ -27,16 +29,37 @@ const Meeting = () => {
   ];
 
 
-    const  getSignature = async (meetnumber:string) => {
-        // NEED SERVER
-         axios.defaults.baseURL = "http://localhost:5000"
+    // const  getSignature = async (meetnumber:string) => {
+    //     // NEED SERVER
+    //      axios.defaults.baseURL = "http://localhost:5000"
 
-        let res = await
+    //     let res = await
 
-        console.log(res.data)
+    //     console.log(res.data)
 
-        return res
+    //     return res
+    // }
+
+    const get_meeting = async () => {
+
+        axios.defaults.baseURL = "http://localhost:5000"
+        axios.get("/meetings/get-by-id", {params : {id: id}})
+        .then((res ) => {
+            const date = new Date(res.data.date)
+            res.data["time"] = date.toLocaleTimeString();
+            res.data["date"] = date.toLocaleDateString();
+            setData(res.data)
+            console.log("repsonse", res);
+        })
+        .catch((error) => {
+            console.log("error fetchign meeting", error)
+        })
+
     }
+
+    useEffect(() => {
+        get_meeting().then((_) => {})
+    }, [])
 
 //   useEffect(() => {
 
@@ -73,17 +96,23 @@ const Meeting = () => {
 //         })
 //     })
 //   })
-
+console.log(data)
+if (!Object.keys(data).length)
+    return (<Container> Meeting does not exist </Container>)
+else
   return (
     <Container>
       <VidCol>
         <VidPlaceHolder id="meetingSDKElement">
+            <StyledIframe width="560" height="315" src="https://www.youtube.com/embed/live_stream?channel=UCNdYPV4FCV1Z35ZyV8Wc-lA&amp;controls=0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay;" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></StyledIframe>
+            {/* <iframe src="https://zoom.us/j/meetingID" allow="camera; microphone; display-capture"></iframe>
+            <iframe src="https://zoom.us/j/meetingID" allow="camera; microphone; display-capture"></iframe> */}
         </VidPlaceHolder>
         <VidInfo>
-          <Title> {meetData.title} </Title>
+          <Title> {data.category} </Title>
           <Time>
             {" "}
-            {meetData.date} | {meetData.start} - {meetData.end}
+            {data.date} | {data.time}
           </Time>
         </VidInfo>
       </VidCol>
@@ -117,6 +146,12 @@ const Container = styled.div`
     box-sizing: border-box;
     background: ${(props) => props.theme.background};
 `;
+
+const StyledIframe = styled.iframe `
+    display: flex;
+    height: 100%;
+    width: 100%;
+`
 
 const VidCol = styled.div`
     padding: 2rem, 1rem;

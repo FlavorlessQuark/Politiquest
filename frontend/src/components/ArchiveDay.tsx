@@ -17,7 +17,7 @@ const ArchiveDay = ({data}) => {
                         <DropContainer onMouseOver={() => setActive(i)} onMouseLeave={() => setActive(-1)} active={active == i} className="dropcontainer">
                             {
                                 data[e].map((day, i) => (
-                                    <DropItem> {day.category} </DropItem>
+                                    <DropItem href={`/meeting/${day._id}`}> {day.category} </DropItem>
                                 ))
                             }
                         </DropContainer>
@@ -62,7 +62,7 @@ const DropContainer = styled.div`
         cursor: pointer;
     }
 `
-const DropItem = styled.div`
+const DropItem = styled.a`
 color: black;
   padding: 12px 16px;
   text-decoration: none;
