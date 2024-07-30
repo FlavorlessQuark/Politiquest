@@ -59,7 +59,8 @@ const Home = () => {
     const today = new Date();
     const _month = parseInt(today.toLocaleString('default', {month: "numeric"}));
     setMonth(_month)
-    setActiveWeek( Math.ceil(today.getDate() / 7) - 1)
+    setActiveWeek(Math.min(3, Math.ceil(today.getDate() / 7) - 1))
+    console.log("week is", Math.ceil(today.getDate() / 7) - 1)
 
     get_month_meetings(_month).then((res) => console.log("setting up"))
 
