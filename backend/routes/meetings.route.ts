@@ -3,27 +3,9 @@ import mongoose from "mongoose";
 import { IMeetCal, MeetingCalendar } from "../schemas/meetingCalendar.schema";
 import { buildMeetingsBy_Month_FCSM } from "./utils/FCSM";
 import { ICalItem, CalendarItemSchema } from "../schemas/calendarItem.schema";
+import { cities } from "./utils/cities/citiesCollections";
 
 const router = Router();
-
-
-
-interface ICitiesMap {
-    collection: mongoose.Model<IMeetCal>;
-    build: (
-        year: number,
-        month: number,
-        calItem: mongoose.Model<ICalItem>,
-        calendar: mongoose.Model<IMeetCal>
-    ) => Promise<void>;
-}
-
-type CitiesMap = { [key: string]: ICitiesMap }
-
-const cities: CitiesMap = {
-    "FCSM": {collection: mongoose.model<IMeetCal>("FCSMCalendars", MeetingCalendar), build: buildMeetingsBy_Month_FCSM},
-}
-
 
 const itemColl = mongoose.model<ICalItem>("CalItem", CalendarItemSchema);
 
@@ -71,11 +53,6 @@ router.get("/get-year", async (req, res) => {
                     response[entry.month] = entry.meetings;
                 }
             }
-
-
-            console.log(exists)
-
-
             for (let i = 1; i <= 12; i++)
             {
                 if (!(exists.has(i)))
@@ -113,7 +90,7 @@ router.get("/get-month", async (req, res) => {
             let calColl = cities[from].collection;
 
             let result = await calColl.findOne({month: month, year: year}).populate("meetings")
-let itemColl = mongoose.model<ICalItem>("CalItem", CalendarItemSchema);
+
             if ( result == null)
             {
                 await  cities[from].build(year, month, itemColl, calColl)

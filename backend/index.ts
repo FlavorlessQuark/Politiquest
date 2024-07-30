@@ -30,7 +30,6 @@ const connectDB = async () => {
 
 connectDB();
 
-// test()
 app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
@@ -41,3 +40,13 @@ app.use( "_", cronrouter)
 app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
+
+const test = () => {
+    const date = new Date();
+
+    const st = date.toLocaleDateString("en-CA");
+    console.log(st)
+
+}
+
+test()

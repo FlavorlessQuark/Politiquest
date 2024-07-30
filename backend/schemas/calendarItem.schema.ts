@@ -6,6 +6,7 @@ export interface ICalItem {
     date: string,
     url:string,
     uid: string,
+    title: string,
     category: string
 }
 
@@ -24,6 +25,10 @@ export const CalendarItemSchema = new Schema<ICalItem>({
     },
     uid: {
         type: String,
+        required:true
+    },
+    title: {
+        type:  String,
         required:true
     },
     category: {
