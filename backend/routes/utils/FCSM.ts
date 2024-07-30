@@ -193,8 +193,6 @@ export const updateMeetings = async (
                     }
                 }
             }
-            console.log("date string for ", meeting.date , " .... ", date_string)
-            console.log("would searc: Key :", meeting.category)
         }
         catch(err) {
             console.log('Error updating meetting', meeting)
