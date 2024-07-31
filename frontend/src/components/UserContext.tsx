@@ -1,5 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { randomTitle } from "./CitizenBar";
+import axios from "axios";
+import { ICalItem } from "../Imeetings";
 
 const UserContext = createContext({});
 
@@ -9,9 +11,11 @@ export const UserProvider = ({ children }) => {
     surname: "Last Name",
     id: 0,
   });
-  const [title, setTitle] = useState(undefined);
-  const [level, setLevel] = useState(undefined);
-  const [xp, setXP] = useState(undefined);
+  const [title, setTitle] = useState("");
+  const [level, setLevel] = useState(0);
+  const [xp, setXP] = useState(0);
+  const [meetingsId, setMeetingsId] = useState<Set<string>>(new Set());
+  const [meetingsData, setMeetingsData] = useState([]);
   const [achievements, setAchievemnts] = useState([
     {
       id: 0,
@@ -22,7 +26,7 @@ export const UserProvider = ({ children }) => {
       rewards: { xp: 50, title: "My opinion matters", cosmetic: undefined },
     },
   ]);
-  const init = () => {
+  const init = async () => {
     const dummy_user = {
       name: "Amelia",
       surname: "Lassiter",
@@ -39,12 +43,40 @@ export const UserProvider = ({ children }) => {
       },
     ];
 
-    setLevel(5.45);
-    setXP(10000);
-    setUser(dummy_user);
-    setAchievemnts(dumm_ach);
-    setTitle(randomTitle());
+    axios.get("/user/get-user", {params: {id: 0}}).then((res) => {
+        setLevel(res.data.level);
+        setXP(res.data.xp);
+        setMeetingsData(res.data.savedMeetings)
+        setUser({name: res.data.name, surname: res.data.surname, id: res.data.id});
+        setAchievemnts([]);
+        setTitle(randomTitle());
+
+        const ids = new Set<string>()
+        res.data.savedMeetings.map((e:ICalItem) => {ids.add(e.uid)})
+        setMeetingsId(ids)
+        console.log("user data", res.data)
+    })
+
   };
+
+  const saveMeetings = (meeting:ICalItem) => {
+    meetingsId.add(meeting.uid)
+    console.log('Adding', meeting, meetingsId)
+    axios.post("/user/star-meeting", {meetingid: meeting.uid, userid: user.id}).then((res) => {
+        console.log("saved meetign res", res)
+    })
+    setMeetingsId(new Set(meetingsId))
+  }
+
+    const delMeetings = (meeting:ICalItem) => {
+    meetingsId.delete(meeting.uid)
+    console.log('Adding', meeting, meetingsId)
+    axios.post("/user/unstar-meeting", {meetingid: meeting.uid, userid: user.id}).then((res) => {
+        console.log("saved meetign res", res)
+    })
+    setMeetingsId(new Set(meetingsId))
+  }
+
 
   useEffect(() => {
     if (!xp) {
@@ -61,9 +93,13 @@ export const UserProvider = ({ children }) => {
         level,
         title,
         achievements,
+        meetingsId,
+        meetingsData,
         setXP,
         setLevel,
         setAchievemnts,
+        saveMeetings,
+        delMeetings
       }}
     >
       {children}

@@ -3,12 +3,13 @@ import { UserBar } from "./components/CitizenBar";
 import {MeetingCard} from "./components/MeetingCard";
 import { useEffect, useState } from "react";
 import axios from "axios"
+import { useUserConsumer } from "./components/UserContext";
 
 const Home = () => {
   const [month, setMonth] = useState(0)
   const [activeWeek, setActiveWeek] = useState(0)
   const [meetData, setmeetData] = useState<{[month:number] : Object}>({})
-
+  const {savedMeetings} = useUserConsumer()
   const months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 
