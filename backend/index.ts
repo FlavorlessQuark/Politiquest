@@ -9,6 +9,8 @@ import mongoose, { connect } from "mongoose";
 import meettingsrouter from "./routes/meetings.route";
 import zoomrouter from "./zoom/zoom.router";
 import cronrouter from "./routes/cron.router"
+import userrouter from "./routes/user.router"
+import { IUser, User } from "./schemas/user.schema";
 
 dotenv.config();
 
@@ -34,6 +36,7 @@ app.use(cors())
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use("/meetings", meettingsrouter)
+app.use("/user", userrouter)
 app.use("/zoom", zoomrouter)
 app.use( "_", cronrouter)
 
@@ -41,12 +44,16 @@ app.listen(port, () => {
   console.log(`[server]: Server is running at http://localhost:${port}`);
 });
 
-const test = () => {
-    const date = new Date();
+const test = async() => {
+    const userColl = mongoose.model<IUser>("User", User)
 
-    const st = date.toLocaleDateString("en-CA");
-    console.log(st)
+    await new userColl({
+        name:"testname",
+        surname:"test surname",
+        username:"test username",
+        id:0,
+    }).save()
 
 }
 
-test()
+// test()

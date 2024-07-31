@@ -3,18 +3,13 @@ import ButtonImg from "../assets/button.png"
 import BGImg from "../assets/bg.png"
 
 import { ICalItem } from "../Imeetings";
-import { useEffect, useState } from "react";
+import { useUserConsumer } from "./UserContext";
 
 export const MeetingCard = ({ data }: { data: ICalItem}) => {
-    const [datetime, setDateTime] = useState("");
-
-    useEffect(()=> {
-        const date = new Date(data.date);
-        console.log("data", data)
-        const dt = date.toLocaleDateString() + "  " +  date.toLocaleTimeString()
-        setDateTime(dt);
-    }, [])
-
+    const {meetingsId, saveMeetings, delMeetings} = useUserConsumer()
+    const now = new Date()
+    const thisdate = new Date(data.date)
+    console.log("This nfrom context ", meetingsId)
   return (
     <Container>
       <Section>
@@ -26,7 +21,17 @@ export const MeetingCard = ({ data }: { data: ICalItem}) => {
           </Row>
           <BigButton href={`/meeting/${data._id}`}> { data.cancelled ? "CANCELLED" : 'JOIN MEETING'} </BigButton>
           <BottmRow>
-            <Button>Follow</Button>
+            {
+                // now < thisdate &&
+                <>
+                {
+                    meetingsId && !meetingsId.has(data.uid) ?
+                    <Button onClick={() => saveMeetings(data)}>Follow</Button>
+                    :
+                    <Button onClick={() => delMeetings(data)}>Unfollow</Button>
+                }
+                </>
+            }
             <XP> 50 XP</XP>
             <Time>
               {data.date}
