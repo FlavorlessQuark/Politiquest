@@ -12,9 +12,11 @@ import Profile from "./Profile";
 
 import { Palette } from "./styles";
 import Archive from "./Archive";
+import axios from "axios";
 
 // change this if you want to change background
 document.body.style.backgroundColor = "#aaaa99";
+axios.defaults.baseURL = "http://localhost:5000";
 
 const App = () => {
   return (

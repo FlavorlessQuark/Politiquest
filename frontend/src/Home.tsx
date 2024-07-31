@@ -14,8 +14,6 @@ const Home = () => {
 
 
   const get_month_meetings = async(month: number) => {
-    axios.defaults.baseURL = "http://localhost:5000"
-
     if (!Object.keys(meetData).includes(month.toString()))
     {
 

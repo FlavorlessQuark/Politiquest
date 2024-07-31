@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { randomTitle } from "./CitizenBar";
 
-const UserContext = createContext();
+const UserContext = createContext({});
 
 export const UserProvider = ({ children }) => {
   const [user, setUser] = useState({

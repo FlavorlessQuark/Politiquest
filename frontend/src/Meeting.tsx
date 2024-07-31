@@ -31,7 +31,6 @@ const Meeting = () => {
 
     // const  getSignature = async (meetnumber:string) => {
     //     // NEED SERVER
-    //      axios.defaults.baseURL = "http://localhost:5000"
 
     //     let res = await
 
@@ -42,7 +41,6 @@ const Meeting = () => {
 
     const get_meeting = async () => {
 
-        axios.defaults.baseURL = "http://localhost:5000"
         axios.get("/meetings/get-by-id", {params : {id: id}})
         .then((res ) => {
             const date = new Date(res.data.date)
@@ -80,7 +78,6 @@ const Meeting = () => {
 //         console.log("no elem");
 //         return
 //     }
-//     axios.defaults.baseURL = "http://localhost:5000"
 //     axios.post("/zoom/get-signature",{meetNumber:data.meetingNumber, role:0}).then((res) => {
 //         data.signature = res.data.signature;
 //         console.log("Signature :", data.signature)

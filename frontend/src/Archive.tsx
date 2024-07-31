@@ -13,8 +13,6 @@ const Archive = () => {
 
 
     const get_meetings = async(year: number) => {
-        axios.defaults.baseURL = "http://localhost:5000"
-
             if (!Object.keys(meetData).includes(year.toString()))
             {
                 axios.get("/meetings/get-year", {params : {from: "FCSM", year: year}}).then((res):any => {
