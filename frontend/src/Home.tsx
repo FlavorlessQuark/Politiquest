@@ -63,6 +63,7 @@ const Home = () => {
     console.log("week is", Math.ceil(today.getDate() / 7) - 1)
 
     get_month_meetings(_month).then((res) => console.log("setting up"))
+    axios.get("/user/get-user", {params: {id: 0}}).then((res) => console.log("got user", res.data))
 
   }, [])
 
