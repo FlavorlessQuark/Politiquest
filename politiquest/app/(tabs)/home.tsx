@@ -86,7 +86,7 @@ export default function Home() {
         </ButtonBox>
     </Tabs>
    { meetData[month] && <FlatList
-            contentContainerStyle={{alignItems:"center"}}
+            contentContainerStyle={{alignItems:"center", width: "100%"}}
             data={meetData[month][activeWeek] ? meetData[month][activeWeek] : []}
             renderItem={(item) => <MeetingCard data={item.item} key={item.index}/>}
             ListHeaderComponent={() => {
@@ -106,10 +106,11 @@ export default function Home() {
                             <WeekSelecContainer>
                             {
                                 meetData[month] && meetData[month].map((_, i) =>
-                                    <StyledText active={i == activeWeek}
-                                        onClick={() => setActiveWeek(i)}
-                                        key={i}
-                                    > Week {i + 1} </StyledText>
+                                <TextWrapper key={i}  active={i == activeWeek} onPress={() => setActiveWeek(i)}>
+                                    <StyledText> Week {i + 1} </StyledText>
+                                    {i == activeWeek && <Border/>}
+
+                                </TextWrapper>
                                 )
                             }
                         </WeekSelecContainer>
@@ -140,10 +141,13 @@ const StyledText = styled.Text`
     color: black;
     font-size: 20px;
 `
-const StyledArrow = styled.Text`
-    font-family: 'Jura-Bold';
-    color: black;
-    font-size: 30px;
+const TextWrapper = styled.Pressable`
+`
+
+const Border = styled.View`
+    width: 100%;
+    height: 2px;
+    background: #86E1CB;
 `
 
 const HeaderContainer = styled.View`
@@ -151,7 +155,6 @@ const HeaderContainer = styled.View`
     display: flex;
     flex-direction: column;
     align-items: center;
-    border: 1px solid red;
     gap: 20px;
 `
 const WeekSelecContainer = styled.View`
@@ -159,7 +162,6 @@ const WeekSelecContainer = styled.View`
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 1px solid red;
     gap: 20px;
 `
 const MonthSelecContainer = styled.View`
@@ -167,7 +169,6 @@ const MonthSelecContainer = styled.View`
     display: flex;
     flex-direction: row;
     align-items: center;
-    border: 1px solid red;
     gap: 20px;
 `
 const MonthSelecButton = styled.Pressable`

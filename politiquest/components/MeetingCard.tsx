@@ -19,7 +19,12 @@ const MeetingCard = ({data} : {data: ICalItem}) => {
             </Row>
             <Row>
                  <ButtonBox>
-                    <Button state={true}> Join Meeting </Button>
+                    {
+                        data.cancelled ?
+                        <Button state={!data.cancelled}> Cancelled </Button>
+                        :
+                        <Button state={!data.cancelled}> Join Meeting </Button>
+                    }
                 </ButtonBox>
             </Row>
             <Row style={{justifyContent: "space-between"}}>
