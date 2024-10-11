@@ -76,6 +76,7 @@ router.get("/get-year", async (req, res) => {
 })
 
 router.get("/get-month", async (req, res) => {
+    console.log('got request')
     try {
 
         if (!req.query.year || !req.query.month || !req.query.from)

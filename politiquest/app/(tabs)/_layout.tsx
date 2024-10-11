@@ -7,18 +7,22 @@ import Quest from "../../assets/tabIcons/Quest.png"
 import Achievement from "../../assets/tabIcons/Achievement.png"
 import Leaderboard from "../../assets/tabIcons/Leaderboard.png"
 import Settings from "../../assets/tabIcons/Settings.png"
+import { Text, View } from "react-native";
 
 const TabLayout = () => {
 
     return (
-        <Tabs screenOptions={{ tabBarActiveTintColor: 'blue', tabBarStyle: {backgroundColor:'#656565', borderTopColor: '#797979'}}}>
+        <Tabs screenOptions={{ tabBarActiveTintColor: 'blue', tabBarStyle: {backgroundColor:'#656565', borderTopColor: '#797979', padding: "10px"}}}
+            sceneContainerStyle={{backgroundColor: "#948181"}}
+        >
             <Tabs.Screen
                 name="home"
                 options={{
                 title: 'Home',
                 tabBarActiveTintColor: '#C1F2F2',
                 tabBarInactiveTintColor: 'white',
-                tabBarIcon: () => <Image style={{ width: 30, height: 30 }} source={Calendar}/>,
+                header: () => <></>,
+                tabBarIcon: () => <Image style={{ width: 26, height: 29 }} source={Calendar}/>,
                 }}
             />
             <Tabs.Screen
@@ -27,7 +31,7 @@ const TabLayout = () => {
                 title: 'Quests',
                 tabBarActiveTintColor: '#C1F2F2',
                 tabBarInactiveTintColor: 'white',
-                tabBarIcon: () => <Image style={{ width: 30, height: 30 }} source={Quest}/>,
+                tabBarIcon: () => <Image style={{ width: 26, height: 26 }} source={Quest}/>,
                 }}
             />
             <Tabs.Screen
@@ -36,7 +40,8 @@ const TabLayout = () => {
                 title: 'Achievements',
                 tabBarActiveTintColor: '#C1F2F2',
                 tabBarInactiveTintColor: 'white',
-                tabBarIcon: () => <Image style={{ width: 30, height: 30 }} source={Achievement}/>,
+
+                tabBarIcon: () => <Image style={{ width: 26, height: 26 }} source={Achievement}/>,
                 }}
             />
             <Tabs.Screen
@@ -45,7 +50,7 @@ const TabLayout = () => {
                 title: 'Leaderboard',
                 tabBarActiveTintColor: '#C1F2F2',
                 tabBarInactiveTintColor: 'white',
-                tabBarIcon: () => <Image style={{ width: 30, height: 30 }} source={Leaderboard}/>,
+                tabBarIcon: () => <Image style={{ width: 26, height: 26 }} source={Leaderboard}/>,
                 }}
             />
             <Tabs.Screen
@@ -54,7 +59,7 @@ const TabLayout = () => {
                 title: 'Settings',
                 tabBarActiveTintColor: '#C1F2F2',
                 tabBarInactiveTintColor: 'white',
-                tabBarIcon: () => <Image style={{ width: 30, height: 30 }} source={Settings}/>,
+                tabBarIcon: () => <Image style={{ width: 26, height: 28 }} source={Settings}/>,
                 }}
             />
         </Tabs>

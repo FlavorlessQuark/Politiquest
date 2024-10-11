@@ -1,0 +1,2 @@
+alias eas_build="eas build --platform android --profile development"
+alias native_run="npx expo start"

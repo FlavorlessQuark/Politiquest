@@ -22,7 +22,7 @@ export const MeetingCard = ({ data }: { data: ICalItem}) => {
           <BigButton href={`/meeting/${data._id}`}> { data.cancelled ? "CANCELLED" : 'JOIN MEETING'} </BigButton>
           <BottmRow>
             {
-                // now < thisdate &&
+                now < thisdate &&
                 <>
                 {
                     meetingsId && !meetingsId.has(data.uid) ?
