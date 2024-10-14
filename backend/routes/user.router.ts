@@ -41,7 +41,7 @@ router.post("/star-meeting", async (req, res) => {
         if (!meet)
             throw "Meeting does not exists"
 
-        const op = await userColl.updateOne({id: req.body.userid}, {$addToSet: {savedMeetings: meet}})
+        const op = await userColl.updateOne({id: req.body.userid}, {$addToSet: {savedMeetings: meet._id}})
         // const user = await userColl.findOne({id: req.query.id})
         if (!op)
             throw "Unable to save meeting"
@@ -71,7 +71,7 @@ router.post("/unstar-meeting", async (req, res) => {
         if (!meet)
             throw "Meeting does not exists"
 
-        const op = await userColl.updateOne({id: req.body.userid}, {$pull: {savedMeetings: meet}})
+        const op = await userColl.updateOne({id: req.body.userid}, {$pull: {savedMeetings: meet._id}})
         // const user = await userColl.findOne({id: req.query.id})
         if (!op.matchedCount)
             throw "Unable to delete meeting"
