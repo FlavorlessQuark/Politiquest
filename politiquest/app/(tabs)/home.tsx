@@ -6,13 +6,15 @@ import styled from "styled-components/native";
 import axios from "axios"
 import { MaterialIcons } from "@expo/vector-icons";
 import { ICalItem } from "@/constants/interfaces";
+import { useUserConsumer , UserProvider} from "@/hooks/useUser";
+import { get_month_week } from "@/utils";
 
 export default function Home() {
     const [active, setActive] = useState(1)
     const [month, setMonth] = useState(0)
     const [activeWeek, setActiveWeek] = useState(0)
     const [meetData, setmeetData] = useState<{[month:number] : Array<Array<ICalItem>>}>({})
-    // const {savedMeetings} = useUserConsumer()
+    const {meetingsData} = useUserConsumer()
     const months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
     // axios.defaults.baseURL = "198.162.1.13:5000"
@@ -29,13 +31,13 @@ export default function Home() {
             // console.log("Got  meetings", res.data)
             for (let meeting of res.data){
                 const date = new Date(meeting.date);
-                const day = Math.min(4, Math.max(1, Math.ceil(date.getDate() / 7)))
+                const {week} = get_month_week(meeting.date)
 
                 meeting["_date"] = meeting.date
                 meeting.date =  date.toLocaleDateString();
                 meeting.time =  date.toLocaleTimeString();
 
-                data[month][day - 1].push(meeting);
+                data[month][week].push(meeting);
             }
             for (let week of data[month]) {
                 week.sort((a, b) => new Date(a._date).getDate() - new Date(b._date).getDate())
@@ -61,67 +63,67 @@ export default function Home() {
   useEffect(() => {
     // ADD : Month param
     const today = new Date();
-    const _month = parseInt(today.toLocaleString('default', {month: "numeric"}));
-    setMonth(_month)
-    setActiveWeek(Math.min(3, Math.ceil(today.getDate() / 7) - 1))
-    console.log("week is", Math.ceil(today.getDate() / 7) - 1)
+    const date = get_month_week(today.toISOString());
+    console.log("week is", date.week)
+    console.log("month is ", date.month)
 
-    get_month_meetings(_month).then((res) => console.log("setting up"))
+    setMonth(date.month)
+    setActiveWeek(date.week)
+    get_month_meetings(date.month).then((res) => console.log("setting up"))
     // axios.get("/user/get-user", {params: {id: 0}}).then((res) => console.log("got user", res.data))
 
   }, [])
 
-
   return (
+
     <Container>
     <Tabs>
         <ButtonBox onPress={() => setActive(0)}>
             <Button state={active == 0}> City Calendar </Button>
         </ButtonBox>
-        <ButtonBox onPress={() => setActive(1)}>
+        <ButtonBox onPress={() => {setActive(1)}}>
             <Button state={active == 1}> My Calendar </Button>
         </ButtonBox>
         <ButtonBox onPress={() => setActive(2)}>
             <Button state={active == 2}> Archive </Button>
         </ButtonBox>
     </Tabs>
-   { meetData[month] && <FlatList
-            contentContainerStyle={{alignItems:"center", width: "100%"}}
-            data={meetData[month][activeWeek] ? meetData[month][activeWeek] : []}
-            renderItem={(item) => <MeetingCard data={item.item} key={item.index}/>}
-            ListHeaderComponent={() => {
-                return(
-                    <HeaderContainer>
-                        <MonthSelecContainer>
-                            <MonthSelecButton onPress={async () => {await setCurrentMonth(-1)}}>
-                                <MaterialIcons name={"arrow-left"} size={46} style={{color:"#667984"}} />
-                            </MonthSelecButton>
-                            <MonthSelecCurrent>
-                                <StyledText>{months[month]} </StyledText>
-                            </MonthSelecCurrent>
-                            <MonthSelecButton onPress={async () => {await setCurrentMonth(-1)}}>
-                                    <MaterialIcons name={"arrow-right"} size={46} style={{color:"#667984"}} />
-                            </MonthSelecButton>
-                        </MonthSelecContainer>
-                            <WeekSelecContainer>
-                            {
-                                meetData[month] && meetData[month].map((_, i) =>
-                                <TextWrapper key={i}  active={i == activeWeek} onPress={() => setActiveWeek(i)}>
-                                    <StyledText> Week {i + 1} </StyledText>
-                                    {i == activeWeek && <Border/>}
+    <HeaderContainer>
+        <MonthSelecContainer>
+            <MonthSelecButton onPress={async () => {await setCurrentMonth(-1)}}>
+                <MaterialIcons name={"arrow-left"} size={46} style={{color:"#667984"}} />
+            </MonthSelecButton>
+            <MonthSelecCurrent>
+                <StyledText>{months[month]} </StyledText>
+            </MonthSelecCurrent>
+            <MonthSelecButton onPress={async () => {await setCurrentMonth(+1)}}>
+                    <MaterialIcons name={"arrow-right"} size={46} style={{color:"#667984"}} />
+            </MonthSelecButton>
+        </MonthSelecContainer>
+        <WeekSelecContainer>
+        {
+            meetData[month] && meetData[month].map((_, i) =>
+            <TextWrapper key={i}  active={i == activeWeek} onPress={() => setActiveWeek(i)}>
+                <StyledText> Week {i + 1} </StyledText>
+                {i == activeWeek && <Border/>}
 
-                                </TextWrapper>
-                                )
-                            }
-                        </WeekSelecContainer>
-                    </HeaderContainer>
-                )
-            }}
-
-        />
+            </TextWrapper>
+            )
         }
-
-
+    </WeekSelecContainer>
+    </HeaderContainer>
+        { meetData[month] &&
+            <FlatList
+                contentContainerStyle={{alignItems:"center", width: "100%"}}
+                data={
+                    active == 0 ?
+                        meetData[month][activeWeek] ? meetData[month][activeWeek] : []
+                        :
+                        meetingsData[month.toString()]  &&  meetingsData[month.toString()][activeWeek] ? meetingsData[month][activeWeek] : []
+                    }
+                renderItem={(item) => <MeetingCard data={item.item} key={item.index}/>}
+            />
+        }
     </Container>
   );
 }

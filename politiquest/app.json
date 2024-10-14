@@ -13,7 +13,8 @@
       "backgroundColor": "#ffffff"
     },
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "bundleIdentifier": "com.lightwaves.politiquest"
     },
     "android": {
       "adaptiveIcon": {
@@ -29,10 +30,16 @@
     },
     "plugins": [
       "expo-router",
-     [ "expo-font",
-       {
-        "fonts": ["./assets/fonts/Jura-Medium.ttf"]
-      }]
+      [
+        "expo-font",
+        {
+          "fonts": [
+            "./assets/fonts/Jura-Medium.ttf",
+            "./assets/fonts/Jura-Regular.ttf",
+            "./assets/fonts/Jura-Bold.ttf"
+          ]
+        }
+      ]
     ],
     "experiments": {
       "typedRoutes": true

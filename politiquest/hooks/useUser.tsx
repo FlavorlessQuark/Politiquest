@@ -1,8 +1,9 @@
 import { PropsWithChildren, createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { ICalItem } from "../constants/interfaces";
+import { get_month_week } from "@/utils";
 
-const UserContext = createContext({});
+export const UserContext = createContext({});
 
 axios.defaults.baseURL = "http://192.168.1.14:5000"
 
@@ -17,7 +18,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
   const [level, setLevel] = useState(0);
   const [xp, setXP] = useState(0);
   const [meetingsId, setMeetingsId] = useState<Set<string>>(new Set());
-  const [meetingsData, setMeetingsData] = useState([]);
+  const [meetingsData, setMeetingsData] = useState<{[month:number] : Array<Array<ICalItem>>}>({});
   const [achievements, setAchievemnts] = useState([
     {
       id: 0,
@@ -28,12 +29,42 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
       rewards: { xp: 50, title: "My opinion matters", cosmetic: undefined },
     },
   ]);
+
+
+  const formatSavedMeetings = (meetings: any) => {
+
+    for (let meeting of meetings) {
+        const date = new Date(meeting.date);
+
+        const {month, week} = get_month_week(meeting.date)
+
+        meeting["_date"] = meeting.date;
+        meeting.date =  date.toLocaleDateString();
+        meeting.time =  date.toLocaleTimeString();
+
+        if (!meetingsData[month])
+            meetingsData[month] = [[], [], [], []]
+
+        meetingsData[month][week].push(meeting)
+    }
+
+
+    for (let month of Object.keys(meetingsData)) {
+        for (let week of meetingsData[month]){
+            week.sort((a, b) => new Date(a._date).getDate() - new Date(b._date).getDate())
+        }
+    }
+
+    console.log("data", meetingsData)
+    setMeetingsData({...meetingsData})
+  }
+
   const init = async () => {
 
     axios.get("/user/get-user", {params: {id: 0}}).then((res) => {
         setLevel(res.data.level);
         setXP(res.data.xp);
-        setMeetingsData(res.data.savedMeetings)
+        formatSavedMeetings(res.data.savedMeetings);
         setUser({name: res.data.name, surname: res.data.surname, id: res.data.id});
         setAchievemnts([]);
         setTitle('title');
@@ -42,26 +73,48 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
         res.data.savedMeetings.map((e:ICalItem) => {ids.add(e.uid)})
         setMeetingsId(ids)
         setInit(true)
-        console.log("user data", res.data)
     })
 
   };
 
   const saveMeetings = (meeting:ICalItem) => {
+    const {month, week} = get_month_week(meeting._date)
+
     meetingsId.add(meeting.uid)
-    console.log('Adding', meeting, meetingsId)
+    if (!meetingsData[month])
+        meetingsData[month] = [[], [], [], []]
+    console.log("Pushing", meeting._date, month, week)
+    meetingsData[month][week].push(meeting)
+    meetingsData[month][week].sort((a, b) => new Date(a._date).getDate() - new Date(b._date).getDate())
+
+
     axios.post("/user/star-meeting", {meetingid: meeting.uid, userid: user.id}).then((res) => {
-        console.log("saved meetign res", res)
-    })
-    setMeetingsId(new Set(meetingsId))
-  }
+        })
+        setMeetingsId(new Set(meetingsId))
+        setMeetingsData({...meetingsData})
+    }
 
     const delMeetings = (meeting:ICalItem) => {
-    meetingsId.delete(meeting.uid)
-    console.log('Adding', meeting, meetingsId)
-    axios.post("/user/unstar-meeting", {meetingid: meeting.uid, userid: user.id}).then((res) => {
-        console.log("saved meetign res", res)
-    })
+        const {month, week} = get_month_week(meeting._date)
+
+        let match = -1;
+
+        console.log("???", meeting._date, new Date(meeting._date))
+        console.log("Deleting meeting month, week", month, week)
+        console.log("searching", meetingsData[month][week])
+        for (let idx in meetingsData[month][week]) {
+            if (meetingsData[month][week][idx]._id == meeting._id)
+                match = parseInt(idx)
+        }
+
+        if (match != -1) {
+            console.log("Found to unstar")
+            meetingsData[month][week].splice(match, 1);
+        }
+
+        setMeetingsData({...meetingsData})
+        meetingsId.delete(meeting.uid)
+        axios.post("/user/unstar-meeting", {meetingid: meeting.uid, userid: user.id}).then((res) => {})
     setMeetingsId(new Set(meetingsId))
   }
 

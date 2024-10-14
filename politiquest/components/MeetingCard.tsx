@@ -6,16 +6,23 @@ import { ICalItem } from "../constants/interfaces";
 import { useUserConsumer } from "../hooks/useUser";
 
 const MeetingCard = ({data} : {data: ICalItem}) => {
-
+    const {meetingsId, saveMeetings, delMeetings} = useUserConsumer()
     return (
         <Container>
             <Row >
                 <StyledTitle ellipsizeMode="tail" numberOfLines={2} >
                     {data.category}
                 </StyledTitle>
-                <MaterialPositon>
-                    <MaterialIcons name={false == false ? "star" :"star-border"} size={32} style={{color:"#ffb300"}} />
-                </MaterialPositon>
+                {
+                    meetingsId && !meetingsId.has(data.uid) ?
+                    <MaterialPositon onPress={() => saveMeetings(data)}>
+                        <MaterialIcons name={"star-border"} size={32} style={{color:"#ffb300"}} />
+                    </MaterialPositon>
+                    :
+                    <MaterialPositon onPress={() => delMeetings(data)}>
+                        <MaterialIcons name={"star"} size={32} style={{color:"#ffb300"}} />
+                    </MaterialPositon>
+                }
             </Row>
             <Row>
                  <ButtonBox>
@@ -63,7 +70,7 @@ export default MeetingCard;
         align-items: center;
     `
 
-    const MaterialPositon = styled.View`
+    const MaterialPositon = styled.Pressable`
         position: absolute;
         right: 0;
         top : 0;
