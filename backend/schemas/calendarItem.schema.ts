@@ -1,4 +1,4 @@
-import {Schema, model} from "mongoose";
+import mongoose, {ObjectId, Schema, model} from "mongoose";
 
 
 export interface ICalItem {
@@ -7,7 +7,8 @@ export interface ICalItem {
     url:string,
     uid: string,
     title: string,
-    category: string
+    category: string,
+    subscribers: Array<ObjectId>
 }
 
 export const CalendarItemSchema = new Schema<ICalItem>({
@@ -34,6 +35,14 @@ export const CalendarItemSchema = new Schema<ICalItem>({
     category: {
         type:  String,
         required:true
+    },
+    subscribers: {
+        type: [{
+            type: Array<mongoose.Schema.Types.ObjectId>,
+            ref: "User"
+        }],
+        required:true,
+        default: [],
     }
 });
 

@@ -63,7 +63,8 @@ export const buildMeetingsBy_Month_FCSM = async (
                 url: info.ref,
                 uid : type + date,
                 title: info.text,
-                category: type
+                category: type,
+                subscribers: []
             }
 
             bulkData.push({

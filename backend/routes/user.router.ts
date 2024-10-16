@@ -19,6 +19,8 @@ router.get("/get-user", async (req, res) => {
 
         if (!user)
             throw `user not found`
+        user.notifToken = undefined;
+        console.log("got user", user)
         return res.status(200).send(user)
     }
     catch (err) {
@@ -41,6 +43,7 @@ router.post("/star-meeting", async (req, res) => {
         if (!meet)
             throw "Meeting does not exists"
 
+        await itemColl.updateOne({uid: req.body.meetingid}, {$addToSet: {subscribers  : req.body.userid}})
         const op = await userColl.updateOne({id: req.body.userid}, {$addToSet: {savedMeetings: meet._id}})
         // const user = await userColl.findOne({id: req.query.id})
         if (!op)
@@ -71,6 +74,7 @@ router.post("/unstar-meeting", async (req, res) => {
         if (!meet)
             throw "Meeting does not exists"
 
+        itemColl.updateOne({uid: req.body.meetingid}, {$pull: {subscribers  : req.body.userid}})
         const op = await userColl.updateOne({id: req.body.userid}, {$pull: {savedMeetings: meet._id}})
         // const user = await userColl.findOne({id: req.query.id})
         if (!op.matchedCount)
@@ -81,6 +85,22 @@ router.post("/unstar-meeting", async (req, res) => {
         //     throw `user not found`
         // return res.status(200).send(user)
         return res.status(200).send(op? true : false)
+    }
+    catch (err) {
+        console.log("error unstarring meeting", err)
+        return res.status(500).send(err)
+    }
+})
+
+router.post("/saveNotifToken", async (req, res) => {
+    try {
+         if (!req.query.id)
+            throw 'Invalid request'
+
+        const user = await userColl.updateOne({id: req.query.id}, {notifToken: req.body.token, notify: true})
+        console.log("Update dnotif prefs")
+        if (!user)
+            throw `user not found`
     }
     catch (err) {
         console.log("error unstarring meeting", err)

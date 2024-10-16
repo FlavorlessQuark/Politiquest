@@ -76,7 +76,6 @@ router.get("/get-year", async (req, res) => {
 })
 
 router.get("/get-month", async (req, res) => {
-    console.log('got request')
     try {
 
         if (!req.query.year || !req.query.month || !req.query.from)
@@ -98,7 +97,6 @@ router.get("/get-month", async (req, res) => {
                 result = await calColl.findOne({month: month, year: year}).populate("meetings")
             }
 
-            console.log('Query result', result)
             return res.status(200).send(result?.meetings)
         }
         else
