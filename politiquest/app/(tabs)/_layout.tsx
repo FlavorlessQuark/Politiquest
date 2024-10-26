@@ -2,17 +2,38 @@ import { FontAwesome } from "@expo/vector-icons"
 import { Tabs } from "expo-router"
 import { Image } from "react-native"
 
+import * as Notifications from "expo-notifications"
+
 import Calendar from "../../assets/tabIcons/Calendar.png"
 import Quest from "../../assets/tabIcons/Quest.png"
 import Achievement from "../../assets/tabIcons/Achievement.png"
 import Leaderboard from "../../assets/tabIcons/Leaderboard.png"
 import Settings from "../../assets/tabIcons/Settings.png"
 import { Text, View } from "react-native";
+import { useEffect } from "react"
+import { registerForPushNotifications } from "@/utils"
+import { useUserConsumer } from "@/hooks/useUser"
 
 const TabLayout = () => {
+    const {user} = useUserConsumer();
+
+    useEffect(() => {
+        if (user.notify == false)
+            registerForPushNotifications(user.id).then((res) => {})
+        else
+            console.log("aready registered for notif");
+    })
+
+    Notifications.setNotificationHandler({
+        handleNotification: async () => ({
+            shouldShowAlert: true,
+            shouldPlaySound: true,
+            shouldSetBadge: false
+            }),
+        });
 
     return (
-        <Tabs screenOptions={{ tabBarActiveTintColor: 'blue', tabBarStyle: {backgroundColor:'#656565', borderTopColor: '#797979', padding: "10px"}}}
+        <Tabs screenOptions={{ tabBarActiveTintColor: 'blue', tabBarStyle: {backgroundColor:'#656565', borderTopColor: '#797979'}}}
             sceneContainerStyle={{backgroundColor: "#948181"}}
         >
             <Tabs.Screen

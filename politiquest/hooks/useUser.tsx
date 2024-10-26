@@ -12,6 +12,7 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
     name: "First Name",
     surname: "Last Name",
     id: 0,
+    notify: false
   });
   const [isInit, setInit] = useState(false)
   const [title, setTitle] = useState("");
@@ -62,10 +63,11 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
   const init = async () => {
 
     axios.get("/user/get-user", {params: {id: 0}}).then((res) => {
+        console.log("got user", user);
         setLevel(res.data.level);
         setXP(res.data.xp);
         formatSavedMeetings(res.data.savedMeetings);
-        setUser({name: res.data.name, surname: res.data.surname, id: res.data.id});
+        setUser({name: res.data.name, surname: res.data.surname, id: res.data.id, notify: res.data.notifToken});
         setAchievemnts([]);
         setTitle('title');
 

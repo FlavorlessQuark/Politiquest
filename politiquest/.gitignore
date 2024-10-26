@@ -10,6 +10,8 @@ npm-debug.*
 *.orig.*
 web-build/
 
+politiquest-4af01-firebase-adminsdk-rzdps-04fd93a1b1.json
+google-services.json
 # macOS
 .DS_Store
 
