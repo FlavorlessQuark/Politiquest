@@ -1,18 +1,24 @@
 import { PropsWithChildren, createContext, useContext, useEffect, useState } from "react";
 import axios from "axios";
 import { ICalItem } from "../constants/interfaces";
-import { get_month_week } from "@/utils";
+
+import { get_month_week, registerForPushNotifications } from "@/utils";
+import * as Notifications from "expo-notifications"
+
+const NOTIF_STATUS_UNDEF = 0;
+const NOTIF_STATUS_YES = 1;
+const NOTIF_STATUS_NO = 2;
 
 export const UserContext = createContext({});
 
-axios.defaults.baseURL = "http://192.168.1.14:5000"
+axios.defaults.baseURL = "http://192.168.1.13:5000"
 
 export const UserProvider = ({ children }: PropsWithChildren) => {
   const [user, setUser] = useState({
     name: "First Name",
     surname: "Last Name",
     id: 0,
-    notify: false
+    notify: 0
   });
   const [isInit, setInit] = useState(false)
   const [title, setTitle] = useState("");
@@ -67,9 +73,21 @@ export const UserProvider = ({ children }: PropsWithChildren) => {
         setLevel(res.data.level);
         setXP(res.data.xp);
         formatSavedMeetings(res.data.savedMeetings);
-        setUser({name: res.data.name, surname: res.data.surname, id: res.data.id, notify: res.data.notifToken});
+        setUser({name: res.data.name, surname: res.data.surname, id: res.data.id, notify: res.data.notify});
         setAchievemnts([]);
         setTitle('title');
+
+        if (res.data.notify == NOTIF_STATUS_UNDEF)
+            registerForPushNotifications(res.data.id).then((res) => {})
+        else
+            console.log("aready registered for notif");
+        Notifications.setNotificationHandler({
+            handleNotification: async () => ({
+                shouldShowAlert: true,
+                shouldPlaySound: true,
+                shouldSetBadge: false
+                }),
+        });
 
         const ids = new Set<string>()
         res.data.savedMeetings.map((e:ICalItem) => {ids.add(e.uid)})

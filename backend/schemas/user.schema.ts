@@ -9,7 +9,7 @@ export interface IUser {
     xp: number,
     reigsteredDriver: boolean,
     verified: boolean,
-    notify: boolean,
+    notify: number,
     notifToken?: string,
     achievements: Array<ObjectId>,
     quests: Array<ObjectId>,
@@ -55,9 +55,9 @@ export const User = new Schema<IUser> ({
         default: false
     },
     notify: {
-        type: Boolean,
+        type: Number,
         required: true,
-        default: false
+        default: 0
     },
     notifToken:{
         type:String || undefined,

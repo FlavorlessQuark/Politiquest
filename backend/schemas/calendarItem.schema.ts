@@ -38,8 +38,7 @@ export const CalendarItemSchema = new Schema<ICalItem>({
     },
     subscribers: {
         type: [{
-            type: Array<mongoose.Schema.Types.ObjectId>,
-            ref: "User"
+            type: Number
         }],
         required:true,
         default: [],

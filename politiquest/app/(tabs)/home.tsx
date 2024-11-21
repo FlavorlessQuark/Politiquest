@@ -23,7 +23,7 @@ export default function Home() {
     if (!Object.keys(meetData).includes(month.toString()))
     {
 
-        axios.get("http://192.168.1.14:5000/meetings/get-month", {params : {from: "FCSM", month:month, year: 2024}})
+        axios.get("http://192.168.1.13:5000/meetings/get-month", {params : {from: "FCSM", month:month, year: 2024}})
         .then((res):any => {
             const data = meetData;
             data[month] = [[], [], [], []];

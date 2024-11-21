@@ -14,26 +14,32 @@ import { useEffect } from "react"
 import { registerForPushNotifications } from "@/utils"
 import { useUserConsumer } from "@/hooks/useUser"
 
+const NOTIF_STATUS_UNDEF = 0;
+const NOTIF_STATUS_YES = 1;
+const NOTIF_STATUS_NO = 2;
+
 const TabLayout = () => {
-    const {user} = useUserConsumer();
+    // const {user} = useUserConsumer();
 
-    useEffect(() => {
-        if (user.notify == false)
-            registerForPushNotifications(user.id).then((res) => {})
-        else
-            console.log("aready registered for notif");
-    })
+    // useEffect(() => {
+    //     if (user.notify == NOTIF_STATUS_UNDEF)
+    //         registerForPushNotifications(user.id).then((res) => {})
+    //     else
+    //         console.log("aready registered for notif");
+    // })
 
-    Notifications.setNotificationHandler({
-        handleNotification: async () => ({
-            shouldShowAlert: true,
-            shouldPlaySound: true,
-            shouldSetBadge: false
-            }),
-        });
+    // Notifications.setNotificationHandler({
+    //     handleNotification: async () => ({
+    //         shouldShowAlert: true,
+    //         shouldPlaySound: true,
+    //         shouldSetBadge: false
+    //         }),
+    //     });
 
     return (
-        <Tabs screenOptions={{ tabBarActiveTintColor: 'blue', tabBarStyle: {backgroundColor:'#656565', borderTopColor: '#797979'}}}
+        <Tabs
+        initialRouteName="home"
+        screenOptions={{ tabBarActiveTintColor: 'blue', tabBarStyle: {backgroundColor:'#656565', borderTopColor: '#797979'}}}
             sceneContainerStyle={{backgroundColor: "#948181"}}
         >
             <Tabs.Screen

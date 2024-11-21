@@ -8,7 +8,7 @@ import mongoose, { connect } from "mongoose";
 
 import meettingsrouter from "./routes/meetings.route";
 import zoomrouter from "./zoom/zoom.router";
-import cronrouter from "./routes/cron.router"
+import cronrouter, { make_cron_batches} from "./routes/cron.router"
 import userrouter from "./routes/user.router"
 import { IUser, User } from "./schemas/user.schema";
 
@@ -55,5 +55,7 @@ const test = async() => {
     }).save()
 
 }
+
+make_cron_batches()
 
 // test()

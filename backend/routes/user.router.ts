@@ -94,16 +94,15 @@ router.post("/unstar-meeting", async (req, res) => {
 
 router.post("/saveNotifToken", async (req, res) => {
     try {
-         if (!req.query.id)
-            throw 'Invalid request'
+        console.log(req.body)
 
-        const user = await userColl.updateOne({id: req.query.id}, {notifToken: req.body.token, notify: true})
+        const user = await userColl.updateOne({id: req.body.id}, {notifToken: req.body.token, notify: req.body.status})
         console.log("Update dnotif prefs")
         if (!user)
             throw `user not found`
     }
     catch (err) {
-        console.log("error unstarring meeting", err)
+        console.log("error saving notifs prefs", err)
         return res.status(500).send(err)
     }
 })
